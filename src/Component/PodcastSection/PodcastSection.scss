@@ -1,0 +1,175 @@
+.wpb_row {
+  &.full-width-section {
+    padding-top: 50px;
+    padding-bottom: 0;
+  }
+
+  .row-bg-wrap {
+    .row-bg-layer {
+      .row-bg.viewport-desktop {
+        // Add any specific styles for the background if needed
+      }
+    }
+  }
+
+  .row_col_wrap_12 {
+    opacity: 1;
+
+    .vc_column_container {
+      &.no-extra-padding {
+        .vc_column-inner {
+          .wpb_wrapper {
+            .nectar-post-grid-wrap {
+              &.text-color-light {
+                .nectar-post-grid-filters {
+                  h4 {
+                    color: #fff;
+                  }
+
+                  a {
+                    color: #fff;
+
+                    &.active {
+                      font-weight: bold;
+                    }
+                  }
+                }
+
+                .nectar-post-grid {
+                  .nectar-post-grid-item {
+                    .inner {
+                      .nectar-post-grid-item-bg-wrap {
+                        .nectar-post-grid-item-bg-wrap-inner {
+                          .nectar-post-grid-item-bg {
+                            img {
+                              width: 100%;
+                              height: auto;
+                            }
+                          }
+                        }
+                      }
+
+                      .bg-overlay {
+                        background-color: #000;
+                        opacity: 0.3;
+
+                        &:hover {
+                          opacity: 0.4;
+                        }
+                      }
+
+                      .content {
+                        .nectar-post-grid-link {
+                          display: block;
+                          width: 100%;
+                          height: 100%;
+                        }
+
+                        .item-main {
+                          .post-heading {
+                            span {
+                              color: #fff;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.centered-text {
+      .vc_column-inner {
+        .wpb_wrapper {
+          .vc_custom_heading {
+            text-align: center;
+
+            a {
+              color: #000;
+            }
+          }
+
+          .wpb_text_column {
+            .wpb_wrapper {
+              p {
+                color: #000;
+
+                a {
+                  color: #00718b;
+                  text-decoration: underline;
+                }
+
+                strong {
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+
+          .divider-wrap {
+            .divider {
+              height: 30px;
+            }
+          }
+
+          .nectar-3d-transparent-button {
+            width: 192.713px;
+            height: 54px;
+            visibility: visible;
+
+            a {
+              height: 54px;
+
+              .hidden-text {
+                display: none;
+              }
+
+              .inner-wrap {
+                .front-3d {
+                  svg {
+                    width: 192.713px;
+                    height: 54px;
+
+                    rect {
+                      fill: #00718b;
+                    }
+
+                    .mask-text.button-text {
+                      fill: #000;
+                      text-anchor: middle;
+                      font-size: 16px;
+                    }
+                  }
+                }
+
+                .back-3d {
+                  svg {
+                    width: 192.713px;
+                    height: 54px;
+
+                    rect {
+                      stroke: #00718b;
+                      stroke-width: 8;
+                      fill: transparent;
+                    }
+
+                    .button-text {
+                      fill: #00718b;
+                      text-anchor: middle;
+                      font-size: 16px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

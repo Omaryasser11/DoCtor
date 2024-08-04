@@ -1,0 +1,148 @@
+#footer-outer {
+    background-image: url('https://www.drwilliammiami.com/wp-content/uploads/2020/01/6845848-miami.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+    position: relative;
+  
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+  
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+  
+      .col {
+        flex: 1 1 25%;
+        padding: 15px;
+  
+        &.one-fourths {
+          width: 25%;
+        }
+  
+        &.clear-both {
+          clear: both;
+        }
+  
+        &.right-edge {
+          margin-right: 0;
+        }
+  
+        .widget {
+          margin-bottom: 20px;
+  
+          .widget_text {
+            img {
+              max-width: 100%;
+              height: auto;
+            }
+          }
+  
+          h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+          }
+  
+          .menu {
+            list-style: none;
+            padding: 0;
+  
+            li {
+              margin-bottom: 5px;
+  
+              a {
+                text-decoration: none;
+                color: #ffffff;
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+  
+          .widget_nav_menu {
+            a {
+              color: #ffffff;
+            }
+          }
+  
+          .wpcw-widgets {
+            ul {
+              list-style: none;
+              padding: 0;
+  
+              li {
+                margin-bottom: 10px;
+  
+                .has-label {
+                  strong {
+                    display: block;
+                    font-weight: 600;
+                    margin-bottom: 5px;
+                  }
+                }
+  
+                a {
+                  color: #ffffff;
+                  text-decoration: none;
+                  &:hover {
+                    text-decoration: underline;
+                  }
+                }
+              }
+            }
+          }
+  
+          .textwidget {
+            iframe {
+              width: 100%;
+              border: 0;
+            }
+          }
+        }
+      }
+    }
+  
+    #copyright {
+      padding: 20px 0;
+      background: rgba(0, 0, 0, 0.8);
+      color: #ffffff;
+  
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+  
+        p {
+          margin: 0;
+        }
+  
+        .social {
+          list-style: none;
+          padding: 0;
+          display: flex;
+  
+          li {
+            margin-right: 10px;
+  
+            a {
+              color: #ffffff;
+              text-decoration: none;
+              font-size: 18px;
+              &:hover {
+                color: #00718b;
+              }
+  
+              .fa {
+                margin-right: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

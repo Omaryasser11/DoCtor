@@ -1,0 +1,37 @@
+.NavBar {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0a2240;
+    padding: 1rem;
+    z-index: 3;
+
+    ul {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        height: 100%;
+        color: white;
+        font-size: 0.9rem;
+    }
+
+    li {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin-left: 1rem;
+    }
+
+    .navBarLogo {
+        height: 5rem;
+    }
+}

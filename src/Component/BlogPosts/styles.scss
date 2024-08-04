@@ -1,0 +1,167 @@
+.full-width-section {
+  padding-top: calc(100vw * 0.05);
+  padding-bottom: calc(100vw * 0.02);
+  background-color: #ffffff;
+}
+
+.recent-posts-title {
+  text-transform: uppercase;
+
+  a {
+    margin-left: 10px;
+    color: #00718b;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.blog-recent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .col {
+    flex: 1 1 calc(33.333% - 20px);
+    margin-bottom: 20px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    .post-header {
+      h3.title {
+        margin-top: 10px;
+        font-size: 1.5rem;
+
+        a {
+          color: #333;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .meta-author,
+      .meta-category,
+      .meta-comment-count {
+        font-size: 0.875rem;
+        color: #999;
+
+        a {
+          color: #999;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .excerpt {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #666;
+    }
+  }
+}
+
+.vc_row {
+  &.full-width-content {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .vc_column_container {
+    padding: 10%;
+    position: relative;
+
+    .column-link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    .column-image-bg-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+
+      .column-image-bg {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+
+    .column-bg-overlay-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: inherit;
+      opacity: 1;
+    }
+
+    .wpb_wrapper {
+      position: relative;
+      z-index: 2;
+
+      .morphing-outline {
+        border: 11px solid;
+        display: inline-block;
+        padding: 10px;
+        transition: border-color 0.3s;
+
+        .inner {
+          text-align: center;
+        }
+      }
+
+      h2,
+      h3,
+      h5 {
+        margin: 0;
+      }
+    }
+  }
+
+  .light {
+    background-color: #f7f7f7;
+
+    .morphing-outline {
+      border-color: #00718b;
+
+      &:hover {
+        border-color: #7fcacd;
+      }
+    }
+  }
+
+  .dark {
+    background-color: #00718b;
+
+    .morphing-outline {
+      border-color: #ffffff;
+    }
+  }
+}

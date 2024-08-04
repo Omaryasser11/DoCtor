@@ -1,0 +1,87 @@
+/* SCSS for the testimonial section */
+#fws_66aaf48d6affe {
+  .wpb_row {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    .row-bg-wrap {
+      .inner-wrap {
+        .row-bg {
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-color: rgb(10, 34, 64);
+          height: 850.875px;
+          transform: translate3d(0px, 61.175px, 0px) scale(1.005);
+        }
+      }
+    }
+    .row_col_wrap_12 {
+      opacity: 1;
+      .vc_column_container {
+        padding: 4%;
+        background-color: #0a2240;
+        transition: background-color 0.3s ease;
+        &:hover {
+          background-color: #00718b;
+        }
+        .vc_column-inner {
+          .column-image-bg-wrap {
+            .inner-wrap {
+              .column-image-bg {
+                background-size: cover;
+                background-position: center center;
+              }
+            }
+          }
+          .column-bg-overlay-wrap {
+            .column-bg-overlay {
+              background-color: #0a2240;
+              opacity: 0.9;
+            }
+          }
+          .wpb_wrapper {
+            .divider-wrap {
+              .divider {
+                height: 75px;
+              }
+            }
+            blockquote.nectar_single_testimonial {
+              color: #fff;
+              font-size: 16px;
+              font-style: italic;
+              .inner {
+                .open-quote {
+                  font-size: 30px;
+                }
+                p {
+                  margin-bottom: 20px;
+                }
+                .wrap {
+                  display: block;
+                  span {
+                    display: block;
+                  }
+                  .title {
+                    font-weight: bold;
+                    margin-top: 10px;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &:nth-of-type(1) .vc_column-inner .column-bg-overlay {
+          opacity: 0.9;
+        }
+        &:nth-of-type(2) .vc_column-inner .column-bg-overlay {
+          opacity: 0.8;
+        }
+        &:nth-of-type(3) .vc_column-inner .column-bg-overlay {
+          opacity: 0.7;
+        }
+        &:nth-of-type(4) .vc_column-inner .column-bg-overlay {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}

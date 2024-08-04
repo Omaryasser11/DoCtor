@@ -1,0 +1,168 @@
+.bg {
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 1rem;
+
+}
+
+.about-dr-william {
+
+  .S2Title {
+    text-align: left;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color: rgb(68, 68, 68);
+    font-size: 18px;
+    height: 24px;
+    text-transform: uppercase;
+  }
+
+  .S2Thin {
+    text-align: left;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(103, 103, 103);
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .animated {
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+
+    &.fade-in {
+      opacity: 1;
+      transform: none;
+    }
+
+    &.slideInLeft {
+      animation: slideInLeft 0.5s forwards;
+    }
+
+    &.slideInUp {
+      animation: slideInUp 0.5s forwards;
+    }
+  }
+
+  .divider {
+    height: 50px;
+  }
+
+  .about-description {
+    color: rgb(103, 103, 103);
+    font-family: "futura";
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    font-style: normal;
+    font-stretch: 100%;
+    padding-right: 3rem;
+  }
+
+  .btn-accent-color {
+    visibility: visible;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+
+    &:hover {
+      background-color: #0056b3;
+      border-color: #004085;
+    }
+  }
+
+  .video-section {
+    color: rgb(205, 244, 244);
+
+    .nectar-video-box {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        transition: transform .25s, visibility .25s ease-in;
+        border-radius: 1rem;
+      }
+
+      &:hover img {
+        transform: scale(1.25);
+        border-radius: 1rem;
+        
+      }
+
+      .inner-wrap {
+        position: relative;
+
+        .play_button_2 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          cursor: pointer;
+
+          .play {
+            width: 60px;
+            height: 60px;
+            background-color: #00718b;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+              fill: #fff;
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+  .playIcon {
+    font-size: 1.7rem;
+    text-align: center;
+    color: #fff;
+    display: flex;
+
+  }
+
+  .btn1 {
+    background-color: #00718b;
+    color: #f2f2f2;
+    transition-duration: .3s;
+  }
+
+  .btn1:hover {
+    transform: scale(1.1);
+    background-color: white;
+    color: #00718b;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,252 @@
+body {
+  font-family: sans-serif;
+}
+
+.scene {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: hidden;
+  /* Hide scrollbars */
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.6s cubic-bezier(.45, .055, .675, .19), transform 1.6s ease;
+
+
+}
+
+.box.flipped {
+  transform: rotateX(90deg);
+
+
+
+}
+
+.scaleOut {
+  scale: 0.8;
+
+
+}
+
+
+
+
+
+.boxFace {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  // background-color: #f2f2f2;
+}
+
+.boxFaceFront {
+  background: fixed;
+  transform: rotateX(0deg);
+}
+
+.boxFaceBottom {
+
+  transform: rotateX(-90deg) translateZ(50vh);
+}
+
+.landingContainer {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  transition: transform .4s cubic-bezier(.45, .055, .675, .19);
+  transform: rotateX(0deg);
+
+}
+
+
+
+.landingVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.filterContainer {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 34, 64, 0.664);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform 1.6s cubic-bezier(20, 20, 20, 20) !important;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.topHeading {
+  font-family: Sansita;
+  font-weight: 600;
+  font-size: 3.7rem;
+  letter-spacing: 0.1rem;
+  color: rgba(255, 255, 255, 0.89);
+}
+
+.buttonHeading {
+  font-family: Raleway;
+  font-size: 1.6rem;
+  line-height: 1.5rem;
+  color: rgba(255, 255, 255, 0.726);
+  animation: 14s ease-in-out forwards fade;
+}
+
+.angleIcon {
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.89);
+  position: absolute;
+  bottom: 3rem;
+  cursor: pointer;
+  animation: 3.4s ease-in-out infinite fadebottom;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: rotateX(90deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotateX(0);
+    opacity: 0;
+  }
+}
+
+.wrapped {
+  display: inline-block;
+  animation: flip 2.5s ease-in-out;
+  animation-delay: calc(var(--i) * 0.5s);
+  margin: 0 0.55rem;
+}
+
+@keyframes fadebottom {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  25% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  30% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  45% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0;
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotateCubeTopOut2 {
+  0% {
+    transform: perspective(400px) rotateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: perspective(400px) rotateX(90deg);
+    opacity: 0;
+  }
+}
+
+.animateContainer {
+  display: block !important;
+  box-shadow: none !important;
+  transform-origin: 50% 0;
+  animation: showBottomFace 1.6s ease-in-out;
+}
+
+.backFaceDiv {
+
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}

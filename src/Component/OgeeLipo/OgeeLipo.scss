@@ -1,0 +1,46 @@
+.full-width-section {
+    position: relative;
+    background-color: #0a2240;
+    padding-top: calc(100vw * 0.05);
+    padding-bottom: calc(100vw * 0.05);
+
+    .highlight {
+        color: #7fcacd;
+    }
+
+    .content-wrapper {
+        h2 {
+            color: #ffffff;
+            text-align: center;
+
+            .highlight {
+                color: #7fcacd;
+            }
+        }
+    }
+}
+
+@keyframes fadeInFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animated {
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+
+    &.fade-in-from-bottom {
+        animation: fadeInFromBottom 0.5s forwards;
+    }
+}
+
+.top-margin-30px {
+    margin-top: 30px;
+}

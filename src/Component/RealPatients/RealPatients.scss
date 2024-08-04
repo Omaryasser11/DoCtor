@@ -1,0 +1,31 @@
+#wfb_66aaf48d63491 {
+    padding-top: calc(100vw * 0.05);
+    padding-bottom: calc(100vw * 0.05);
+    .row-bg-wrap {
+      .inner-wrap {
+        .row-bg {
+          background-color: #ffffff;
+        }
+      }
+      .row-bg-overlay {
+        background: linear-gradient(45deg, rgb(240, 240, 240) 10%, rgb(209, 208, 215) 90%);
+      }
+    }
+    .row_col_wrap_12 {
+      opacity: 1;
+      .vc_column-inner {
+        transform: translate(0px, 0px);
+      }
+      .wpb_text_column {
+        .wpb_wrapper {
+          h1.text-center {
+            text-align: center;
+            .headline {
+              font-size: 36pt;
+            }
+          }
+        }
+      }
+    }
+  }
+  
