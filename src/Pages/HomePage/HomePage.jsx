@@ -16,6 +16,7 @@ import BlogPosts from '../../Component/BlogPosts/BlogPosts.jsx';
 import FAQTestimonials from '../../Component/BlogPosts/FAQTestimonials.jsx';
 import Footer from '../../Component/Footer/Footer.jsx';
 import './HomePage.scss';
+import Portfolio from '../../Component/Portfilio/Portfolio.jsx';
 
 function HomePage() {
   const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
@@ -40,13 +41,15 @@ function HomePage() {
       <OgeeRecovery />
       <OgeeLipo />
       <PodcastSection />
-      <RealPatientsResults />
-      <Main />
+      <RealPatientsResults headline="Real Patients. Real Results" />
+      <Portfolio />
       <TestimonialsSection />
+      <RealPatientsResults headline="The Latest In Cosmetic Surgery" />
       <RecentPosts />
       <BlogPosts />
       <FAQTestimonials />
       <Footer />
+
     </>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './PodcastSection.scss'; // Import the SCSS file
+import FlashButton from '../Buttons/FlashButton';
 
 const PodcastSection = () => {
     return (
@@ -16,13 +17,23 @@ const PodcastSection = () => {
                             <div className="nectar-post-grid-item animated-in" data-post-id="134865">
                                 <div className="inner">
                                     <div className="nectar-post-grid-item-bg-wrap">
-                                        <div className="nectar-post-grid-item-bg">
-                                            <img
-                                                src="https://www.drwilliammiami.com/wp-content/uploads/2022/06/Blog-BTM-Podcast.jpg"
-                                                alt="Podcast Thumbnail"
-                                                className="img-fluid"
-                                            />
+                                        <div className="nectar-post-grid-item-bg Realative">
+
+
+                                            <div className='ImgBoodcast'>
+
+                                            </div>
+                                            <div className='Filter'>
+                                                <div className="item-main">
+                                                    <h3 className="post-heading">
+                                                        <a href="https://www.drwilliammiami.com/behind-the-mask-the-podcast/">
+                                                            <span>Behind The Mask, The Podcast</span>
+                                                        </a>
+                                                    </h3>
+                                                </div>
+                                            </div>
                                         </div>
+
                                     </div>
                                     <div className="bg-overlay" style={{ backgroundColor: '#000000', opacity: 0.3 }}></div>
                                     <div className="content">
@@ -31,13 +42,7 @@ const PodcastSection = () => {
                                             href="https://www.drwilliammiami.com/behind-the-mask-the-podcast/"
                                             aria-label="Behind The Mask, The Podcast"
                                         />
-                                        <div className="item-main">
-                                            <h3 className="post-heading">
-                                                <a href="https://www.drwilliammiami.com/behind-the-mask-the-podcast/">
-                                                    <span>Behind The Mask, The Podcast</span>
-                                                </a>
-                                            </h3>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +50,7 @@ const PodcastSection = () => {
                     </div>
                 </div>
 
-                <div className="col-12 col-md-6 text-center">
+                <div className="col-12 col-md-6 text-center content2">
                     <h4>
                         <a href="https://www.youtube.com/c/DrWilliamMiami?sub_confirmation=1">
                             Behind the Mask - The Podcast
@@ -60,37 +65,9 @@ const PodcastSection = () => {
                         <strong>You don’t want to miss any episodes!</strong>
                     </p>
                     <div className="divider"></div>
-                    <a
-                        href="https://www.youtube.com/c/DrWilliamMiami?sub_confirmation=1"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="nectar-3d-transparent-button"
-                    >
-                        <span className="hidden-text">Subscribe Now</span>
-                        <div className="inner-wrap">
-                            <div className="front-3d">
-                                <svg viewBox="0 0 192.71250915527344 54">
-                                    <defs>
-                                        <mask id="button-text-mask-0">
-                                            <rect width="100%" height="100%" fill="#ffffff"></rect>
-                                            <text className="mask-text button-text" fill="#000000" textAnchor="middle" fontSize="16">
-                                                Subscribe Now
-                                            </text>
-                                        </mask>
-                                    </defs>
-                                    <rect fill="#00718b" width="100%" height="100%"></rect>
-                                </svg>
-                            </div>
-                            <div className="back-3d">
-                                <svg viewBox="0 0 192.71250915527344 54">
-                                    <rect stroke="#00718b" strokeWidth="8" fill="transparent" width="100%" height="100%"></rect>
-                                    <text className="button-text" fill="#00718b" textAnchor="middle" fontSize="16">
-                                        Subscribe Now
-                                    </text>
-                                </svg>
-                            </div>
-                        </div>
-                    </a>
+           
+                    <FlashButton />
+             
                 </div>
             </div>
         </div>

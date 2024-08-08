@@ -1,0 +1,58 @@
+#fws_66b2723d14f1b {
+    .row-bg-wrap {
+      .inner-wrap {
+        .row-bg {
+          background-color: #0a2240;
+        }
+      }
+    }
+  
+    .row_col_wrap_12 {
+      .vc_col-sm-6 {
+        &.no-extra-padding {
+          .vc_column-inner {
+            .column-image-bg-wrap {
+              .column-image-bg {
+                background-image: url('https://www.drwilliammiami.com/wp-content/uploads/2024/02/DrWilliam_Still4-scaled.jpg');
+              }
+            }
+            .column-bg-overlay-wrap {
+              .column-bg-overlay {
+                opacity: 0.3;
+                background-color: #262626;
+              }
+            }
+          }
+        }
+      }
+  
+      .padding-7-percent {
+        .vc_column-inner {
+          .wpb_wrapper {
+            .divider-wrap {
+              &::after {
+                content: "";
+                display: block;
+                height: 50px; // Modify as needed for each divider
+              }
+            }
+  
+            .wpb_text_column {
+              h2 {
+                // Additional styles for the heading
+              }
+  
+              h4 {
+                // Additional styles for the quote
+              }
+  
+              p {
+                font-family: futura; // Additional styles for the paragraph
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

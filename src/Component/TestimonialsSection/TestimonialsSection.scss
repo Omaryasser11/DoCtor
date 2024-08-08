@@ -3,6 +3,7 @@
   .wpb_row {
     padding-top: 0px;
     padding-bottom: 0px;
+
     .row-bg-wrap {
       .inner-wrap {
         .row-bg {
@@ -14,15 +15,19 @@
         }
       }
     }
+
     .row_col_wrap_12 {
       opacity: 1;
+
       .vc_column_container {
         padding: 4%;
         background-color: #0a2240;
         transition: background-color 0.3s ease;
+
         &:hover {
           background-color: #00718b;
         }
+
         .vc_column-inner {
           .column-image-bg-wrap {
             .inner-wrap {
@@ -32,34 +37,42 @@
               }
             }
           }
+
           .column-bg-overlay-wrap {
             .column-bg-overlay {
               background-color: #0a2240;
               opacity: 0.9;
             }
           }
+
           .wpb_wrapper {
             .divider-wrap {
               .divider {
                 height: 75px;
               }
             }
+
             blockquote.nectar_single_testimonial {
               color: #fff;
               font-size: 16px;
               font-style: italic;
+
               .inner {
                 .open-quote {
                   font-size: 30px;
                 }
+
                 p {
                   margin-bottom: 20px;
                 }
+
                 .wrap {
                   display: block;
+
                   span {
                     display: block;
                   }
+
                   .title {
                     font-weight: bold;
                     margin-top: 10px;
@@ -69,19 +82,67 @@
             }
           }
         }
+
         &:nth-of-type(1) .vc_column-inner .column-bg-overlay {
           opacity: 0.9;
         }
+
         &:nth-of-type(2) .vc_column-inner .column-bg-overlay {
           opacity: 0.8;
         }
+
         &:nth-of-type(3) .vc_column-inner .column-bg-overlay {
           opacity: 0.7;
         }
+
         &:nth-of-type(4) .vc_column-inner .column-bg-overlay {
           opacity: 0.6;
         }
       }
     }
   }
+}
+
+.wpb_row .ColCard,
+.ll .wpb_row .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* padding: 0px 4%; */
+  padding: 0;
+  margin: 0;
+  display: flex;
+
+
+}
+
+@media (min-width: 1400px) {
+
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 100%;
+  }
+}
+
+.column,
+.ll .wpb_row .container .COL {
+    flex: 1 1 calc(25% - 16px);
+    /* margin: 8px; */
+    background-color: rgba(10, 34, 64, 0.9);
+    color: rgb(255, 255, 255);
+    position: relative;
+    padding: 4%;
+    text-align: center;
+    box-sizing: border-box;
+    transition: background-color 0.3s, transform 0.3s;
+    overflow: hidden;
+    /* border-radius: 8px; */
+    cursor: pointer;
+    filter: grayscale(0%);
+    height: 750px;
+    width: 25%;
 }
