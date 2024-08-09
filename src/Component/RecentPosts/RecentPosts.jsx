@@ -54,7 +54,7 @@ const RecentPosts = () => {
   ];
 
   return (
-    <div className="recent-posts col-10">
+    <div className="recent-posts col-12">
       <h2 className="recent-posts-title">
         Recent Posts
         <a href="our-blog" className="button">/ View All Posts</a>

@@ -1,48 +1,131 @@
-import React from 'react';
-import "./Portfolio.scss";
+import React, { useRef } from 'react';
+import { motion, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
+import './Portfolio.scss'; // Ensure this is the correct path to your SCSS file
+
+const ROTATION_RANGE = 32.5;
+const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
+
+const TiltCard = ({ imageSrc, altText }) => {
+  const ref = useRef(null);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const xSpring = useSpring(x);
+  const ySpring = useSpring(y);
+
+  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return;
+
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+
+    const mouseX = (e.clientX - rect.left) / width;
+    const mouseY = (e.clientY - rect.top) / height;
+
+    const rX = (mouseY - 0.75) * ROTATION_RANGE * -1.25;
+    const rY = (mouseX - 0.75) * ROTATION_RANGE;
+
+    x.set(rX);
+    y.set(rY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transformStyle: 'preserve-3d',
+        transform,
+      }}
+      className="TiltCard"
+    >
+      <div className="TiltCard-inner">
+        <img
+          src={imageSrc}
+          alt={altText}
+          className="TiltCard-img imgW"
+        />
+      </div>
+    </motion.div>
+  );
+};
+
 function Portfolio() {
   return (
-    <div className='col-12 Poto'>
-      <div className='col-4 First'>
-        <div className='col-12 Q1'>
-          <img src="https://media.istockphoto.com/id/1191834325/photo/woman-with-index-finger-on-lips-asking-to-be-quiet-or-keep-secret.jpg?s=612x612&w=0&k=20&c=w-5MBbMc8E96QJDY3x3xpXFj5omg5qTI7DLrUtu-UTk=" className='col-12 imgW flex' alt="" />
+    <div className='Portfolio col-12 flexR Poto'>
+      <div className='First col-4'>
+        <div className='col-12  Q1' >
+          <TiltCard
+
+            imageSrc="https://media.istockphoto.com/id/1191834325/photo/woman-with-index-finger-on-lips-asking-to-be-quiet-or-keep-secret.jpg?s=612x612&w=0&k=20&c=w-5MBbMc8E96QJDY3x3xpXFj5omg5qTI7DLrUtu-UTk="
+            altText="Quiet"
+
+          />
         </div>
-        <div className='col-12 Q10'>
-          <img src="data:image/jpeg;base64,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" alt="" />
+        <div className='col-12 Q2'>
+          <TiltCard
+            style={{ height: '400px' }}
+            imageSrc="https://images.pexels.com/photos/19293634/pexels-photo-19293634/free-photo-of-smiling-woman-in-traditional-clothing.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" altText="Green Lines"
+          />
         </div>
-      </div>
-      <div className='col-4 Last'>
-        <div className=' Q2'>
-<img src="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />        </div>
-        <div className=' Q3'>
-       <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-        </div>
-        <div className=' Q4'>
-          <img src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-        </div>
-        <div className=' Q5'>
-       <img src="https://images.pexels.com/photos/33545/sunrise-phu-quoc-island-ocean.jpg?auto=compress&cs=tinysrgb&w=600" alt="" />
-        </div>
-        <div className=' Q6'>
-          <img src="https://images.pexels.com/photos/372166/pexels-photo-372166.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-        </div>
-        <div className=' Q7'>
-          <img src="https://images.pexels.com/photos/1413412/pexels-photo-1413412.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-        </div>
-        <div className='Q8'>
-          <img src="https://images.pexels.com/photos/1624438/pexels-photo-1624438.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-        </div>
-        <div className=' Q9'>
-          <img src="https://images.pexels.com/photos/1645668/pexels-photo-1645668.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-        </div>
+
       </div>
 
+      <div className='Last'>
+        <div className='Q3' >
+          <TiltCard
 
+            imageSrc="https://images.pexels.com/photos/27430539/pexels-photo-27430539/free-photo-of-blue-eyes-with-horse.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" altText="Palm Shadow"
+          />
+        </div>
+        <div className="Q4">
+          <TiltCard
 
+            imageSrc="https://images.pexels.com/photos/27240568/pexels-photo-27240568/free-photo-of-a-man-riding-a-white-horse-in-the-mountains.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" altText="Curved Roads"
+          />
+        </div>
+        <div className="Q5">
+          <TiltCard
 
-
+            imageSrc="https://images.pexels.com/photos/27601443/pexels-photo-27601443/free-photo-of-arte-brasileira.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" altText="Digital Geometry"
+          />
+        </div>
+        <div className="Q6">
+          <TiltCard
+            imageSrc="https://images.pexels.com/photos/27516891/pexels-photo-27516891/free-photo-of-woman-sitting-in-sweater.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" altText="Blue Abstract"
+          />
+        </div>
+        <div className="Q7">
+          <TiltCard
+            imageSrc="https://images.pexels.com/photos/26699776/pexels-photo-26699776/free-photo-of-a-beach-with-yellow-and-white-umbrellas-and-chairs.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+          />
+        </div>
+        <div className="Q8">
+          <TiltCard
+            imageSrc="https://images.pexels.com/photos/27364561/pexels-photo-27364561/free-photo-of-elderly-man-with-traditional-headwear.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+          />
+        </div>
+        <div className="Q9">
+          <TiltCard
+            imageSrc="https://images.pexels.com/photos/27519599/pexels-photo-27519599/free-photo-of-a-balcony-with-green-shutters-and-a-balcony-railing.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" />
+        </div>
+        <div className="Q10">
+          <TiltCard
+            imageSrc="https://images.pexels.com/photos/27222426/pexels-photo-27222426/free-photo-of-couple-lying-down-on-floor-and-reading-book.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" />
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Portfolio
+export default Portfolio;
