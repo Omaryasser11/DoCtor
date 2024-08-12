@@ -1,0 +1,76 @@
+.section3 {
+    .row {
+      display: flex;
+      justify-content: space-between;
+  
+      .col {
+        flex: 1;
+        padding: 7%;
+        position: relative;
+  
+        &.half {
+          width: 50%;
+        }
+  
+        &.white-background {
+          background-color: #ffffff;
+          &:hover {
+            background-color: #f2f2f2;
+          }
+        }
+  
+        &.blue-background {
+          background-color: #0a2240;
+          color: #f2f2f2;
+          background-image: url('https://www.drwilliammiami.com/wp-content/uploads/2022/10/Screen-Shot-2022-10-28-at-3.38.31-PM.png');
+          background-size: cover;
+          background-position: center center;
+  
+          &:hover {
+            background-color: rgba(10, 34, 64, 0.9);
+          }
+        }
+  
+        .image-wrapper {
+          position: relative;
+          overflow: hidden;
+  
+          img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+          }
+  
+          .color-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(10, 34, 64, 0.5);
+            transition: opacity 0.3s ease;
+          }
+  
+          &:hover {
+            img {
+              transform: scale(1.1);
+            }
+            .color-overlay {
+              opacity: 0.7;
+            }
+          }
+        }
+  
+        .text-content {
+          h3 {
+            font-family: 'futura', sans-serif;
+          }
+  
+          p {
+            font-family: 'futura', sans-serif;
+          }
+        }
+      }
+    }
+  }
+  

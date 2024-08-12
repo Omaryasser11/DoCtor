@@ -1,0 +1,78 @@
+.cosmetic-surgery-section {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #ffffff;
+      padding: 0;
+    }
+  
+    .column {
+      flex: 1;
+      padding: 7%;
+      position: relative;
+      
+      &.left-column {
+        background-color: #f2f2f2;
+        
+        h3 {
+          font-family: 'Futura', sans-serif;
+          font-size: 24px;
+        }
+        
+        p {
+          font-family: 'Futura', sans-serif;
+          font-size: 16px;
+          color: #676767;
+        }
+      }
+      
+      &.right-column {
+        background-color: #fafafa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .image-container {
+          position: relative;
+          width: 100%;
+          max-width: 500px;
+          overflow: hidden;
+          
+          .responsive-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease-in-out;
+          }
+          
+          .hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 34, 64, 0.7);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+          }
+          
+          &:hover {
+            .responsive-image {
+              transform: scale(1.05);
+            }
+            
+            .hover-overlay {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .row {
+        flex-direction: column;
+      }
+    }
+  }
+  

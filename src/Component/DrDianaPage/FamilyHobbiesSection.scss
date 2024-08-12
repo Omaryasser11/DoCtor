@@ -1,0 +1,65 @@
+.family-hobbies {
+    background-color: #ffffff;
+    padding: 0;
+    
+    .content-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      
+      .text-section {
+        background-color: #f2f2f2;
+        padding: 7%;
+        flex: 1 1 50%;
+        font-family: 'Futura', sans-serif;
+  
+        h3 {
+          font-family: 'Futura', sans-serif;
+        }
+  
+        p {
+          font-family: 'Futura', sans-serif;
+        }
+      }
+      
+      .gallery-section {
+        padding: 7%;
+        flex: 1 1 50%;
+        
+        .image-gallery {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+  
+          img {
+            height: auto;
+            width: 100%;
+            transition: opacity 0.3s ease;
+  
+            &:hover {
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+    }
+  
+    @media only screen and (max-width: 1300px) {
+      .image-gallery img {
+        height: 400px;
+      }
+    }
+  
+    @media only screen and (max-width: 1000px) {
+      .image-gallery img {
+        height: 350px;
+      }
+    }
+  
+    @media only screen and (max-width: 690px) {
+      .image-gallery img {
+        height: 300px;
+      }
+    }
+  }
+  
