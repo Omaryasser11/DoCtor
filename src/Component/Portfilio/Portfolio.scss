@@ -9,7 +9,7 @@
     align-items: flex-start;
     margin-top: 1rem;
     padding: 1rem;
-
+    background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
 
     .imgW,
     img,
@@ -54,7 +54,7 @@
 }
 
 .Q2 {
-    background-color: rgb(110, 166, 54);
+
     height: 400px;
     width: 100%;
     transition: transform 0.3s ease-in-out;
@@ -149,7 +149,7 @@
 .Q8 .TiltCard:hover,
 .Q9 .TiltCard:hover,
 .Q10 .TiltCard:hover {
-    border: solid 20px red;
+    border: solid 10px #ff477e;
     /* calculated as: calc(66px/2) */
 }
 

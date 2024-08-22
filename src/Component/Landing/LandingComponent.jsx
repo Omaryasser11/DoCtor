@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import LandingVideo from '../../assets/LandingVideo.mp4';
+import LandingVideo from '../../assets/4_5893503520266522924.mp4';
 import './LandingComponent.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
@@ -63,7 +63,7 @@ function LandingComponent() {
                   ))}
                 </h1>
                 <h4 className='buttonHeading'>
-                  <span>Meet Dr. William | Board Certified Plastic Surgeon</span>
+                  <span>Meet Dr. DINA Khairy | Board Certified Plastic Surgeon</span>
                 </h4>
               </div>
               <FontAwesomeIcon className='angleIcon' icon={faAngleDown} onClick={handleClick} />

@@ -1,96 +1,79 @@
 import React from 'react';
 import './Footer.scss';
+import LOGO from "../../assets/لوجو دينا المعدل.png"
+import oOGO from "../../assets/logo-no-background.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitter, faFacebook, faYoutube, faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 
+import LOGO2 from "../../assets/8-removebg-preview.png"
 const Footer = () => {
   return (
     <div id="footer-outer" className='col-12'>
       <div id="footer-widgets">
-        <div className="container">
-          <div className="row">
-            <div className="col span_3 one-fourths clear-both">
+        <div className="container col-12">
+          <div className="row flexR col-12">
+            <div className="col-4 flex">
               <div className="widget widget_text">
                 <div className="textwidget">
                   <p>
                     <img
                       decoding="async"
                       className="alignnone size-full wp-image-5932"
-                      src="https://www.drwilliammiami.com/wp-content/uploads/2020/01/logo-footer.png"
+                      src={LOGO}
                       alt=""
-                      width="300"
-                      height="205"
+                      width="200"
+                      height="150"
                     />
                   </p>
-                  <p>
-                    <img
-                      decoding="async"
-                      className="alignnone size-medium wp-image-161088"
-                      src="https://www.drwilliammiami.com/wp-content/uploads/2023/08/ABPS_Logo_CircleR_Stacked_Logo-e1691771171202-300x200.jpg"
-                      alt=""
-                      width="300"
-                      height="200"
-                      srcSet="https://www.drwilliammiami.com/wp-content/uploads/2023/08/ABPS_Logo_CircleR_Stacked_Logo-e1691771171202-300x200.jpg 300w, https://www.drwilliammiami.com/wp-content/uploads/2023/08/ABPS_Logo_CircleR_Stacked_Logo-e1691771171202-150x100.jpg 150w, https://www.drwilliammiami.com/wp-content/uploads/2023/08/ABPS_Logo_CircleR_Stacked_Logo-e1691771171202.jpg 600w"
-                      sizes="(max-width: 300px) 100vw, 300px"
-                    />
-                  </p>
+
                 </div>
               </div>
             </div>
 
-            <div className="col span_3 one-fourths right-edge">
-              <div className="widget widget_nav_menu">
-                <h4>Procedure</h4>
-                <div className="menu-footer-menu-container">
-                  <ul id="menu-footer-menu" className="menu">
-                    <li className="menu-item">
-                      <a href="https://www.drwilliammiami.com/procedures/liposuction/">Ogee Lipo<sup>®</sup></a>
-                    </li>
-                    <li className="menu-item">
-                      <a href="https://www.drwilliammiami.com/procedures/brazilian-butt-lift/">Brazilian Butt Lift</a>
-                    </li>
-                    <li className="menu-item">
-                      <a href="https://www.drwilliammiami.com/procedures/breast-augmentation/">Breast Augmentation</a>
-                    </li>
-                    <li className="menu-item">
-                      <a href="https://www.drwilliammiami.com/procedures/breast-lift-with-implants/">Breast Lift with Implants</a>
-                    </li>
-                    <li className="menu-item">
-                      <a href="https://www.drwilliammiami.com/procedures/breast-lift/">Breast Lift</a>
-                    </li>
-                    <li className="menu-item">
-                      <a href="https://www.drwilliammiami.com/procedures/breast-reduction/">Breast Reduction</a>
-                    </li>
-                    <li className="menu-item">
-                      <a href="https://www.drwilliammiami.com/procedures/mommy-makeover/">Mommy Makeover</a>
-                    </li>
-                    <li className="menu-item">
-                      <a href="https://www.drwilliammiami.com/procedures/tummy-tuck/">Tummy Tuck</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <div className='col-4 flexR SpanFooterParent'>
+              <span className='Linko hover-1'>Features</span>
+              <span className='Linko hover-1'>Blog</span>
+              <span className='Linko hover-1'>pricing</span>
+              <span className='Linko hover-1'>services</span>
             </div>
 
-            <div className="col span_3 one-fourths clear-both">
-              <div className="widget wpcw-widget-contact">
-                <h4>Contact Us</h4>
-                <ul>
-                  <li className="has-label">
-                    <strong>Email</strong><br />
-                    <div><a href="mailto:contact@drwilliammiami.com">contact@drwilliammiami.com</a></div>
-                  </li>
-                  <li className="has-label">
-                    <strong>Address</strong><br />
-                    <div>220 Alhambra Cir First Floor<br />Coral Gables, FL 33134</div>
-                  </li>
-                  <li className="has-label">
-                    <strong>Phone</strong><br />
-                    <div>(786)792-5552</div>
-                  </li>
-                </ul>
-              </div>
+            <div className="col-4 flex">
+            <div className="col span_7 col_last">
+            <ul className="social flexR">
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="http://www.onlyfans.com/drwilliammiami">
+          <FontAwesomeIcon icon={faTwitter} style={{ color: '#1DA1F2' }} />
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Drwilliammiami/">
+    
+          <FontAwesomeIcon icon={faFacebook} style={{ color: '#1877F2' }} />
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UCgrwz50ERG6TNcvfet5e6Mg">
+
+          <FontAwesomeIcon icon={faYoutube} style={{ color: '#FF0000' }} />
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/drwilliammiami/?hl=en">
+  
+          <FontAwesomeIcon icon={faInstagram} style={{ color: '#E1306C' }} />
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@drwilliammiami">
+      
+          <FontAwesomeIcon icon={faTiktok} style={{ color: '#000000' }} />
+        </a>
+      </li>
+    </ul>
+          </div>
             </div>
 
-            <div className="col span_3 one-fourths right-edge">
+            {/* <div className="col span_3 one-fourths right-edge">
               <div className="widget widget_text">
                 <div className="textwidget">
                   <p>
@@ -106,25 +89,26 @@ const Footer = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
       <div className="row" id="copyright">
         <div className="container">
-          <div className="col span_5">
-            <p>© 2024 Dr. William Miami.</p>
+          <div className="col-12 flexRR">
+            <p>© 2024 Dr. Dina Khairy. All rights reserved</p>
+            <img
+                      decoding="async"
+                      className="alignnone size-full wp-image-5932"
+                      src={oOGO}
+                      alt=""
+                      width="150"
+                      height="50"
+                    />
+
           </div>
-          <div className="col span_7 col_last">
-            <ul className="social">
-              <li><a target="_blank" rel="noopener" href="http://www.onlyfans.com/drwilliammiami"><span className="screen-reader-text">twitter</span><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
-              <li><a target="_blank" rel="noopener" href="https://www.facebook.com/Drwilliammiami/"><span className="screen-reader-text">facebook</span><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
-              <li><a target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCgrwz50ERG6TNcvfet5e6Mg"><span className="screen-reader-text">youtube</span><i className="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-              <li><a target="_blank" rel="noopener" href="https://www.instagram.com/drwilliammiami/?hl=en"><span className="screen-reader-text">instagram</span><i className="fa fa-instagram" aria-hidden="true"></i></a></li>
-              <li><a target="_blank" rel="noopener" href="https://www.tiktok.com/@drwilliammiami"><span className="screen-reader-text">tiktok</span><i className="icon-salient-tiktok" aria-hidden="true"></i></a></li>
-            </ul>
-          </div>
+
         </div>
       </div>
     </div>

@@ -1,24 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './CosmeticSurgerySection.scss';
-
+import Dr from "../../assets/دينا 2.png"
+import baseUrl from '../../BaseUrl';
 const CosmeticSurgerySection = () => {
+
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    baseUrl.get('/about') // Use the Axios instance directly
+      .then(response => {
+        setData(response.data.secondSection);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
   return (
     <div className="cosmetic-surgery-section">
       <div className="row">
         <div className="column left-column">
-          <h3>Cosmetic Surgery</h3>
+          <h3>{data.header}</h3>
           <p>
-            As a board-certified plastic surgeon, Dr. William has chosen to narrow and focus his practice
-            specifically on cosmetic surgery of the breast and body. This sub-specialization led him to perform
-            fewer types of operations which has enabled him to master those procedures. “I would rather perform
-            fewer types of operations, but focus my attention solely on those operations of the breast and body,
-            and what I have found by specializing is that I can get the very best results possible for my patients.”
+            {data.body}
           </p>
         </div>
         <div className="column right-column">
           <div className="image-container">
             <img
-              src="https://www.drwilliammiami.com/wp-content/uploads/2020/05/dr-william-mission-1-scaled.jpg"
+              src={data.imageUrl}
               alt="Dr. William"
               className="responsive-image"
             />

@@ -25,15 +25,6 @@ function HomePage() {
   return (
     <>
 
-      {isFlipped &&
-
-
-
-
-        <NavBarComponent />
-
-      }
-
 
 
       <LandingComponent />
@@ -43,12 +34,14 @@ function HomePage() {
       <PodcastSection />
       <RealPatientsResults headline="Real Patients. Real Results" />
       <Portfolio />
-      <TestimonialsSection />
       <RealPatientsResults headline="The Latest In Cosmetic Surgery" />
-      <RecentPosts />
-      <BlogPosts />
-      <FAQTestimonials />
-      <Footer />
+      <TestimonialsSection />
+      {/* <RecentPosts /> */}
+  
+ 
+      {/* <BlogPosts />
+      <FAQTestimonials /> */}
+
 
     </>
   )

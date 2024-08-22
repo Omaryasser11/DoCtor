@@ -1,148 +1,234 @@
 #footer-outer {
-    background-image: url('https://www.drwilliammiami.com/wp-content/uploads/2020/01/6845848-miami.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 50px 0;
-    position: relative;
-  
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-  
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-  
-      .col {
-        flex: 1 1 25%;
-        padding: 15px;
-  
-        &.one-fourths {
-          width: 25%;
+  // background-image: url('https://www.drwilliammiami.com/wp-content/uploads/2020/01/6845848-miami.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background: linear-gradient(179.4deg, rgb(252, 121, 138) 2.2%, rgb(255, 71, 126) 96.2%);
+
+  .container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 0;
+    margin: 1rem 0;
+    flex-direction: row;
+    align-content: center;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+
+
+    .col {
+      flex: 1 1 25%;
+      padding: 15px;
+
+      &.one-fourths {
+        width: 25%;
+      }
+
+      &.clear-both {
+        clear: both;
+      }
+
+      &.right-edge {
+        margin-right: 0;
+      }
+
+      .widget {
+        margin-bottom: 20px;
+
+        .widget_text {
+          img {
+            max-width: 100%;
+            height: auto;
+          }
         }
-  
-        &.clear-both {
-          clear: both;
+
+        h4 {
+          font-size: 18px;
+          margin-bottom: 10px;
         }
-  
-        &.right-edge {
-          margin-right: 0;
-        }
-  
-        .widget {
-          margin-bottom: 20px;
-  
-          .widget_text {
-            img {
-              max-width: 100%;
-              height: auto;
+
+        .menu {
+          list-style: none;
+          padding: 0;
+
+          li {
+            margin-bottom: 5px;
+
+            a {
+              text-decoration: none;
+              color: #ffffff;
+
+              &:hover {
+                text-decoration: underline;
+              }
             }
           }
-  
-          h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
+        }
+
+        .widget_nav_menu {
+          a {
+            color: #ffffff;
           }
-  
-          .menu {
+        }
+
+        .wpcw-widgets {
+          ul {
             list-style: none;
             padding: 0;
-  
+
             li {
-              margin-bottom: 5px;
-  
+              margin-bottom: 10px;
+
+              .has-label {
+                strong {
+                  display: block;
+                  font-weight: 600;
+                  margin-bottom: 5px;
+                }
+              }
+
               a {
-                text-decoration: none;
                 color: #ffffff;
+                text-decoration: none;
+
                 &:hover {
                   text-decoration: underline;
                 }
               }
             }
           }
-  
-          .widget_nav_menu {
-            a {
-              color: #ffffff;
-            }
-          }
-  
-          .wpcw-widgets {
-            ul {
-              list-style: none;
-              padding: 0;
-  
-              li {
-                margin-bottom: 10px;
-  
-                .has-label {
-                  strong {
-                    display: block;
-                    font-weight: 600;
-                    margin-bottom: 5px;
-                  }
-                }
-  
-                a {
-                  color: #ffffff;
-                  text-decoration: none;
-                  &:hover {
-                    text-decoration: underline;
-                  }
-                }
-              }
-            }
-          }
-  
-          .textwidget {
-            iframe {
-              width: 100%;
-              border: 0;
-            }
+        }
+
+        .textwidget {
+          iframe {
+            width: 100%;
+            border: 0;
           }
         }
       }
     }
-  
-    #copyright {
-      padding: 20px 0;
-      background: rgba(0, 0, 0, 0.8);
-      color: #ffffff;
-  
-      .container {
+  }
+
+  #copyright {
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p {
+        margin: 0;
+      }
+
+      .social {
+        list-style: none;
+        padding: 0;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-  
-        p {
-          margin: 0;
-        }
-  
-        .social {
-          list-style: none;
-          padding: 0;
-          display: flex;
-  
-          li {
-            margin-right: 10px;
-  
-            a {
-              color: #ffffff;
-              text-decoration: none;
-              font-size: 18px;
-              &:hover {
-                color: #00718b;
-              }
-  
-              .fa {
-                margin-right: 5px;
-              }
+
+        li {
+          margin-right: 10px;
+
+          a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+
+            &:hover {
+              color: #00718b;
+            }
+
+            .fa {
+              margin-right: 5px;
             }
           }
         }
       }
     }
   }
-  
+}
+
+.SpanFooterParent {
+
+  span {
+    font-size: 1rem;
+    color: white;
+  }
+}
+
+.social {
+  display: flex;
+  justify-content: space-around;
+}
+
+.fa-twitter {
+  color: #1DA1F2;
+}
+
+.fa-facebook {
+  color: #1877F2;
+}
+
+.fa-youtube-play {
+  color: #FF0000;
+}
+
+.fa-instagram {
+  color: #E1306C;
+}
+
+.icon-salient-tiktok {
+  color: #000000;
+}
+
+.social {
+  display: flex;
+  gap: 25px;
+  list-style-type: none;
+  padding: 0;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.social li {
+  display: inline-block;
+}
+
+.social a {
+
+  text-decoration: none;
+  font-size: 25px;
+  background-color: #ffbbbb;
+  padding: .25rem .5rem;
+  border-radius: 2rem;
+
+}
+
+.alignnone{
+  filter: contrast(0%) brightness(2);
+  transition: .5s;
+}
+.alignnone:hover{
+
+filter: none;
+cursor: pointer;
+transform: scale(1.3);
+}
+
+
+.flexRR {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+}

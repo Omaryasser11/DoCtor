@@ -1,0 +1,41 @@
+.slideSize{
+    min-height: 66vh !important;
+}
+.layer{
+    opacity: 0;
+    background-color: #F4F4F4;
+    transition: 0.25s;
+}
+.border{
+    border: 12px solid #00718B ;
+    height: 200px;
+    width: 300px;
+    transition: 0.25s;
+}
+.hoverRec:hover .layer{
+    opacity: 0.4;
+}
+.hoverRec:hover .border{
+    height: 300px;
+    border-radius: 50%;
+}
+@media all and (max-width:1450px){
+    .slideSize{
+        height: 60vh !important;
+    }
+}
+@media all and (max-width:1250px){
+    .slideSize{
+        height: 52vh !important;
+    }
+}
+@media all and (max-width:1100px){
+    .slideSize{
+        height: 43vh !important;
+    }
+}
+@media all and (max-width:991px){
+    .slideSize{
+        height: 47vh !important;
+    }
+}

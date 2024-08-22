@@ -1,5 +1,7 @@
 .full-width-section3 {
-    margin-top: 5rem;
+padding: 1rem;
+    background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
+
 }
 
 .wpb_row {
@@ -7,6 +9,7 @@
     &.full-width-section {
         padding-top: 50px;
         padding-bottom: 0;
+        gap: 2rem;
 
     }
 
@@ -100,16 +103,17 @@
             .vc_column-inner {
                 .wpb_wrapper {
                     .vc_custom_heading {
-                        text-align: center;
+                        text-align: left;
 
                         a {
                             color: #000;
+                            text-align: left;
                         }
                     }
 
                     .wpb_text_column {
                         .wpb_wrapper {
-                            p {
+                            p {     text-align: left;
                                 color: #000;
 
                                 a {
@@ -119,6 +123,7 @@
 
                                 strong {
                                     font-weight: bold;
+                                    text-align: left;
                                 }
                             }
                         }
@@ -188,11 +193,12 @@
 }
 
 .ImgBoodcast {
-    height: 250px;
+    height: 400px;
     width: 610px;
-    background-image: url("https://www.drwilliammiami.com/wp-content/uploads/2022/06/Blog-BTM-Podcast.jpg");
+    background-image: url("../../assets/-5945261535951699161_121.jpg");
     background-position: center;
     background-size: cover;
+    border-radius: 2rem;
 }
 
 .Filter {
@@ -201,12 +207,14 @@
     height: 250px;
     width: 610px;
     background-color: #0a22406b;
+    background-color:rgb(255 71 126 / 37%);
     z-index: 2;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 2rem;
 
 }
 
@@ -233,14 +241,17 @@
 }
 
 
-.content2 h4 a {
+.content2 h4 , .content2 h4  a {
     text-decoration: none;
     font-size: 18px;
     font-family: Montserrat;
     font-weight: 700;
     line-height: 24px;
     text-transform: uppercase;
-    color: #000;
+    color: white;
+    text-align: left;
+    color: #290022;
+    color: rgb(68, 68, 68);
 }
 
 .content2 p {
@@ -252,6 +263,7 @@
     text-decoration-color: rgb(103, 103, 103);
     color: rgb(103, 103, 103);
     max-width: 601px;
+    text-align: left;
 }
 
 .content2 a {
@@ -262,14 +274,14 @@
     line-height: 24px;
     text-decoration-color: rgb(0, 113, 139);
     color: rgb(0, 113, 139);
-
+    text-align: left;
 
 }
 .container {
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-  
+    text-align: left;
   }
   
   .nectar-3d-transparent-button {

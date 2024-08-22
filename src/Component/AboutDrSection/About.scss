@@ -2,7 +2,7 @@
   background-color: #f2f2f2;
   width: 100%;
   padding: 1rem;
-
+  background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
 }
 
 .about-dr-william {
@@ -90,7 +90,7 @@
       &:hover img {
         transform: scale(1.25);
         border-radius: 1rem;
-        
+
       }
 
       .inner-wrap {
@@ -106,7 +106,7 @@
           .play {
             width: 60px;
             height: 60px;
-            background-color: #00718b;
+            background-color: #ff477e;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -131,7 +131,7 @@
   }
 
   .btn1 {
-    background-color: #00718b;
+    background-color: #ff477e;
     color: #f2f2f2;
     transition-duration: .3s;
   }
@@ -139,7 +139,7 @@
   .btn1:hover {
     transform: scale(1.1);
     background-color: white;
-    color: #00718b;
+    color: #ff477e;
   }
 }
 
@@ -165,4 +165,14 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.Filter2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ff477e3d;
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
 }

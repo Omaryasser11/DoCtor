@@ -2,6 +2,9 @@ import React from 'react';
 import './Clients.scss';
 
 const Clients = () => {
+
+
+
   return (
     <div className="clients-wrapper">
       <div className="clients">

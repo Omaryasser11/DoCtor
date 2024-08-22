@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './PodcastSection.scss'; // Import the SCSS file
 import FlashButton from '../Buttons/FlashButton';
+import pod from "../../assets/-5945261535951699161_121 (1).jpg"
 
 const PodcastSection = () => {
     return (
@@ -9,8 +10,8 @@ const PodcastSection = () => {
             id="fws_66a6b014267df">
 
 
-            <div className=" flexR col-10" >
-                <div className="col-10 col-md-6 d-flex align-items-center">
+            <div className=" flexR col-10"         style={{ gap: '1.5rem' }} >
+                <div className="col-10 col-md-6 d-flex align-items-center" >
                     <div className="nectar-post-grid-wrap text-color-light spacing-none">
 
                         <div className="nectar-post-grid">
@@ -24,13 +25,13 @@ const PodcastSection = () => {
 
                                             </div>
                                             <div className='Filter'>
-                                                <div className="item-main">
+                                                {/* <div className="item-main">
                                                     <h3 className="post-heading">
                                                         <a href="https://www.drwilliammiami.com/behind-the-mask-the-podcast/">
                                                             <span>Behind The Mask, The Podcast</span>
                                                         </a>
                                                     </h3>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
 

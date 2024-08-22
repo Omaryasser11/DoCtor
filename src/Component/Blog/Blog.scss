@@ -1,0 +1,31 @@
+.linkBlog:after {
+    content: '';
+    bottom: 0;
+    height: 2px;
+    background-color: #00718B;
+    transition: 0.4s;
+    display: flex;
+    width: 0%;
+}
+
+.linkBlog:hover:after{
+    width: 100%;
+}
+.shadow{
+    box-shadow: rgba(0, 0, 0, 0.1) 3px 50px 70px;
+}
+.sizeCircle{
+    width: 40px;
+    height: 40px;
+}
+.shadowCircle{
+    box-shadow: 0 7px 20px rgba(0,0,0,.19);
+    opacity: 0;
+    transition: 0.3s;
+}
+.circleLink:hover .shadowCircle{
+    opacity: 1;
+}
+.ttte{
+    margin-top: 5rem;
+}

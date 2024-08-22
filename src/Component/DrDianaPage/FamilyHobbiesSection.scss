@@ -1,65 +1,51 @@
+/* FamilyHobbies.scss */
+
 .family-hobbies {
-    background-color: #ffffff;
-    padding: 0;
-    
-    .content-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      
-      .text-section {
-        background-color: #f2f2f2;
-        padding: 7%;
-        flex: 1 1 50%;
-        font-family: 'Futura', sans-serif;
-  
-        h3 {
-          font-family: 'Futura', sans-serif;
-        }
-  
-        p {
-          font-family: 'Futura', sans-serif;
-        }
-      }
-      
-      .gallery-section {
-        padding: 7%;
-        flex: 1 1 50%;
-        
-        .image-gallery {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-  
-          img {
-            height: auto;
-            width: 100%;
-            transition: opacity 0.3s ease;
-  
-            &:hover {
-              opacity: 0.5;
-            }
-          }
-        }
-      }
+  .content-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
+    background: linear-gradient(179.4deg, rgb(255, 194, 203) 96.2%, rgb(253, 240, 233) 2.2%);
+  }
+
+  .text-section {
+    margin: 20px;
+    text-align: left;
+    width: 50%;
+    padding: 5rem;
+
+    h3 {
+      color: #de647a;
     }
-  
-    @media only screen and (max-width: 1300px) {
-      .image-gallery img {
-        height: 400px;
-      }
-    }
-  
-    @media only screen and (max-width: 1000px) {
-      .image-gallery img {
-        height: 350px;
-      }
-    }
-  
-    @media only screen and (max-width: 690px) {
-      .image-gallery img {
-        height: 300px;
-      }
+
+    p {
+      font-family: 'Futura Std', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
     }
   }
-  
+
+  .gallery-section {
+    width: 50%;
+    max-width: 770px;
+    /* Adjust max-width as needed */
+    margin: 0 auto;
+    /* Center align */
+
+  }
+
+  .mySwiper {
+    width: 100%;
+    height: 500px;
+    /* Adjust height as needed */
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    /* Optional: Add a background color */
+  }
+}

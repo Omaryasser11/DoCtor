@@ -1,11 +1,11 @@
 import React from 'react';
 import './BackFaceComponent.scss';
-import BREAST from '../../assets/BREAST.png';
-import BREASTLIFT from '../../assets/BREAST-LIFT.png';
-import BBL from '../../assets/BBL.png';
-import OGEELIPO from '../../assets/OGEE-LIPO.png';
-import MOMMYMAKEOVER from '../../assets/MOMMY-MAKEOVER.png';
-import TUMMYTUCK from '../../assets/TUMMY-TUCK.png';
+import BREAST from '../../assets/1-removebg-preview (1).png'
+import TUMMYTUCK from '../../assets/3-removebg-preview.png';
+import BBL from '../../assets/4-removebg-preview.png';
+import OGEELIPO from '../../assets/6-removebg-preview.png';
+import MOMMYMAKEOVER from '../../assets/5-removebg-preview.png';
+import BREASTLIFT from '../../assets/8-removebg-preview.png';
 
 
 function BackFaceComponent() {

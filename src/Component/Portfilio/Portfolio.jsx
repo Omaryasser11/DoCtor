@@ -1,11 +1,28 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import './Portfolio.scss'; // Ensure this is the correct path to your SCSS file
-
+import Igg from "../../assets/وجه 5.png"
+import Igg1 from "../../assets/شفايف 70.png"
+import Igg2 from "../../assets/تكساس 51.png"
+import Igg3 from "../../assets/شفايف 80.png"
+import Igg4 from "../../assets/رقبة.png"
+import Igg5 from "../../assets/وجه جانبي 2.png"
+import Igg6 from "../../assets/وجه جانبي 2.png"
+import Igg7 from "../../assets/شفايف 73.png"
+import Igg8 from "../../assets/شفايف 78.png"
+import Igg9 from "../../assets/وجه 6.png"
+import Igg10 from "../../assets/نضارة بشرة.png"
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
 const TiltCard = ({ imageSrc, altText }) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 2500, // Duration of animations
+    });
+  }, []);
   const ref = useRef(null);
 
   const x = useMotionValue(0);
@@ -61,68 +78,71 @@ const TiltCard = ({ imageSrc, altText }) => {
 };
 
 function Portfolio() {
+
   return (
     <div className='Portfolio col-12 flexR Poto'>
       <div className='First col-4'>
-        <div className='col-12  Q1' >
+        <div className='col-12  Q1' data-aos="fade-down-right" >
           <TiltCard
 
-            imageSrc="https://media.istockphoto.com/id/1191834325/photo/woman-with-index-finger-on-lips-asking-to-be-quiet-or-keep-secret.jpg?s=612x612&w=0&k=20&c=w-5MBbMc8E96QJDY3x3xpXFj5omg5qTI7DLrUtu-UTk="
+            imageSrc={Igg}
             altText="Quiet"
 
           />
         </div>
-        <div className='col-12 Q2'>
+        <div className='col-12 Q2' data-aos="fade-up-right">
           <TiltCard
             style={{ height: '400px' }}
-            imageSrc="https://images.pexels.com/photos/19293634/pexels-photo-19293634/free-photo-of-smiling-woman-in-traditional-clothing.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" altText="Green Lines"
-          />
+
+            imageSrc={Igg2} />
         </div>
 
       </div>
 
-      <div className='Last'>
+      <div className='Last' data-aos="fade-down-left">
         <div className='Q3' >
           <TiltCard
 
-            imageSrc="https://images.pexels.com/photos/27430539/pexels-photo-27430539/free-photo-of-blue-eyes-with-horse.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" altText="Palm Shadow"
+
+            imageSrc={Igg3}
           />
         </div>
         <div className="Q4">
           <TiltCard
 
-            imageSrc="https://images.pexels.com/photos/27240568/pexels-photo-27240568/free-photo-of-a-man-riding-a-white-horse-in-the-mountains.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" altText="Curved Roads"
-          />
+
+            imageSrc={Igg4} />
         </div>
         <div className="Q5">
           <TiltCard
 
-            imageSrc="https://images.pexels.com/photos/27601443/pexels-photo-27601443/free-photo-of-arte-brasileira.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" altText="Digital Geometry"
-          />
+
+            imageSrc={Igg5} />
         </div>
         <div className="Q6">
           <TiltCard
-            imageSrc="https://images.pexels.com/photos/27516891/pexels-photo-27516891/free-photo-of-woman-sitting-in-sweater.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" altText="Blue Abstract"
-          />
+
+            imageSrc={Igg6} />
         </div>
         <div className="Q7">
           <TiltCard
-            imageSrc="https://images.pexels.com/photos/26699776/pexels-photo-26699776/free-photo-of-a-beach-with-yellow-and-white-umbrellas-and-chairs.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-          />
+
+            imageSrc={Igg7} />
         </div>
         <div className="Q8">
           <TiltCard
-            imageSrc="https://images.pexels.com/photos/27364561/pexels-photo-27364561/free-photo-of-elderly-man-with-traditional-headwear.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-          />
+
+            imageSrc={Igg8} />
         </div>
         <div className="Q9">
           <TiltCard
-            imageSrc="https://images.pexels.com/photos/27519599/pexels-photo-27519599/free-photo-of-a-balcony-with-green-shutters-and-a-balcony-railing.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" />
-        </div>
+            imageSrc={Igg9}
+          />        </div>
         <div className="Q10">
           <TiltCard
-            imageSrc="https://images.pexels.com/photos/27222426/pexels-photo-27222426/free-photo-of-couple-lying-down-on-floor-and-reading-book.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" />
-        </div>
+
+            imageSrc={Igg10}
+          />        </div>
       </div>
     </div>
   );

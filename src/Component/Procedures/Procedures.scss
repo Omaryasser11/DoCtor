@@ -1,0 +1,218 @@
+.layer {
+  // background-color: black;
+}
+
+.layer:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.blueT {
+  color: #092240;
+}
+
+.blueC {
+  background-color: #ff477e;
+}
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+.textShadow {
+  text-shadow: 3px 4px 5px #333333;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.layer {
+  background-color: none;
+  transition: 0.3s;
+}
+
+.layer:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.imgBig {
+  width: 100%;
+  transition: 0.4s;
+}
+
+.name:hover .imgBig {
+  transform: scale(1.1);
+}
+
+.linePosition {
+  width: 30px;
+  border-top: 2px solid white;
+  right: 10%;
+  bottom: 14.9px;
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.name:hover .linePosition {
+  right: 8%;
+  opacity: 1;
+}
+
+.anglePosition {
+  right: 4%;
+  bottom: 23px;
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.name:hover .anglePosition {
+  right: 7%;
+  opacity: 1;
+}
+
+/* page2 */
+ul li {
+  list-style: none;
+}
+
+.cover {
+  background-image: url("../../assets/images/girl.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.layerC {
+  background-color: rgb(9, 34, 64, 0.65);
+}
+
+.nav-link {
+  color: #6C7B8D !important;
+  position: relative;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  height: 2px;
+  background-color: #D9B38C;
+  transition: 0.4s;
+}
+
+.nav-link:hover:after,
+.nav-link:focus:after,
+.nav-link:focus-visible:after,
+.nav-link.active:after {
+  left: 0%;
+  right: 0%;
+}
+
+.nav-link:focus,
+.nav-link:focus-visible,
+.nav-link.active {
+  color: #D9B38C !important;
+}
+
+.card {
+  transition: 0.4s;
+}
+
+.card:hover {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* overlay */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.x {
+  color: darkgray;
+  transform: rotate(0deg);
+  transition: 0.3s;
+}
+
+.x:hover {
+  transform: rotate(90deg);
+  color: white;
+}
+
+/* carousels */
+.carousel-control-prev.prev {
+  left: 2px !important;
+  top: 7px !important;
+  align-items: start !important;
+  font-size: 10px;
+}
+
+.carousel-control-next.next {
+  left: 30px !important;
+  top: 7px !important;
+  align-items: start !important;
+  font-size: 10px;
+}
+
+.darkCyan {
+  background-color: #00718B;
+}
+
+/* Overlay arrows */
+.circleSize {
+  width: 40px;
+  height: 40px;
+  border: 2px solid gray;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+
+.circleSize:hover {
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+
+.anglePositionOverlay {
+  padding-right: 10px;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+
+.anglePositionOverlay:after {
+  content: '';
+  width: 16px;
+  border-top: 2px solid white;
+  right: 6px;
+  left: 11px;
+  bottom: 17px;
+  transition: 0.3s;
+  display: flex;
+  position: absolute;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+.circleSize:hover .anglePositionOverlay {
+  padding-right: 20px;
+}
+
+.circleSize:hover .anglePositionOverlay:after {
+  width: 23px;
+  right: 9.5px;
+  left: 5px;
+}
+
+.rotateArrow {
+  transform: rotate(180deg);
+}
+
+.offset-1{
+  z-index: 1;
+}

@@ -1,0 +1,88 @@
+.font{
+    font-size: 2.25rem !important;
+}
+.shadow{
+    box-shadow: rgba(0, 0, 0, 0.2) 3px 50px 70px;
+}
+.videoSize{
+    height: 35rem !important;
+}
+.lightGray{
+    color: #BBBBBB;
+}
+.arrow{
+    width: 50px;
+    height: 36px;
+}
+.subscribe {
+    font-size: 18px;
+    padding-right: 0.7rem;
+    transition: padding-right 0.4s ease;
+}
+
+.subscribe:hover {
+    padding-right: 0rem;
+    transition: padding-right 0.4s ease 0.3s;
+}
+.right {
+    transform: scale(0);
+    transition: transform 0.4s ease;
+}
+
+.subscribe:hover .right{
+    transform:  scale(1);
+    transition: transform 0.4s ease 0.2s;
+}
+.anglePositionOverlay:after{
+    content: '';
+    width: 44px;
+    border-top: 2px solid white;
+    right: -13px;
+    bottom: 17px;
+    transition: 0.3s;
+    display: flex;
+    position: absolute;
+  }
+.subscribe:hover .anglePositionOverlay:after {
+    animation: moveLine 0.4s forwards;
+    -webkit-animation: moveLine 0.4s forwards;
+}
+
+@keyframes moveLine {
+    0% {
+        width: 44px;
+        right: -13px;
+    }
+    50% {
+        width: 0px;
+        right: 32px;
+    }
+    51% {
+        width: 0px;
+        right: -44px;
+    }
+    100% {
+        width: 76px;
+        right: -44px;
+    }
+}
+@media all and (max-width:1300px){
+    .videoSize{
+        height: 31rem !important;
+    }
+}
+@media all and (max-width:1000px){
+    .videoSize{
+        height: 26rem !important;
+    }
+}
+@media all and (max-width:500px){
+    .videoSize{
+        height: 16rem !important;
+    }
+}
+@media all and (max-width:300px){
+    .videoSize{
+        height: 12rem !important;
+    }
+}
