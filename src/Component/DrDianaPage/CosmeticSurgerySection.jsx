@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../../store/LanguageContext';
 import './CosmeticSurgerySection.scss';
 import Dr from "../../assets/دينا 2.png"
 import baseUrl from '../../BaseUrl';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS styles
 const CosmeticSurgerySection = () => {
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { language } = useContext(LanguageContext);
   useEffect(() => {
-    baseUrl.get('/about') // Use the Axios instance directly
+    AOS.init({
+      duration: 3000, // Duration of animations
+      // You can add more AOS options here
+    });
+      baseUrl.get('/about', {
+        headers: { 'Accept-Language': language },
+      })
       .then(response => {
         setData(response.data.secondSection);
         setLoading(false);
@@ -25,13 +34,13 @@ const CosmeticSurgerySection = () => {
   return (
     <div className="cosmetic-surgery-section">
       <div className="row">
-        <div className="column left-column">
-          <h3>{data.header}</h3>
-          <p>
+        <div className="column left-column" data-aos='zoom-in-down'>
+          <h3 className="" lang={language}>{data.header}</h3>
+          <p className="Y3" lang={language}>
             {data.body}
           </p>
         </div>
-        <div className="column right-column">
+        <div className="column right-column" data-aos='zoom-in-up'>
           <div className="image-container">
             <img
               src={data.imageUrl}

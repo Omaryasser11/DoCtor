@@ -223,13 +223,10 @@
 .spanAbout {
     font-weight: 400;
     font-family: futura;
+    line-height: 40px;
     font-size: 16px;
-    line-height: 42px;
     color: #651820;
     color: #290022;
-
-
-
 }
 
 .gold-text {
@@ -319,11 +316,43 @@
 
 }
 
-        .tttt{
-            font-family: 'Futura Std', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            color: #290022;
-            color: #212529;
-    
-        }
+.tttt {
+    font-family: 'Futura Std', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #290022;
+    color: #212529;
+
+}
+
+
+
+
+
+/* Apply Arabic font style */
+span:lang(ar) {
+    font-family: 'Amiri', serif;
+    /* Arabic font */
+    font-family: 'Amiri', serif;
+    /* Arabic font */
+}
+
+
+.tttt:lang(ar) {
+    font-family: 'Amiri', serif;
+    /* Arabic font */
+    font-family: "Readex Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "HEXP" 0;
+  
+
+}
+
+.spanAbout:lang(ar) {
+    font-family: "Amiri", serif;
+    font-style: normal;
+    font-size: 18px;
+    text-align: center;
+    font-weight:500;
+}

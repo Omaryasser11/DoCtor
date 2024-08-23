@@ -1,96 +1,127 @@
 .section3 {
-    .row {
-      display: flex;
-      justify-content: space-between;
-  
-      .col {
-        flex: 1;
-        padding: 7%;
+  .row {
+    display: flex;
+    justify-content: space-between;
+
+    .col {
+      flex: 1;
+      padding: 7%;
+      position: relative;
+
+      &.half {
+        width: 50%;
+      }
+
+      &.white-background {
+        background-color: #ffffff;
+
+        background-color: #f2f2f2;
+        background-color: #fafafa;
+
+        transition: .5s;
+
+        &:hover {
+
+          background: linear-gradient(179.4deg, rgb(253 240 233 / 46%) 2.2%, rgb(255 194 203 / 38%) 66.2%);
+
+        }
+      }
+
+      &.blue-background {
+        background-color: #0a2240;
+        background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
+        color: #f2f2f2;
+        transition: .7s;
+        color: #de647a;
+
+        &:hover {}
+      }
+
+      .image-wrapper {
         position: relative;
-  
-        &.half {
-          width: 50%;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: auto;
+          transition: transform 0.3s ease;
         }
-  
-        &.white-background {
-          background-color: #ffffff;
 
-          background-color: #f2f2f2;
-          background-color: #fafafa;
+        .color-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          transition: opacity 0.4s ease-in-out;
 
-               transition:.5s ;
-          &:hover {
-       
-            background: linear-gradient(179.4deg, rgb(253 240 233 / 46%) 2.2%, rgb(255 194 203 / 38%) 66.2%);
-
-          }
         }
-  
-        &.blue-background {
-          background-color: #0a2240;
-          background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
-          color: #f2f2f2;
-          transition: .7s;
-          color: #de647a;
-       
-          &:hover {
 
-    
-          }
-        }
-  
-        .image-wrapper {
-          position: relative;
-          overflow: hidden;
+        &:hover {
           img {
-            width: 100%;
-            height: auto;
-            transition: transform 0.3s ease;
-          }
-  
-          .color-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            transition: opacity 0.4s ease-in-out;
-            
-          }
-  
-          &:hover {
-            img {
-              transform: scale(1.1);
-              
-            }
-            .color-overlay {
-              opacity: 0.7;
-     
-            }
-          }
-        }
-  
-        .text-content {
-          h3 {
-            font-family: 'futura', sans-serif;
-            margin-top: 0;
-            margin-bottom: .5rem;
-            font-weight: 500;
-            line-height: 1.2;
-            font-size: 1.75rem;
-          }
-  
+            transform: scale(1.1);
 
-            p {
-                font-family: 'Futura Std', sans-serif;
-                font-size: 16px;
-                font-weight: 400;
-                color: #290022;
-                color: #212529;
-              }
-          
+          }
+
+          .color-overlay {
+            opacity: 0.7;
+
+          }
         }
+      }
+
+      .text-content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        text-align: right;
+
+        h3 {
+          font-family: 'futura', sans-serif;
+          margin-top: 0;
+          margin-bottom: .5rem;
+          font-weight: 500;
+          line-height: 1.2;
+          font-size: 1.75rem;
+        }
+
+        h3:lang(ar) {
+          font-family: 'Futura', sans-serif;
+          font-size: 30px;
+          color: #290022;
+          color: #de647a;
+          font-weight: 600;
+          text-align: center;
+
+        }
+
+
+        .Y3:lang(ar) {
+          font-family: 'Amiri', serif;
+          /* Arabic font */
+          font-family: "Readex Pro", sans-serif;
+          font-optical-sizing: auto;
+          font-style: normal;
+          font-variation-settings: "HEXP" 0;
+
+          color: #212529;
+        }
+
+        .Y3 {
+          font-family: 'Futura Std', sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          color: #290022;
+          color: #212529;
+          line-height: 40px;
+          text-align: right;
+          padding: 1rem;
+        }
+
       }
     }
   }
-  
+}

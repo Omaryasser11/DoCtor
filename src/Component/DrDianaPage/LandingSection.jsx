@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../../store/LanguageContext';
 import axios from 'axios';
 import './LandingSection.scss';
 import baseUrl from '../../BaseUrl';
@@ -6,9 +7,11 @@ const LandingSection = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { language } = useContext(LanguageContext);
   useEffect(() => {
-    baseUrl.get('/about') // Use the Axios instance directly
+    baseUrl.get('/about', {
+      headers: { 'Accept-Language': language },
+    })
       .then(response => {
         setData(response.data.firstSection);
         setLoading(false);
@@ -74,7 +77,7 @@ const LandingSection = () => {
             <div id="wpb_text_column_1">
               <div id="wpb_wrapper_3">
                 <h2 className='white-pink-text'>{data.name}</h2>
-                <p><span className='spanAbout'>{data.title}</span></p>
+                <p><span className='spanAbout' lang={language}>{data.title}</span></p>
               </div>
             </div>
 
@@ -84,7 +87,7 @@ const LandingSection = () => {
 
             <div id="wpb_text_column_2">
               <div id="wpb_wrapper_4">
-                <h4 className='H4BOLD'>
+                <h4 className='H4BOLD'  lang={language}>
                   “{data.quote || 'Loading quote...'}”
                 </h4>
               </div>
@@ -96,7 +99,7 @@ const LandingSection = () => {
 
             <div id="wpb_text_column_3">
               <div id="wpb_wrapper_5 ">
-                <p className='tttt'>{data.bio || 'Loading bio...'}</p>
+                <p className='tttt' lang={language}>{data.bio || 'Loading bio...'}</p>
               </div>
             </div>
 

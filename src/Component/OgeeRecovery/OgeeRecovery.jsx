@@ -5,11 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import DD from "../../assets/عيادات غسن اعلان (1).png"
 import AOS from 'aos';
-import 'aos/dist/aos.css';
+import 'aos/dist/aos.css'; // Import AOS styles
 const OgeeRecovery = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1900, // Duration of animations
+      duration: 3000, // Duration of animations
+      // You can add more AOS options here
     });
   }, []);
 

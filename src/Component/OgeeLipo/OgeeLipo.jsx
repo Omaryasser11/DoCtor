@@ -2,14 +2,12 @@ import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './OgeeLipo.scss'; // Import the SCSS file
 import AOS from 'aos';
-import 'aos/dist/aos.css';
+import 'aos/dist/aos.css'; // Import AOS styles
 const OgeeLipo = () => {
   useEffect(() => {
     AOS.init({
-        duration: 3500, // animation duration in ms
-        easing: 'ease-in-out', // easing option
-        once: false, // whether animation should happen only once
-        offset: -10 // offset in pixels
+      duration: 3000, // Duration of animations
+      // You can add more AOS options here
     });
 }, []);
 

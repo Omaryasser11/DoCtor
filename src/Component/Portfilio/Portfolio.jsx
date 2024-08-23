@@ -80,9 +80,12 @@ const TiltCard = ({ imageSrc, altText }) => {
 function Portfolio() {
 
   return (
-    <div className='Portfolio col-12 flexR Poto'>
-      <div className='First col-4'>
-        <div className='col-12  Q1' data-aos="fade-down-right" >
+    <div className='Portfolio col-12 flex Poto'>
+
+
+      <div className='Last flexR col-12' data-aos="fade-down-left">
+
+      <div className='col-4  Q1' data-aos="fade-down-right" >
           <TiltCard
 
             imageSrc={Igg}
@@ -90,16 +93,13 @@ function Portfolio() {
 
           />
         </div>
-        <div className='col-12 Q2' data-aos="fade-up-right">
+        <div className='col-4 Q2' data-aos="fade-up-right">
           <TiltCard
             style={{ height: '400px' }}
 
             imageSrc={Igg2} />
         </div>
 
-      </div>
-
-      <div className='Last' data-aos="fade-down-left">
         <div className='Q3' >
           <TiltCard
 

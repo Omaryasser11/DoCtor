@@ -1,24 +1,54 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../../store/LanguageContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './FamilyHobbiesSection.scss';
-
-// Import Swiper modules
+import baseUrl from '../../BaseUrl';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS styles
 const FamilyHobbies = () => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 3000, // Duration of animations
+      // You can add more AOS options here
+    });
+    baseUrl.get('/about', {
+      headers: { 'Accept-Language': language },
+    })
+      .then(response => {
+        setData(response.data.fourthSection);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(error);
+        setLoading(false);
+      });
+  }, [language]);
+
+  if (loading) {
+    return <div className="family-hobbies">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="family-hobbies">Error loading data. Please try again later.</div>;
+  }
+
   return (
     <div className="family-hobbies col-12">
       <div className="content-section flexR">
-        <div className="text-section">
-          <h3>Family & Hobbies</h3>
-          <p>
-            Dr. Dina and his husband  raised three boys, and three large dogs, in a very busy household, spending most weekends at a lacrosse or hockey tournament, but recently became empty nesters as all their boys moved out of state to attend college. Now, with all three sons playing lacrosse at the collegiate level, the couple still enjoys attending their games, but have more time to focus on their newest arrival: their German Shepherd. Much of their time is now spent going on walks, and playing fetch at the field. Shauna and Dr. William love to cook, attend the Miami City Ballet, and are avid Florida Panthers fans. They both love to travel and it gives them an opportunity to bring the family together and share such adventures as dog sledding in Norway and Safariing in Africa!
-          </p>
+        <div className="text-section" data-aos="flip-left">
+          <h3 lang={language}>{data?.header || "Default Header"}</h3>
+          <p className='Y3' lang={language}>{data?.body || "Default body text."}</p>
         </div>
-        <div className="gallery-section">
+        <div className="gallery-section" data-aos="flip-right">
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
@@ -33,24 +63,14 @@ const FamilyHobbies = () => {
             modules={[Autoplay, Pagination, Navigation]}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <img src="https://www.drwilliammiami.com/wp-content/uploads/2023/08/Matt-Yardley-High-Res-Print-5367-1024x768.jpg" alt="Family" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://www.drwilliammiami.com/wp-content/uploads/2023/08/Matt-Yardley-High-Res-Print-5377-1024x768.jpg" alt="Family" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://www.drwilliammiami.com/wp-content/uploads/2023/08/Matt-Yardley-High-Res-Print-0261-1024x683.jpg" alt="Family" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://www.drwilliammiami.com/wp-content/uploads/2023/02/IMG_0570-768x1024.jpg" alt="Family" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://www.drwilliammiami.com/wp-content/uploads/2023/02/IMG_0607-768x1024.jpg" alt="Family" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://www.drwilliammiami.com/wp-content/uploads/2023/02/IMG_0370-768x1024.jpg" alt="Family" />
-            </SwiperSlide>
+            {data?.imageUrls?.map((url, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={url || 'default-image.png'}
+                  alt={`Family Image ${index + 1}`}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>

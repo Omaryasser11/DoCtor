@@ -1,104 +1,135 @@
 .cosmetic-surgery-section {
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      background-color: #ffffff;
-      padding: 0;
-    }
-  
-    .column {
-      flex: 1;
-      padding: 7%;
-      position: relative;
-      flex: 1;
-      padding: 7%;
-      position: relative;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: flex-start;
-  justify-content: flex-start;
-  align-items: flex-start;
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    padding: 0;
+  }
 
-      &.left-column {
-        background-color: #f2f2f2;
-        background: linear-gradient(179.4deg, rgb(253 240 233 / 46%) 2.2%, rgb(255 194 203 / 38%) 66.2%);
-        
-            //    background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
-          
-        h3 {
-          font-family: 'Futura', sans-serif;
-          font-size: 24px;
-          color: #290022;
-          color: #de647a;
-          font-weight: 600;
-        }
-        
-    
-          p {
-            font-family: 'Futura Std', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            color: #290022;
-            color: #212529;
-          }
-        
+  .column {
+    flex: 1;
+    padding: 7%;
+    position: relative;
+    flex: 1;
+    padding: 7%;
+    position: relative;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    &.left-column {
+      background-color: #f2f2f2;
+      background: linear-gradient(179.4deg, rgb(253 240 233 / 46%) 2.2%, rgb(255 194 203 / 38%) 66.2%);
+
+      //    background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      text-align: right;
+
+      h3 {
+        font-family: 'Futura', sans-serif;
+        font-size: 24px;
+        color: #290022;
+        color: #de647a;
+        font-weight: 600;
+
       }
-      
-      &.right-column {
-        
-        background-color: #fafafa;
-        
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-        .image-container {
-          position: relative;
-          width: 100%;
-          max-width: 500px;
-          overflow: hidden;
-          
-          .responsive-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease-in-out;
-          }
-          
-          .hover-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 11.5rem;
-            // background-color: rgba(10, 34, 64, 0.7);
-            background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
-            background: linear-gradient(179.4deg, rgb(253 240 233 / 46%) 2.2%, rgb(255 194 203 / 38%) 96.2%);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-          }
-          
-          &:hover {
-            .responsive-image {
-              transform: scale(1.05);
-            }
-            
-            .hover-overlay {
-        
-              opacity: 1;
-            }
-          }
-        }
+
+      h3:lang(ar) {
+        font-family: 'Futura', sans-serif;
+        font-size: 30px;
+        color: #290022;
+        color: #de647a;
+        font-weight: 600;
+        text-align: center;
+
       }
+
+      .Y3:lang(ar) {
+        font-family: 'Amiri', serif;
+        /* Arabic font */
+        font-family: "Readex Pro", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-variation-settings: "HEXP" 0;
+
+        color: #212529;
+      }
+
+      .Y3 {
+        font-family: 'Futura Std', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #290022;
+        color: #212529;
+        line-height: 40px;
+        text-align: right;
+        padding: 1rem;
+      }
+
     }
-    
-    @media (max-width: 768px) {
-      .row {
-        flex-direction: column;
+
+    &.right-column {
+
+      background-color: #fafafa;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .image-container {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        overflow: hidden;
+
+        .responsive-image {
+          width: 100%;
+          height: auto;
+          display: block;
+          transition: transform 0.3s ease-in-out;
+        }
+
+        .hover-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 11.5rem;
+          // background-color: rgba(10, 34, 64, 0.7);
+          background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
+          background: linear-gradient(179.4deg, rgb(253 240 233 / 46%) 2.2%, rgb(255 194 203 / 38%) 96.2%);
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+        }
+
+        &:hover {
+          .responsive-image {
+            transform: scale(1.05);
+          }
+
+          .hover-overlay {
+
+            opacity: 1;
+          }
+        }
       }
     }
   }
-  
+
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
+  }
+}

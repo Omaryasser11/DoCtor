@@ -1,33 +1,55 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../../store/LanguageContext';
 import './Section3.scss';
 import Dr from '../../assets/-5854818776057495297_121.jpg';
-
+import baseUrl from '../../BaseUrl';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS styles
 const Section3 = () => {
+
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { language } = useContext(LanguageContext);
+  useEffect(() => {
+    AOS.init({
+      duration: 3000, // Duration of animations
+      // You can add more AOS options here
+    });
+    baseUrl.get('/about', {
+      headers: { 'Accept-Language': language },
+    })
+      .then(response => {
+        setData(response.data.thirdSection);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(error);
+        setLoading(false);
+      });
+  }, []);
   return (
     <div className="section3">
       <div className="row">
-        <div className="col half white-background">
+        <div className="col half white-background" data-aos="zoom-in-up">
           <div className="image-wrapper">
             <div className="image-hover">
-              <img 
-                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRInfECBhmIX2_EtLv8X-LZ6-BaznQLGHEqwQ&s' 
-                alt="OGEE Line"
+              <img
+                src={data?.imageUrl || 'default-image.png'} // Fallback image
+                alt="Section 3"
+                width="200"
+                height="150"
               />
               <div className="color-overlay"></div>
             </div>
           </div>
         </div>
 
-        <div className="col half blue-background flex">
+        <div className="col half blue-background flex" data-aos="zoom-in-down">
           <div className="text-content">
-            <h3>Ogee Lipo<sup>®</sup></h3>
-            <p>
-              Dr. Dina has a unique approach to liposuction and BBLs; 
-              instead of just removing fat or making the butt larger, Dr. William follows his mantra of 
-              “It’s all about the shape.” This has led Dr. William to develop his own style of liposuction, 
-              which he calls ‘OGEE Lipo<sup>®</sup>’, where he applies the principles of architecture and nature 
-              to reveal each patient’s OGEE Line—the beautiful shape of concavities and convexities to develop pretty, 
-              natural butts with a round shape and voluptuous hips.
+            <h3 lang={language}>{data?.header || 'default-image.png'}<sup>®</sup></h3>
+            <p lang={language} className='Y3'>
+              {data?.body || 'default-image.png'}
             </p>
           </div>
         </div>

@@ -11,10 +11,19 @@
 // Add this in your main SCSS file
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
-                            @import url('https://fonts.cdnfonts.com/css/roslindale');
-                            @import url('https://fonts.cdnfonts.com/css/futura-std-4');
+@import url('https://fonts.cdnfonts.com/css/roslindale');
+@import url('https://fonts.cdnfonts.com/css/futura-std-4');
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap');
 
-                
+///////////////////ARABIC////////
+/// /* Import your fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+/* Arabic font */
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -80,19 +89,19 @@ body,
   color: #d4af37;
   /* Base gold color */
   text-shadow:
-      1px 1px 0px #e7c506,
-      /* Shadow 1 */
-      2px 2px 0px #d4af37,
-      /* Shadow 2 */
-      3px 3px 0px #b0893c,
-      /* Shadow 3 */
-      4px 4px 0px #d4af37,
-      /* Shadow 4 */
-      5px 5px 0px #b0893c,
-      /* Shadow 5 */
-      6px 6px 0px #d4af37,
-      /* Shadow 6 */
-      7px 7px 5px rgba(0, 0, 0, 0.5);
+    1px 1px 0px #e7c506,
+    /* Shadow 1 */
+    2px 2px 0px #d4af37,
+    /* Shadow 2 */
+    3px 3px 0px #b0893c,
+    /* Shadow 3 */
+    4px 4px 0px #d4af37,
+    /* Shadow 4 */
+    5px 5px 0px #b0893c,
+    /* Shadow 5 */
+    6px 6px 0px #d4af37,
+    /* Shadow 6 */
+    7px 7px 5px rgba(0, 0, 0, 0.5);
   /* Final shadow for depth */
 
   background: linear-gradient(to right, #f2c14e, #d4af37);
@@ -109,17 +118,17 @@ body,
   color: #ffd700;
   /* Bright gold color */
   text-shadow:
-      1px 1px 2px #b8860b,
-      /* Darker shadow */
-      2px 2px 4px #daa520,
-      /* Shadow 2 */
-      3px 3px 6px #ffd700,
-      /* Shadow 3 */
-      4px 4px 8px #ffec8b,
-      /* Light shadow */
-      5px 5px 10px #b8860b,
-      /* Shadow 4 */
-      6px 6px 12px rgba(0, 0, 0, 0.3);
+    1px 1px 2px #b8860b,
+    /* Darker shadow */
+    2px 2px 4px #daa520,
+    /* Shadow 2 */
+    3px 3px 6px #ffd700,
+    /* Shadow 3 */
+    4px 4px 8px #ffec8b,
+    /* Light shadow */
+    5px 5px 10px #b8860b,
+    /* Shadow 4 */
+    6px 6px 12px rgba(0, 0, 0, 0.3);
   /* Final shadow for depth */
 
   background: linear-gradient(45deg, #ffec8b, #ffd700, #ffdd44, #ffd700);
@@ -127,4 +136,51 @@ body,
   -webkit-text-fill-color: transparent;
 
   transform: perspective(500px) rotateX(0) rotateY(0);
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+
+/* Apply Arabic font style */
+span:lang(ar) {
+  font-family: 'Amiri', serif;
+  /* Arabic font */
+  font-family: 'Amiri', serif;
+  /* Arabic font */
+}
+
+/* Apply Arabic font style */
+p:lang(ar) {
+  font-family: 'Amiri', serif;
+  /* Arabic font */
+  font-family: 'Amiri', serif;
+  /* Arabic font */
+}
+
+/* Apply Arabic font style */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6:lang(ar) {
+  font-family: 'Amiri', serif;
+  /* Arabic font */
+  font-family: 'Amiri', serif;
+  /* Arabic font */
+}
+
+h3:lang(ar) {
+  font-family: 'Futura', sans-serif;
+  font-size: 30px;
+  color: #290022;
+  color: #de647a;
+  font-weight: 600;
+  text-align: center;
 }

@@ -5,13 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import DD from "../../assets/Youtube Thumbnail DINA.png"
 import AOS from 'aos';
-import 'aos/dist/aos.css';
+import 'aos/dist/aos.css'; // Import AOS styles
 const AboutDrWilliam = () => {
     useEffect(() => {
         AOS.init({
-          duration: 2000, // Duration of animations
-        });
-      }, []);
+            duration: 3000, // Duration of animations
+            // You can add more AOS options here
+          });
+    }, []);
     return (
         <div className='col-12 bg flex'>
             <div className="row about-dr-william col-10">
