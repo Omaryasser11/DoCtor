@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import style from './Videos.module.css'
 import { Helmet } from 'react-helmet-async';
 import ReactPlayer from 'react-player'
 import youtubeCover from '../../assets/images/youtubeCover.jpeg'
 import youtubeCover2 from '../../assets/images/BTM-1.jpeg'
+import baseUrl from '../../BaseUrl'
 
 export default function Videos() {
-
+  const [data, setData] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
   const [youtubeVideo, setYoutubeVideo] = useState(null)
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
@@ -20,6 +23,22 @@ export default function Videos() {
     setIsOverlayVisible(false)
   }
 
+  useEffect(()=>{
+    baseUrl.get('videos')
+    .then(response=>{
+      setData(response.data)
+      console.log(response.data);
+      setLoading(false)
+    })
+    .catch(error =>{
+    setError(error)
+    setLoading(false)
+    })
+  },[])
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error.message}</p>
+
   return <>
     <Helmet>
       <title>Videos</title>
@@ -28,11 +47,11 @@ export default function Videos() {
 
       {/* Header */}
 
-      <div className="text-white position-relative blueC mb-5 header-height" style={{ margin: '5rem'} } >
-        <div className="layerC position-absolute top-0 bottom-0 start-0 end-0 z-1"></div>
+      <div className="row gx-0 position-relative blueC mb-2" style={{ height: '318px' }}>
+      {/* <div className="layerC position-absolute top-0 bottom-0 start-0 end-0 z-1"></div> */}
         <div className='container d-flex align-items-center justify-content-center h-100'>
             <div className='mt-3 d-flex align-items-end position-absolute z-3 text-center justify-content-center' style={{ height: '200px' }}>
-                <h4 className='fs-1 fw-semibold'>Educational Videos</h4>
+                <h4 className='fs-1 fw-semibold text-white'>Educational Videos</h4>
             </div>
         </div>
     </div>
@@ -46,28 +65,32 @@ export default function Videos() {
           <p className='fs-5 text-body-tertiary fw-bold text-uppercase'>Available on YouTube, Spotify, and Apple Podcast.</p>
         </div>
         <div className="row g-5">
-          <div className="col-lg-4">
-            <div>
-              <div className={`cursor-pointer position-relative ${style.shadow} video`} onClick={() => openCard('https://www.youtube.com/watch?v=EuG8p8FRCHg')}>
-                <div className="position-absolute top-0 bottom-0 start-0 end-0 z-1 d-flex align-items-center justify-content-center">
-                  <i className="fa-solid fa-play fs-5 text-white d-flex align-items-center justify-content-center rounded-circle play"></i>
+          {data.map((video)=>(
+            video.type === 'Podcast' ? <>
+              <div key={video.id} className="col-lg-4">
+              <div>
+                <div className={`cursor-pointer position-relative ${style.shadow} video`} onClick={() => openCard(video.videoUrl)}>
+                  <div className="position-absolute top-0 bottom-0 start-0 end-0 z-1 d-flex align-items-center justify-content-center">
+                    <i className="fa-solid fa-play fs-5 text-white d-flex align-items-center justify-content-center rounded-circle play"></i>
+                  </div>
+                  <div>
+                    <img src={video.posterUrl} className='w-100' alt="youtube video" />
+                  </div>
                 </div>
-                <div>
-                  <img src={youtubeCover} className='w-100' alt="youtube video" />
+                <div className='my-5'>
+                  <p className='text-body-secondary fw-semibold fs-4 mb-2'>{video.title}: <span className='text-body-tertiary'>{video.subTitle}</span></p>
+                  <p className='text-light-emphasis'>{video.description}</p>
                 </div>
-              </div>
-              <div className='my-5'>
-                <p className='text-body-secondary fw-semibold fs-4 mb-2'>Behind the Mask- The Podcast: <span className='light-gray'>Plastic Surgery Facts, Fiction and the Five W’s</span></p>
-                <p className='text-light-emphasis'>Dr. William Miami and Gabby Allen, introduce us to this new space where the goal is to educate you on everything you need to know before having any plastic surgery. Remember “the more you know, the better you look.</p>
               </div>
             </div>
-          </div>
+            </>:''
+          ))}
         </div>
       </div>
     </div>
     {/* Subscribe */}
 
-    <div className='blueC-two text-white row gx-0 mt-5'>
+    <div className='blueC text-white row gx-0 mt-5'>
       <div className='offset-1 col-10'>
         <div className="d-flex flex-lg-row flex-column align-items-center justify-content-lg-between justify-content-center w-100 p-4">
           <p className={`fw-semibold mb-lg-0 mb-3 fs-5 pe-lg-4`}>All the information you need to know for your cosmetic surgery journey.</p>
@@ -91,22 +114,26 @@ export default function Videos() {
           <p className='fs-5 text-body-tertiary fw-bold text-uppercase'>Years of Experience | All Your Questions Answered</p>
         </div>
         <div className="row g-5">
-          <div className="col-lg-4">
+        {data.map((video)=>(
+          video.type === 'Education' ? <>
+          <div key={video.id} className="col-lg-4">
             <div>
-              <div className={`cursor-pointer position-relative ${style.shadow} video overflow-hidden`} onClick={() => openCard('https://www.youtube.com/watch?v=bXPe-_KIIk4')}>
+              <div className={`cursor-pointer position-relative ${style.shadow} video overflow-hidden`} onClick={() => openCard(video.videoUrl)}>
                 <div className="position-absolute top-0 bottom-0 start-0 end-0 z-1 d-flex align-items-center justify-content-center">
                   <i className="fa-solid fa-play fs-5 text-white d-flex align-items-center justify-content-center rounded-circle"></i>
                 </div>
                 <div>
-                  <img src={youtubeCover2} className='w-100 scale' alt="youtube video" />
+                <img src={video.posterUrl} className='w-100' alt="youtube video" />
                 </div>
               </div>
               <div className='my-5'>
-                <p className='text-body-secondary fw-semibold fs-4 mb-2'>Behind the Mask <span className='light-gray'>Season 1</span></p>
-                <p className='text-light-emphasis'>Educational videos about procedures, patient results, recovery, complications & more.</p>
+              <p className='text-body-secondary fw-semibold fs-4 mb-2'>{video.title}: <span className='text-body-tertiary'>{video.subTitle}</span></p>
+              <p className='text-light-emphasis'>{video.description}</p>
               </div>
             </div>
           </div>
+          </>:''
+          ))}
         </div>
       </div>
     </div>
