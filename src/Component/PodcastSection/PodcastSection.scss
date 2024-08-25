@@ -249,10 +249,37 @@ padding: 1rem;
     line-height: 24px;
     text-transform: uppercase;
     color: white;
-    text-align: left;
     color: #290022;
     color: rgb(68, 68, 68);
+    text-align: left;
 }
+
+.content2 h4 , .content2 h4  a  :lang(ar){
+    text-align: right;
+}
+.content2 h4 , .content2 h4  a{
+    text-align: left;
+}
+.S2Title {
+    text-align: left;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color: rgb(68, 68, 68);
+    font-size: 18px;
+    height: 24px;
+    text-transform: uppercase;
+  }
+
+  .S2Title:lang(ar) {
+    text-align: right;
+    font-family: "Lalezar", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 26px;
+    color: #de647a;
+  }
 
 .content2 p {
     text-decoration: none;
@@ -265,6 +292,27 @@ padding: 1rem;
     max-width: 601px;
     text-align: left;
 }
+.about-description {
+    color: rgb(103, 103, 103);
+    font-family: "futura";
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    font-style: normal;
+    font-stretch: 100%;
+    padding-right: 3rem;
+  }
+
+.about-description:lang(ar) {
+    text-align: right;
+    padding-left: 3rem;
+    font-family: "Readex Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "HEXP" 0;
+    padding-right: 0;
+    font-size: 15px;
+  }
 
 .content2 a {
     text-decoration: none;

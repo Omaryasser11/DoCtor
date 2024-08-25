@@ -11,6 +11,36 @@
     padding: 1rem;
     background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
 
+    .Last {
+        width: 100vw;
+        padding: 1rem;
+
+        .Q1 {
+
+            transition: transform 0.3s ease-in-out;
+            width: 20%;
+
+
+
+            .TiltCard {
+
+
+                width: 100%;
+                height: calc(100vw/5);
+
+                .TiltCard-inner {
+                    height: 100%;
+                    width: 100%;
+
+                    .imgW {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
     .imgW,
     img,
     .TiltCard-inner,
@@ -47,12 +77,6 @@
 
 }
 
-.Q1 {
-    height: 25%;
-    width: 25%;
-    transition: transform 0.3s ease-in-out;
-
-}
 
 .Q2 {
 
@@ -133,11 +157,13 @@
 
 
 
-.Q1 img {
+.Q1 .IMGOO,
+.imgW,
+.TiltCard {
     width: 100%;
     height: auto;
     transition: transform 0.3s ease-in-out;
-
+    height: 250px;
 }
 
 .Q1 .TiltCard:hover,
@@ -163,7 +189,7 @@
 .Q7 .TiltCard,
 .Q8 .TiltCard,
 .Q9 .TiltCard,
-.Q10 .TiltCard{
+.Q10 .TiltCard {
     position: relative;
     overflow: hidden;
 }

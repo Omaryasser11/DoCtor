@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../../store/LanguageContext';
 import './Footer.scss';
 import LOGO from "../../assets/لوجو دينا المعدل.png"
 import oOGO from "../../assets/logo-no-background.png"
@@ -6,7 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faFacebook, faYoutube, faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 
 import LOGO2 from "../../assets/8-removebg-preview.png"
+import { features } from 'caniuse-lite';
 const Footer = () => {
+  const { language } = useContext(LanguageContext);
   return (
     <div id="footer-outer" className='col-12'>
       <div id="footer-widgets">
@@ -14,7 +17,7 @@ const Footer = () => {
           <div className="row flexR col-12">
             <div className="col-4 flex">
               <div className="widget widget_text">
-                <div className="textwidget">
+                <div className="textwidget flex">
                   <p>
                     <img
                       decoding="async"
@@ -26,51 +29,52 @@ const Footer = () => {
                     />
                   </p>
 
+
                 </div>
               </div>
             </div>
 
             <div className='col-4 flexR SpanFooterParent'>
-              <span className='Linko hover-1'>Features</span>
-              <span className='Linko hover-1'>Blog</span>
-              <span className='Linko hover-1'>pricing</span>
-              <span className='Linko hover-1'>services</span>
+              <span lang={language} className=' TITO Linko hover-1'>{language === 'ar' ? 'المزايا' : 'Features'}</span>
+              <span lang={language} className='TITO Linko hover-1'>{language === 'ar' ? 'تواصل معنا' : 'Blog'}</span>
+              <span lang={language} className=' TITO Linko hover-1'>{language === 'ar' ? 'الاسئله الشائعه' : 'Blog'}</span>
+              <span lang={language} className=' TITO Linko hover-1'>{language === 'ar' ? 'خدماتنا' : 'Blog'}</span>
             </div>
 
             <div className="col-4 flex">
-            <div className="col span_7 col_last">
-            <ul className="social flexR">
-      <li>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.onlyfans.com/drwilliammiami">
-          <FontAwesomeIcon icon={faTwitter} style={{ color: '#1DA1F2' }} />
-        </a>
-      </li>
-      <li>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Drwilliammiami/">
-    
-          <FontAwesomeIcon icon={faFacebook} style={{ color: '#1877F2' }} />
-        </a>
-      </li>
-      <li>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UCgrwz50ERG6TNcvfet5e6Mg">
+              <div className="col span_7 col_last">
+                <ul className="social flexR">
+                  <li>
+                    <a target="_blank" rel="noopener noreferrer" href="http://www.onlyfans.com/drwilliammiami">
+                      <FontAwesomeIcon icon={faTwitter} style={{ color: '#1DA1F2' }} />
+                    </a>
+                  </li>
+                  <li>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Drwilliammiami/">
 
-          <FontAwesomeIcon icon={faYoutube} style={{ color: '#FF0000' }} />
-        </a>
-      </li>
-      <li>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/drwilliammiami/?hl=en">
-  
-          <FontAwesomeIcon icon={faInstagram} style={{ color: '#E1306C' }} />
-        </a>
-      </li>
-      <li>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@drwilliammiami">
-      
-          <FontAwesomeIcon icon={faTiktok} style={{ color: '#000000' }} />
-        </a>
-      </li>
-    </ul>
-          </div>
+                      <FontAwesomeIcon icon={faFacebook} style={{ color: '#1877F2' }} />
+                    </a>
+                  </li>
+                  <li>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UCgrwz50ERG6TNcvfet5e6Mg">
+
+                      <FontAwesomeIcon icon={faYoutube} style={{ color: '#FF0000' }} />
+                    </a>
+                  </li>
+                  <li>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/drwilliammiami/?hl=en">
+
+                      <FontAwesomeIcon icon={faInstagram} style={{ color: '#E1306C' }} />
+                    </a>
+                  </li>
+                  <li>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@drwilliammiami">
+
+                      <FontAwesomeIcon icon={faTiktok} style={{ color: '#000000' }} />
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             {/* <div className="col span_3 one-fourths right-edge">
@@ -96,16 +100,20 @@ const Footer = () => {
 
       <div className="row" id="copyright">
         <div className="container">
-          <div className="col-12 flexRR">
-            <p>© 2024 Dr. Dina Khairy. All rights reserved</p>
+          <div className="col-12 flexRR" lang={language}>
+            <p>
+            {language === 'ar'
+            ? 'جميع الحقوق محفوظة © 2024 Dina-Khairy.com'
+            : 'All rights reserved © 2024 Dina-Khairy.com'}
+            </p>
             <img
-                      decoding="async"
-                      className="alignnone size-full wp-image-5932"
-                      src={oOGO}
-                      alt=""
-                      width="150"
-                      height="50"
-                    />
+              decoding="async"
+              className="alignnone size-full wp-image-5932"
+              src={oOGO}
+              alt=""
+              width="150"
+              height="50"
+            />
 
           </div>
 
