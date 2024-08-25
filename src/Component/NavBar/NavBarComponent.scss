@@ -35,6 +35,19 @@
         text-transform: uppercase;
     }
 
+    li:lang(ar) {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-size: 1rem;
+        text-decoration: none;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+
     .navBarLogo {
         height: 5rem;
         filter: contrast(0%) brightness(2);
@@ -52,7 +65,7 @@
 //     text-decoration: none;
 //     font-weight: 800;
 //     cursor: pointer;
- 
+
 //     transition: 0.5s;
 //     /* Background Gradient for Text */
 //     background: linear-gradient(to bottom, #FFEEB5, #AE8913);
@@ -77,12 +90,6 @@
     width: 12rem;
 }
 
-
-
-
-
-
-
 .hover-1 {
     text-decoration: none;
     font-size: 17px;
@@ -102,6 +109,33 @@
     color: transparent;
     transition: all 0.3s ease-in-out;
 }
+
+.hover-1,
+a:lang(ar) {
+    font-family: "Lalezar", system-ui;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0;
+    margin-right: 0;
+
+    font-weight: 700;
+    background-image: linear-gradient(to right,
+            #ebfbff,
+            #ebfbff 50%,
+            white 50%);
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    padding: 5px 0;
+    position: relative;
+    background-clip: text;
+    color: transparent;
+    transition: all 0.3s ease-in-out;
+    margin-left: 1.5rem;
+
+ 
+}
+
 
 .hover-1:before {
     content: '';

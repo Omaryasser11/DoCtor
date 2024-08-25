@@ -1,12 +1,12 @@
-.Section2{
+.Section2 {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-margin:  0;
-padding: 2rem; 
-background: linear-gradient(179.4deg, rgba(253, 240, 233, 0.46) 2.2%, rgba(255, 194, 203, 0.38) 66.2%);
+  margin: 0;
+  padding: 2rem;
+  background: linear-gradient(179.4deg, rgba(253, 240, 233, 0.46) 2.2%, rgba(255, 194, 203, 0.38) 66.2%);
 
   .video-column,
   .text-column {
@@ -54,9 +54,10 @@ background: linear-gradient(179.4deg, rgba(253, 240, 233, 0.46) 2.2%, rgba(255, 
           fill: #fff;
         }
       }
-      
+
     }
   }
+
   .playIcon {
     font-size: 1.7rem;
     text-align: center;
@@ -64,14 +65,24 @@ background: linear-gradient(179.4deg, rgba(253, 240, 233, 0.46) 2.2%, rgba(255, 
     display: flex;
 
   }
+
   .content-wrapper {
     .title {
       color: rgb(68, 68, 68);
       text-align: left;
     }
 
+    .title:lang(ar) {
+      text-align: right;
+      font-family: "Lalezar", system-ui;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 26px;
+      color: #de647a;
+    }
+
     .divider {
-      height: 50px;
+      height: 35px;
     }
 
     blockquote {
@@ -89,6 +100,28 @@ background: linear-gradient(179.4deg, rgba(253, 240, 233, 0.46) 2.2%, rgba(255, 
       font-style: italic;
       color: #333;
     }
+    .about-description {
+      color: rgb(103, 103, 103);
+      font-family: "futura";
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 24px;
+      font-style: normal;
+      font-stretch: 100%;
+      padding-right: 3rem;
+    }
+  
+    .about-description:lang(ar) {
+      text-align: right;
+      padding-left: 3rem;
+      font-family: "Readex Pro", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+      font-variation-settings: "HEXP" 0;
+      padding-right: 0;
+      font-size: 15px;
+    }
+
 
     .btn-accent-color {
       color: #fff;
@@ -128,6 +161,7 @@ background: linear-gradient(179.4deg, rgba(253, 240, 233, 0.46) 2.2%, rgba(255, 
   &.slideInUp {
     animation: slideInUp 0.5s forwards;
   }
+
   .btn1 {
     background-color: #ff477e;
     color: #f2f2f2;
@@ -151,4 +185,16 @@ background: linear-gradient(179.4deg, rgba(253, 240, 233, 0.46) 2.2%, rgba(255, 
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+.btn1 {
+  background-color: #ff477e;
+  color: #f2f2f2;
+  transition-duration: .3s;
+}
+
+.btn1:hover {
+  transform: scale(1.1);
+  background-color: white;
+  color: #ff477e;
 }

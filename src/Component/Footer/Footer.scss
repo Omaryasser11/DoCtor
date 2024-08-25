@@ -212,15 +212,16 @@
 
 }
 
-.alignnone{
+.alignnone {
   filter: contrast(0%) brightness(2);
   transition: .5s;
 }
-.alignnone:hover{
 
-filter: none;
-cursor: pointer;
-transform: scale(1.3);
+.alignnone:hover {
+
+  filter: none;
+  cursor: pointer;
+  transform: scale(1.3);
 }
 
 
@@ -231,4 +232,12 @@ transform: scale(1.3);
   justify-content: space-between;
   align-items: center;
   padding: 0 3rem;
+}
+
+.SpanFooterParent .TITO:lang(ar) {
+  font-family: "Lateef", serif;
+  font-weight: 500;
+  font-size: 25px;
+  font-style: normal;
+  text-align: right;
 }

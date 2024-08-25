@@ -1,27 +1,31 @@
 import React, { useContext } from 'react';
 import { LanguageContext } from './LanguageContext';
+import './LanguageSwitch.scss'; // Ensure you import your CSS for styling
 
 const LanguageToggle = () => {
   const { language, setLanguage } = useContext(LanguageContext);
 
-  const handleLanguageChange = (lang) => {
-    setLanguage(lang);
-    // Optionally, save the selected language in localStorage
-    localStorage.setItem('appLanguage', lang);
+  const handleLanguageChange = () => {
+    const selectedLang = language === 'en' ? 'ar' : 'en';
+    setLanguage(selectedLang);
+    localStorage.setItem('appLanguage', selectedLang);
   };
 
-  // Determine the text direction based on the language
-  const direction = language === 'ar' ? 'rtl' : 'ltr';
-
   return (
-    <div dir={direction}>
-      <button onClick={() => handleLanguageChange('en')} disabled={language === 'en'}>
-        English
-      </button>
-      <button onClick={() => handleLanguageChange('ar')} disabled={language === 'ar'}>
-        Arabic
-      </button>
-    </div>
+    <center>
+      <div className="switch">
+        <input
+          id="language-toggle"
+          className="check-toggle check-toggle-round-flat"
+          type="checkbox"
+          checked={language === 'ar'}
+          onChange={handleLanguageChange}
+        />
+        <label htmlFor="language-toggle"></label>
+        <span className="on">AR</span>
+        <span className="off">EN</span>
+      </div>
+    </center>
   );
 };
 

@@ -20,6 +20,8 @@
     .row_col_wrap_12 {
       opacity: 1;
 
+
+
       .vc_column_container {
         padding: 4%;
         background-color: #0a2240;
@@ -59,9 +61,12 @@
               font-style: italic;
 
               .inner {
-                .open-quote {
-                  font-size: 30px;
+                .flex {
+                  .open-quote {
+                    font-size: 50px;
+                  }
                 }
+
 
                 p {
                   margin-bottom: 20px;
@@ -114,7 +119,22 @@
   margin: 0;
   display: flex;
 
+  .Filter {
+    border-radius: 0;
 
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fc6767, #ec008c);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fb6793cc, #ff437ccc, #e91e62d9);
+  }
+
+  .Filter:hover {
+    background: linear-gradient(to right, #ffffff00, #ff437b00, #e91e6200);
+  }
+
+  .PAR {
+    z-index: 1000;
+  }
 }
 
 @media (min-width: 1400px) {
@@ -268,4 +288,40 @@
 
 .divider {
   height: 75px;
+}
+
+.open-quote {
+  font-size: 50px;
+}
+
+.PAR:lang(ar) {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.COL1 {
+  background-image: url('https://images.pexels.com/photos/1203549/pexels-photo-1203549.jpeg?auto=compress&cs=tinysrgb&w=600');
+  background-position: center;
+  background-size: cover;
+
+
+
+}
+
+.COL2 {
+background-image:url('https://images.pexels.com/photos/7585317/pexels-photo-7585317.jpeg?auto=compress&cs=tinysrgb&w=600'); 
+ background-position: center;
+  background-size: cover;
+}
+
+.COL3 {
+  background-image: url('https://images.pexels.com/photos/26600742/pexels-photo-26600742/free-photo-of-a-woman-wearing-a-headscarf.jpeg?auto=compress&cs=tinysrgb&w=600');
+  background-position: center;
+  background-size: cover;
+}
+
+.COL4 {
+  background-image: url('https://images.pexels.com/photos/11816688/pexels-photo-11816688.jpeg?auto=compress&cs=tinysrgb&w=600');
+  background-position: center;
+  background-size: cover;
 }

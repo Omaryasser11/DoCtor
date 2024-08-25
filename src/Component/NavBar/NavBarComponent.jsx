@@ -12,31 +12,33 @@ function NavBarComponent() {
     <div className='NavBar'>
       {language === 'ar' ? (
         <>
-          <Link to="/">
+          <Link to="/" >
             <img className='navBarLogo' src={navBarLogo} alt="Logo" />
           </Link>
-          <Link className='Linko hover-1' to="/dr">دكتور دينا</Link>
-          <Link to='Procedures' className='Linko hover-1'>
-            <li>أعمالنا</li>
+       <div className='flexR'>
+       <Link lang={language} className='Linko hover-1' to="/dr">دكتور دينا</Link>
+          <Link lang={language} to='Procedures' className='Linko hover-1'>
+        أعمالنا
           </Link>
-          <Link to='Before' className='Linko hover-1'>
-            <li>قبل و بعد</li>
+          <Link lang={language} to='Before' className='Linko hover-1'>
+      قبل و بعد
           </Link>
-          <Link className='Linko hover-1'>
-            <li>الاسئلة الشائعة</li>
+          <Link lang={language} className='Linko hover-1'>
+           الاسئلة الشائعة
           </Link>
-          <Link to='Videosb' className='Linko hover-1'>
-            <li>فيديوهات</li>
+          <Link lang={language} to='Videosb' className='Linko hover-1'>
+          فيديوهات
           </Link>
-          <Link to='Blog' className='Linko hover-1'>
-            <li>المدونة</li>
+          <Link lang={language} to='Blog' className='Linko hover-1'>
+    المدونة
           </Link>
-          <Link to='Testimonials' className='Linko hover-1'>
-            <li>شهادات العملاء</li>
+          <Link lang={language} to='Testimonials' className='Linko hover-1'>
+        شهادات العملاء
           </Link>
-          <Link className='Linko hover-1' to='Reservations'>
-            <li>حجوزات</li>
+          <Link lang={language} className='Linko hover-1' to='Reservations'>
+          حجوزات
           </Link>
+       </div>
           <li><LanguageToggle /></li>
 
           <li><button>تسجيل الدخول </button></li>

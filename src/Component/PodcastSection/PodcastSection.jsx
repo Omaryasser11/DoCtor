@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../../store/LanguageContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './PodcastSection.scss'; // Import the SCSS file
 import FlashButton from '../Buttons/FlashButton';
 import pod from "../../assets/-5945261535951699161_121 (1).jpg"
 
 const PodcastSection = () => {
+    const { language } = useContext(LanguageContext);
+
     return (
         <div className=' flex col-12 full-width-section3  row  vc-row-equal-height vc-row-flex vc-row-content-middle'
             id="fws_66a6b014267df">
 
 
-            <div className=" flexR col-10"         style={{ gap: '1.5rem' }} >
+            <div className=" flexR col-10" style={{ gap: '1.5rem' }} >
                 <div className="col-10 col-md-6 d-flex align-items-center" >
                     <div className="nectar-post-grid-wrap text-color-light spacing-none">
 
@@ -52,26 +55,56 @@ const PodcastSection = () => {
                 </div>
 
                 <div className="col-12 col-md-6 text-center content2">
-                    <h4>
-                        <a href="https://www.youtube.com/c/DrWilliamMiami?sub_confirmation=1">
-                            Behind the Mask - The Podcast
-                        </a>
+                    <h4  className='S2Title' lang={language}>
+                      
+                            {language === 'ar'
+                                ? 'وراء القناع - البودكاست'
+                                : 'Behind the Mask - The Podcast'
+                            }
+               
                     </h4>
-                    <p>
-                        Behind the Mask is now also a Podcast! Available on{' '}
-                        <a href="https://www.youtube.com/c/DrWilliamMiami">YouTube</a>,{' '}
-                        <a href="https://open.spotify.com/show/1YFWASXlUUHuMquo8Auzd2?si=f1f6f024c74f4304">Spotify</a>, and{' '}
-                        <a href="https://podcasts.apple.com/us/podcast/behind-the-mask-the-podcast/id1628860294">Apple Podcast</a>. Dr. William kicked off another endeavor to keep you all updated on the latest in plastic surgery, debunk myths and misconceptions, and make sure every patient who gets wheeled into surgery is educated and aware.
-                        <br />
-                        <strong>You don’t want to miss any episodes!</strong>
+                    <div className="divider" style={{ height: '20px' }}></div>
+                    <p
+                        lang={language}
+                        className="about-description"
+                    >
+                        {language === 'ar'
+                            ? (
+                                <>
+
+                                    وراء القناع أصبح الآن أيضًا بودكاست! متاح على{' '}
+                                    <a href="https://www.youtube.com/c/DrWilliamMiami">يوتيوب</a>،{' '}
+                                    <a href="https://open.spotify.com/show/1YFWASXlUUHuMquo8Auzd2?si=f1f6f024c74f4304">سبوتيفاي</a>، و{' '}
+                                    <a href="https://podcasts.apple.com/us/podcast/behind-the-mask-the-podcast/id1628860294">آبل بودكاست</a>.
+                                    بدأ الدكتور ويليام مسعى آخر ليبقيكم جميعًا على اطلاع بأحدث التطورات في جراحة التجميل، وكشف الأساطير والمفاهيم الخاطئة، وضمان أن كل مريض يدخل غرفة العمليات يكون على دراية ومطلع.
+                                    <br />
+                                    <strong>لا تفوتوا أي حلقة!</strong>
+                                </>
+
+                            )
+                            : (
+                                <>
+
+                                    Behind the Mask is now also a Podcast! Available on{' '}
+                                    <a href="https://www.youtube.com/c/DrWilliamMiami">YouTube</a>,{' '}
+                                    <a href="https://open.spotify.com/show/1YFWASXlUUHuMquo8Auzd2?si=f1f6f024c74f4304">Spotify</a>, and{' '}
+                                    <a href="https://podcasts.apple.com/us/podcast/behind-the-mask-the-podcast/id1628860294">Apple Podcast</a>. Dr. William kicked off another endeavor to keep you all updated on the latest in plastic surgery, debunk myths and misconceptions, and make sure every patient who gets wheeled into surgery is educated and aware.
+                                    <br />
+                                    <strong>You don’t want to miss any episodes!</strong>
+
+                                </>
+                            )
+                        }
+
                     </p>
-                    <div className="divider"></div>
-           
+
+                    <div className="divider" style={{ height: '30px' }}></div>
+
                     <FlashButton />
-             
+
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
