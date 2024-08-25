@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import style from './Testimonials.module.css'
 import { Helmet } from 'react-helmet-async';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import slideHeader1 from '../../assets/images/IMG_0412.jpg'
 // import slideHeader2 from '../../assets/images/IMG_4600-1.jpg'
-import patientSelfie from '../../assets/images/pattern-01.png'
+import patientSelfie from '../../assets/images/patient-selfie.jpg'
 import selfie from '../../assets/images/IMG_0420.jpg'
 import carousel1 from '../../assets/images/IMG_3113-scaled.jpg'
-import carousel2 from '../../assets/images/IMG_3113-scaled.jpg'
-import carousel3 from '../../assets/images/patient-selfie.jpg'
+// import carousel2 from '../../assets/images/IMG_3125.jpg'
+// import carousel3 from '../../assets/images/patient-photo-3.jpg'
 import ReactPlayer from 'react-player';
 
 
@@ -23,8 +23,8 @@ export default function Testimonials() {
 
                                                               {/* Header */}
 
-    <div className="position-relative row gx-0 cover2 header-height">
-      <div className="layerC position-absolute top-0 bottom-0 start-0 end-0 z-1"></div>
+    <div className="row gx-0 position-relative blueC" style={{ height: '318px' }}>
+    <div className="layerC position-absolute top-0 bottom-0 start-0 end-0 z-1"></div>
       <div className='offset-1 col-10 px-lg-4 px-md-3 px-2 d-flex align-items-center h-100'>
           <div className='mt-3 d-flex flex-column justify-content-end position-absolute z-3' style={{ height: '200px' }}>
               <h4 className='fs-2 fw-semibold'>Testimonials</h4>
@@ -36,8 +36,8 @@ export default function Testimonials() {
                                                             {/* Carousel Header */}
 
     <div className="row g-0 align-items-center blueC py-5 mb-5">
-        <div className="col-lg-6 bg-cyan">
-            <div className={`d-flex justify-content-center px-5 mx-5 ${style.slideSize} flex-column`}>
+        <div className="col-lg-6 bg-danger-subtle">
+            <div className={`d-flex justify-content-center px-5 mx-xl-5 ${style.slideSize} z-3 flex-column z-3`}>
                 <p className='fw-bold fs-5 mb-0'>Patient Testimonials</p>
                 <p className='fw-semibold fs-2 my-2'>We Love Making You Smile</p>
                 <p className='system-ui mt-3'>Before and Afters are great, but what really matters are the beautiful smiles I see on my patients after they achieve the shape they always wanted.</p>
@@ -68,9 +68,6 @@ export default function Testimonials() {
                 >
                 <SplideSlide className='px-md-3 px-1'>
                     <img src={slideHeader1} className='w-100' alt="Image1" />
-                </SplideSlide>
-                <SplideSlide className='px-md-3 px-1'>
-                    <img src={slideHeader1} className='w-100' alt="Image2" />
                 </SplideSlide>
             </Splide>
             </div>
@@ -196,12 +193,6 @@ export default function Testimonials() {
             >
                 <SplideSlide className='px-3'>
                     <img src={carousel1} className='w-100' alt="Image1" />
-                </SplideSlide>
-                <SplideSlide className='px-3'>
-                    <img src={carousel2} className='w-100' alt="Image1" />
-                </SplideSlide>
-                <SplideSlide className='px-3'>
-                    <img src={carousel3} className='w-100' alt="Image1" />
                 </SplideSlide>
             </Splide>
         </div>

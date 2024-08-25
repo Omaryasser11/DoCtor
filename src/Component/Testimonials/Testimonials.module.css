@@ -1,5 +1,5 @@
 .slideSize{
-    min-height: 66vh !important;
+    min-height: 64vh !important;
 }
 .layer{
     opacity: 0;
@@ -21,21 +21,21 @@
 }
 @media all and (max-width:1450px){
     .slideSize{
-        height: 60vh !important;
+        min-height: 55vh !important;
     }
 }
-@media all and (max-width:1250px){
+@media all and (max-width:1300px){
     .slideSize{
-        height: 52vh !important;
+        min-height: 48vh !important;
     }
 }
 @media all and (max-width:1100px){
     .slideSize{
-        height: 43vh !important;
+        min-height: 40vh !important;
     }
 }
 @media all and (max-width:991px){
     .slideSize{
-        height: 47vh !important;
+        min-height: 47vh !important;
     }
 }
