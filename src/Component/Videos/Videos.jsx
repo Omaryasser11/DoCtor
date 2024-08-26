@@ -2,7 +2,6 @@ import React, { useState,useEffect} from 'react';
 import style from './Videos.module.css'
 import { Helmet } from 'react-helmet-async';
 import ReactPlayer from 'react-player'
-// import youtubeCover from '../../assets/images/youtubeCover.jpeg'
 // import youtubeCover2 from '../../assets/images/BTM-1.jpeg'
 import baseUrl from '../../BaseUrl'
 
@@ -27,7 +26,6 @@ export default function Videos() {
     baseUrl.get('videos')
     .then(response=>{
       setData(response.data)
-      console.log(response.data);
       setLoading(false)
     })
     .catch(error =>{
@@ -43,8 +41,6 @@ export default function Videos() {
     <Helmet>
       <title>Videos</title>
     </Helmet>
-    <div className="montserrat">
-
       {/* Header */}
 
       <div className="row gx-0 position-relative blueC mb-2" style={{ height: '318px' }}>
@@ -123,7 +119,7 @@ export default function Videos() {
                   <i className="fa-solid fa-play fs-5 text-white d-flex align-items-center justify-content-center rounded-circle"></i>
                 </div>
                 <div>
-                <img src={video.posterUrl} className='w-100' alt="youtube video" />
+                <img src={video.posterUrl} className='w-100 scale' alt="youtube video" />
                 </div>
               </div>
               <div className='my-5'>
@@ -137,7 +133,6 @@ export default function Videos() {
         </div>
       </div>
     </div>
-  </div >
 
     {/* Overlay of card */ }
 

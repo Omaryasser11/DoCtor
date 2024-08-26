@@ -12,6 +12,7 @@ import Procedures from './Component/Procedures/Procedures.jsx';
 import Testimonials from './Component/Testimonials/Testimonials.jsx';
 import Blog from './Component/Blog/Blog.jsx';
 import Videos from './Component/Videos/Videos.jsx';
+import Faq from './Component/Faq/Faq.jsx';
 import { LanguageProvider, LanguageContext } from './store/LanguageContext.js';
 
 function AppContent() {
@@ -32,6 +33,7 @@ function AppContent() {
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/Videosb" element={<Videos />} />
+        <Route path="/Faq" element={<Faq />} />
       </Routes>
       <Footer />
     </div>
