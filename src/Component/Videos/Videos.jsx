@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player'
 import baseUrl from '../../BaseUrl'
 
 export default function Videos() {
-  const [data, setData] = useState('')
+  const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [youtubeVideo, setYoutubeVideo] = useState(null)

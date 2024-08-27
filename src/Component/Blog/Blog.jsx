@@ -9,7 +9,7 @@ import { useRecoilState } from 'recoil';
 import baseUrl from '../../BaseUrl'
 
 export default function Blog() {
-  const [data, setData] = useState('')
+  const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1);

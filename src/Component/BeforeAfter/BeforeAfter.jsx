@@ -14,8 +14,8 @@ import after2 from '../../assets/شفايف 77.png';
 import baseUrl from '../../BaseUrl'
 
 export default function BeforeAfter() {
-  const [data, setData] = useState('')
-  const [videos, setVideos] = useState('')
+  const [data, setData] = useState([])
+  const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [activeLink, setActiveLink] = useState('All')
@@ -53,7 +53,9 @@ export default function BeforeAfter() {
     setError(error)
     setLoading(false)
     })
+  },[])
 
+  useEffect(()=>{
     baseUrl.get('before-after/videos')
     .then(response=>{
       setVideos(response.data)
