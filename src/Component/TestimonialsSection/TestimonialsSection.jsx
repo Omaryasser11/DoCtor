@@ -14,7 +14,6 @@ const Testimonials = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 3000, // Duration of animations
     });
 
     baseUrl.get('/reviews/texts', {
@@ -40,10 +39,14 @@ const Testimonials = () => {
 
   return (
     <div id="fws_66aaf48d6affe" className='col-12 ll'>
-      <div className="wpb_row col-12" data-aos="flip-left">
-        <div className="container ColCard col-12">
+      <div className="wpb_row col-12">
+        <div className="container ColCard col-12" >
           {data1.map((testimonial, index) => (
             <div
+              data-aos="fade-down"
+              data-aos-duration={index * 1000 + 1500}
+
+
               key={index}
               className={`column COL${index + 1} col-4`}
               onMouseEnter={() => setHoveredIndex(index)}
@@ -54,7 +57,7 @@ const Testimonials = () => {
               <div className="wpb_wrapper">
                 <div className="divider"></div>
                 <blockquote className="nectar_single_testimonial">
-                  <div className="inner" style={{ zIndex: 5,  position: 'relative'}}>
+                  <div className="inner" style={{ zIndex: 5, position: 'relative' }}>
                     <p className='flex PAR' lang={language}>
                       <span lang={language} className="open-quote">”</span>
                       {testimonial.review}

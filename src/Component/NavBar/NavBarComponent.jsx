@@ -1,47 +1,53 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { LanguageContext } from '../../store/LanguageContext';
 import './NavBarComponent.scss';
 import { Link } from 'react-router-dom';
 import navBarLogo from '../../assets/لوجو_دينا_المعدل_1-removebg-preview.png';
 import LanguageToggle from '../../store/LanguageToggle';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 function NavBarComponent() {
   const { language } = useContext(LanguageContext);
+  useEffect(() => {
+    AOS.init({
+      duration: 2500,
+    });
+  }, []);
 
   return (
-    <div className='NavBar'>
+    <div className='NavBar' data-aos="fade-down">
       {language === 'ar' ? (
         <>
           <Link to="/" >
             <img className='navBarLogo' src={navBarLogo} alt="Logo" />
           </Link>
-       <div className='flexR'>
-       <Link lang={language} className='Linko hover-1' to="/dr">دكتور دينا</Link>
-          <Link lang={language} to='Procedures' className='Linko hover-1'>
-        أعمالنا
-          </Link>
-          <Link lang={language} to='Before' className='Linko hover-1'>
-      قبل و بعد
-          </Link>
-          <Link lang={language} className='Linko hover-1'>
-           الاسئلة الشائعة
-          </Link>
-          <Link lang={language} to='Videosb' className='Linko hover-1'>
-          فيديوهات
-          </Link>
-          <Link lang={language} to='Blog' className='Linko hover-1'>
-    المدونة
-          </Link>
-          <Link lang={language} to='Testimonials' className='Linko hover-1'>
-        شهادات العملاء
-          </Link>
-          <Link lang={language} className='Linko hover-1' to='Reservations'>
-          حجوزات
-          </Link>
-       </div>
+          <div className='flexR'>
+            <Link lang={language} className='Linko hover-1' to="/dr">دكتور دينا</Link>
+            <Link lang={language} to='Procedures' className='Linko hover-1'>
+              أعمالنا
+            </Link>
+            <Link lang={language} to='Before' className='Linko hover-1'>
+              قبل و بعد
+            </Link>
+            <Link lang={language} className='Linko hover-1'>
+              الاسئلة الشائعة
+            </Link>
+            <Link lang={language} to='Videosb' className='Linko hover-1'>
+              فيديوهات
+            </Link>
+            <Link lang={language} to='Blog' className='Linko hover-1'>
+              المدونة
+            </Link>
+            <Link lang={language} to='Testimonials' className='Linko hover-1'>
+              شهادات العملاء
+            </Link>
+            <Link lang={language} className='Linko hover-1' to='Reservations'>
+              حجوزات
+            </Link>
+          </div>
           <li><LanguageToggle /></li>
 
-          <li><button>تسجيل الدخول </button></li>
+
         </>
       ) : (
         <>
@@ -57,7 +63,7 @@ function NavBarComponent() {
             <li><Link to='Blog' className='Linko hover-1'>BLOG</Link></li>
             <li><Link to='Testimonials' className='Linko hover-1'>TESTIMONIALS</Link></li>
             <li><Link className='Linko hover-1'>CONSULTATION</Link></li>
-            <li><button>Login</button></li>
+
             <li><LanguageToggle /></li>
           </ul>
         </>

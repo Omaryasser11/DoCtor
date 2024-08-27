@@ -342,7 +342,7 @@ ul li{
   height: 40px;
   width: 40px;
   padding: 2.3rem;
-  background-color: #00718B;
+  background-color:#ff477e;
   transition: 0.3s;
 }
 .video:hover .play{
@@ -378,4 +378,17 @@ ul li{
   background: #fff !important;
   transform: scale(2) !important;
   border: 1px solid black !important;
+}
+
+
+.Montserrat{
+font-family: Montserrat;
+font-size: 24px;
+font-weight: 600;
+letter-spacing: -1px;
+line-height: 36px;
+margin-block-end: 8px;
+margin-bottom: 8px;
+color :rgb(68, 68, 68);
+
 }

@@ -101,7 +101,7 @@ const AboutDrWilliam = () => {
                                     srcSet={DD}
                                     sizes="(max-width: 2560px) 100vw, 2560px"
                                 />
-                                <a href="https://youtu.be/co_1cNJ-Oi8" className="play_button_2 large nectar_video_lightbox magnific-popup">
+                                <a href="https://youtu.be/co_1cNJ-Oi8" className="play play_button_2 large nectar_video_lightbox magnific-popup">
                                     <span>
                                         <span className="play">
                                             <span className="inner-wrap inner flex">
