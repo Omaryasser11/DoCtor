@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
@@ -34,7 +34,7 @@ export default function Blog() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    
+
     // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -50,17 +50,17 @@ export default function Blog() {
     setCurrentPage(page);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     baseUrl.get('blogs')
-    .then(response=>{
-      setData(response.data.data)
-      setLoading(false)
-    })
-    .catch(error =>{
-    setError(error)
-    setLoading(false)
-    })
-  },[])
+      .then(response => {
+        setData(response.data.data)
+        setLoading(false)
+      })
+      .catch(error => {
+        setError(error)
+        setLoading(false)
+      })
+  }, [])
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error: {error.message}</p>
@@ -84,30 +84,30 @@ export default function Blog() {
         {/* Body of cards */}
         <div className="row gx-0">
           <div className='offset-1 col-10 p-4 row g-5'>
-          {data.map((item) => <>
-            <div key={item.id} className="col-lg-4 col-sm-6">
-              <div className={`cursor-pointer position-relative shadow video overflow-hidden rounded-2 bg-white`}>
-                <div className='overflow-hidden'>
-                  <img src={item.imageUrl} className='w-100 scale' alt="Blog image" />
-                </div>
-                <div className='m-4'>
-                  <div className='my-2 position-relative d-flex flex-wrap'>
-                  {item.categories.map((category) => <>
-                    <Link key={category.id} to={'/Blog'} className={`small text-decoration-none darkCyan-text fw-medium linkBlog mb-2 me-3`}>{category.name}</Link>
-                  </>)}
+            {data.map((item) => <>
+              <div key={item.id} className="col-lg-4 col-sm-6">
+                <div className={`cursor-pointer position-relative shadow video overflow-hidden rounded-2 bg-white`}>
+                  <div className='overflow-hidden'>
+                    <img src={item.imageUrl} className='w-100 scale' alt="Blog image" />
                   </div>
-                  <div>
-                    <h4 className='fs-5 fw-semibold text-black'>{item.title}</h4>
-                    <p className='text-secondary-emphasis my-3'>{item.description}</p>
-                    <Link to={'/Blog'} className={`small text-decoration-none fw-medium text-secondary-emphasis d-flex mb-2 me-3 circleLink`}>
-                      <div className={`rounded-circle sizeCircle shadowCircle me-3`}></div>
-                      {item.author.name}<br />
-                      {item.writtenOn.split('T')[0]}
-                    </Link>
+                  <div className='m-4'>
+                    <div className='my-2 position-relative d-flex flex-wrap'>
+                      {item.categories.map((category) => <>
+                        <Link key={category.id} to={'/Blog'} className={`small text-decoration-none darkCyan-text fw-medium linkBlog mb-2 me-3`}>{category.name}</Link>
+                      </>)}
+                    </div>
+                    <div>
+                      <h4 className='fs-5 fw-semibold text-black'>{item.title}</h4>
+                      <p className='text-secondary-emphasis my-3'>{item.description}</p>
+                      <Link to={'/Blog'} className={`small text-decoration-none fw-medium text-secondary-emphasis d-flex mb-2 me-3 circleLink`}>
+                        <div className={`rounded-circle sizeCircle shadowCircle me-3`}></div>
+                        {item.author.name}<br />
+                        {item.writtenOn.split('T')[0]}
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </>)}
           </div>
         </div>
@@ -115,12 +115,12 @@ export default function Blog() {
         {/* Pagination */}
         <nav className='mt-4 mb-5'>
           <div className='d-flex justify-content-center align-items-center w-100 small'>
-          <Pagination
-            count={count}
-            page={currentPage}
-            onChange={handlePageChange}
-            color="primary"
-          />
+            <Pagination
+              count={count}
+              page={currentPage}
+              onChange={handlePageChange}
+              color="primary"
+            />
           </div>
         </nav>
       </div>

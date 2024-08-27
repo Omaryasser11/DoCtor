@@ -5,13 +5,33 @@ import ReactPlayer from 'react-player'
 import youtubeCover from '../../assets/images/youtubeCover.jpeg'
 import youtubeCover2 from '../../assets/images/BTM-1.jpeg'
 import baseUrl from '../../BaseUrl'
-
+import { isFlippedState } from '../../store/index.js';
+import { useRecoilState } from 'recoil';
 export default function Videos() {
   const [data, setData] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [youtubeVideo, setYoutubeVideo] = useState(null)
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
+
+  useEffect(() => {
+    // Event listener for scroll
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsFlipped(true);
+      } else {
+        setIsFlipped(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup function to remove the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [setIsFlipped]);
 
   function openCard(videoUrl) {
     setYoutubeVideo(videoUrl);

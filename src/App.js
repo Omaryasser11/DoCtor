@@ -13,6 +13,7 @@ import Testimonials from './Component/Testimonials/Testimonials.jsx';
 import Blog from './Component/Blog/Blog.jsx';
 import Videos from './Component/Videos/Videos.jsx';
 import { LanguageProvider, LanguageContext } from './store/LanguageContext.js';
+import Spinner from './Component/Spinner/Spinner.jsx';
 
 function AppContent() {
   const [isFlipped] = useRecoilState(isFlippedState);
@@ -32,6 +33,7 @@ function AppContent() {
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/Videosb" element={<Videos />} />
+        <Route path='/Spinner' element={<Spinner></Spinner>} />
       </Routes>
       <Footer />
     </div>

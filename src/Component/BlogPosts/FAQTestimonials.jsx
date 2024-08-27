@@ -1,7 +1,28 @@
-import React from 'react';
-import './styles.scss';
+import React, { useState, useEffect } from 'react';import './styles.scss';
+import { isFlippedState } from '../../store/index.js';
+import { useRecoilState } from 'recoil';
 
 const FAQTestimonials = () => {
+  const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
+
+  useEffect(() => {
+    // Event listener for scroll
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsFlipped(true);
+      } else {
+        setIsFlipped(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup function to remove the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [setIsFlipped]);
+
   return (
     <div className="vc_row full-width-content">
       <div className="vc_column_container col padding-10-percent light">

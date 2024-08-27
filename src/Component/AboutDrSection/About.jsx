@@ -8,7 +8,7 @@ import DD from "../../assets/Youtube Thumbnail DINA.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import baseUrl from '../../BaseUrl';
-
+import Spinner from "../../Component/Spinner/Spinner.jsx"
 const AboutDrWilliam = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -34,7 +34,11 @@ const AboutDrWilliam = () => {
             });
     }, [language]);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return (
+        <>
+            <Spinner></Spinner>
+        </>
+    );
     if (error) return <div>Error: {error.message}</div>;
 
     // Function to toggle the full bio display
@@ -69,18 +73,16 @@ const AboutDrWilliam = () => {
                                         {showFullBio ? bio : `${shortBio}...`}
                                         {bioWords.length > 50 && (
                                             <button onClick={toggleBio} className="btn btn-link p-0">
-
-                                                {language === 'ar' ?showFullBio ? 'قراءه اقل' : 'قراءه اكثر':showFullBio ? 'Read Less' : 'Read More' }
+                                                {language === 'ar' ? (showFullBio ? 'قراءه اقل' : 'قراءه اكثر') : (showFullBio ? 'Read Less' : 'Read More')}
                                             </button>
                                         )}
                                     </p>
-
                                 </div>
                             </div>
                         </div>
                         <div className="divider" style={{ height: '40px' }}></div>
                         <a className="btn1 btn" href="/dr-william/" role="button">
-                     {language==='ar' ? "معرفه المزيد" :" learn more"}
+                            {language === 'ar' ? "معرفه المزيد" : "Learn More"}
                         </a>
                     </div>
                 </div>

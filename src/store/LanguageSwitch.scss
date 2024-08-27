@@ -36,6 +36,7 @@ input.check-toggle-round-flat:checked~.on {
   right: 0;
   padding-right: 4px;
   color: #fff;
+  top: 10px;
 }
 
 .check-toggle {
@@ -80,14 +81,16 @@ input.check-toggle-round-flat+label:before {
 }
 
 input.check-toggle-round-flat+label:after {
-  top: 4px;
-  left: 4px;
-  bottom: 4px;
-  width: 48px;
-  background-color: #ff477e;
-  border-radius: 52px;
-  transition: margin 0.2s;
+    top: 4px;
+    left: 4px;
+    bottom: 4px;
+    width: 45px;
+    background-color: #ff477e;
+    border-radius: 52px;
+    transition: margin 0.2s;
 }
+
+
 
 input.check-toggle-round-flat:checked+label:after {
   margin-left: 44px;

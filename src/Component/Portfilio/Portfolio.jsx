@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 import baseUrl from '../../BaseUrl';
 import './Portfolio.scss';
 import { LanguageContext } from '../../store/LanguageContext'; // Import your context
+import Spinner from '../Spinner/Spinner';
 
 const ROTATION_RANGE = 32.5;
 
@@ -90,7 +91,7 @@ function Portfolio() {
       });
   }, [language]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Spinner/>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
