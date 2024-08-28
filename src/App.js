@@ -12,6 +12,7 @@ import Procedures from './Component/Procedures/Procedures.jsx';
 import Testimonials from './Component/Testimonials/Testimonials.jsx';
 import Blog from './Component/Blog/Blog.jsx';
 import Videos from './Component/Videos/Videos.jsx';
+import Faq from './Component/Faq/Faq.jsx';
 import { LanguageProvider, LanguageContext } from './store/LanguageContext.js';
 import Spinner from './Component/Spinner/Spinner.jsx';
 
@@ -34,6 +35,7 @@ function AppContent() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/Videosb" element={<Videos />} />
         <Route path='/Spinner' element={<Spinner></Spinner>} />
+        <Route path="/Faq" element={<Faq />} />
       </Routes>
       <Footer />
     </div>

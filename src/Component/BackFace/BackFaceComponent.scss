@@ -78,6 +78,31 @@
   }
 
   .imageDescribtion {
-    font-size: 1rem;
+    font-size: .5rem;
   }
+  .backFace {
+    flex-direction: column;
+    padding: 2rem;
+    padding-top: 32rem;
+    width: 100%;
+}
+.backFace {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #0a2240;
+  background-color: #ff477e;
+  padding: 4rem;
+  padding-top: 10rem;
+  flex-wrap: nowrap;
+}
+.image {
+  width: 100%;
+  transition: transform 0.3s ease;
+  height: 100px;
+  filter: contrast(0%) brightness(2);
+}
 }

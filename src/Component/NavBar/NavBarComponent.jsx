@@ -58,7 +58,7 @@ function NavBarComponent() {
             <li><Link className='Linko hover-1' to="/dr">Dr DINA</Link></li>
             <li><Link to='Procedures' className='Linko hover-1'>PROCEDURES</Link></li>
             <li><Link to='Before' className='Linko hover-1'>BEFORE & AFTER</Link></li>
-            <li><Link className='Linko hover-1'>FAQ</Link></li>
+            <li><Link className='Linko hover-1' to="/Faq">FAQ</Link></li>
             <li><Link to='Videosb' className='Linko hover-1'>VIDEOS</Link></li>
             <li><Link to='Blog' className='Linko hover-1'>BLOG</Link></li>
             <li><Link to='Testimonials' className='Linko hover-1'>TESTIMONIALS</Link></li>

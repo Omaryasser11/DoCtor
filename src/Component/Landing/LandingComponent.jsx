@@ -51,18 +51,18 @@ function LandingComponent() {
 
   return (
     <>
-      <div className='scene'>
-        <div className={`box ${isFlipped ? 'flipped' : ''} ${scaleOutClass}`} onTransitionEnd={handleTransitionEnd}>
-          <div className="landingContainer boxFace boxFaceFront">
-            <video className='landingVideo' src={LandingVideo} autoPlay loop muted></video>
-            <div className='filterContainer'>
-              <div className="textContainer">
-                <h1 className='topHeading'>
+      <div className='scene col-12'>
+        <div className={`box ${isFlipped ? 'flipped' : ''} ${scaleOutClass} col-12`} onTransitionEnd={handleTransitionEnd}>
+          <div className="landingContainer boxFace boxFaceFront col-12">
+            <video className='landingVideo col-12' src={LandingVideo} autoPlay loop muted></video>
+            <div className='filterContainer col-12'>
+              <div className="textContainer col-12">
+                <h1 className='topHeading col-12'>
                   {words.map((word, index) => (
                     <span key={index} className='wrapped' style={{ '--i': index }}>{word} </span>
                   ))}
                 </h1>
-                <h4 className='buttonHeading'>
+                <h4 className='buttonHeading col-12'>
                   <span>Meet Dr. DINA Khairy | Board Certified Plastic Surgeon</span>
                 </h4>
               </div>

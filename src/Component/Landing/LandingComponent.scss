@@ -13,6 +13,7 @@ body {
   flex-wrap: wrap;
   overflow: hidden;
   /* Hide scrollbars */
+  text-align: center;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -26,18 +27,16 @@ body {
   align-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1.6s cubic-bezier(.45, .055, .675, .19), transform 1.6s ease;
-
-
+  text-align: center;
 }
 
 .box.flipped {
   transform: rotateX(90deg);
 
-
+  text-align: center;
 
 }
 
@@ -88,7 +87,7 @@ body {
   transform-style: preserve-3d;
   transition: transform .4s cubic-bezier(.45, .055, .675, .19);
   transform: rotateX(0deg);
-
+  text-align: center;
 }
 
 
@@ -117,6 +116,7 @@ body {
   backface-visibility: hidden;
   transform-style: preserve-3d;
   transition: transform 1.6s cubic-bezier(20, 20, 20, 20) !important;
+  text-align: center;
 }
 
 .textContainer {
@@ -124,6 +124,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .topHeading {
@@ -132,6 +133,7 @@ body {
   font-size: 3.7rem;
   letter-spacing: 0.1rem;
   color: rgba(255, 255, 255, 0.89);
+  text-align: center;
 }
 
 .buttonHeading {
@@ -140,6 +142,7 @@ body {
   line-height: 1.5rem;
   color: rgba(255, 255, 255, 0.726);
   animation: 2.5s ease-in-out forwards fade;
+  text-align: center;
 }
 
 .angleIcon {
@@ -149,6 +152,7 @@ body {
   bottom: 3rem;
   cursor: pointer;
   animation: 3.4s ease-in-out infinite fadebottom;
+  text-align: center;
 }
 
 @keyframes flip {
@@ -250,4 +254,79 @@ body {
   align-items: center;
   justify-content: center;
   align-content: center;
+}
+// Default styles for desktop (large screens)
+
+// Media query for tablets
+@media (max-width: 1024px) {
+
+
+  .topHeading {
+    font-size: 1.5rem; // Adjust font size for tablets
+  }
+
+  .buttonHeading {
+    font-size: 1rem; // Adjust font size for tablets
+  }
+
+  .angleIcon {
+    font-size: 1.8rem; // Adjust icon size for tablets
+    bottom: 1.5rem; // Adjust position for tablets
+  }
+
+  .textContainer {
+    padding: 0 2rem; // Adjust padding for tablets
+  }
+}
+
+// Media query for mobile
+@media (max-width: 768px) {
+  .box {
+    // Mobile-specific styles
+    // Adjust sizes or layouts for mobile screens
+    flex-direction: column; // Stack items vertically
+  }
+
+  .topHeading {
+    font-size: 1rem; // Adjust font size for mobile
+  }
+
+  .buttonHeading {
+    font-size: .8rem; // Adjust font size for mobile
+  }
+
+  .angleIcon {
+    font-size: 1.5rem; // Adjust icon size for mobile
+    bottom: 1rem; // Adjust position for mobile
+  }
+
+  .textContainer {
+    padding: 0 1rem; // Adjust padding for mobile
+  }
+
+  .landingVideo {
+    // Ensure video scales properly on mobile
+    object-fit: cover; // Keep aspect ratio
+  }
+
+}
+
+// Media query for extra small mobile screens
+@media (max-width: 480px) {
+  .topHeading {
+    font-size: .8rem; // Further reduce font size for very small screens
+  }
+
+  .buttonHeading {
+    font-size: .6rem; // Further reduce font size for very small screens
+  }
+
+  .angleIcon {
+    font-size: 1.2rem; // Further reduce icon size for very small screens
+    bottom: 0.5rem; // Adjust position for very small screens
+  }
+
+  .textContainer {
+    padding: 0 0.5rem; // Further adjust padding for very small screens
+  }
 }

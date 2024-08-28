@@ -3,7 +3,11 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import './Blog.scss';
+
 import cardImg from '../../assets/images/Ultrasound_Blog3-1024x576.jpg';
+
+// import cardImg from '../../assets/images/Ultrasound_Blog3-1024x576.jpg';
+
 import { isFlippedState } from '../../store/index.js';
 import { useRecoilState } from 'recoil';
 import baseUrl from '../../BaseUrl'
@@ -50,6 +54,7 @@ export default function Blog() {
     setCurrentPage(page);
   };
 
+
   useEffect(() => {
     baseUrl.get('blogs')
       .then(response => {
@@ -61,6 +66,7 @@ export default function Blog() {
         setLoading(false)
       })
   }, [])
+
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error: {error.message}</p>
@@ -88,7 +94,7 @@ export default function Blog() {
               <div key={item.id} className="col-lg-4 col-sm-6">
                 <div className={`cursor-pointer position-relative shadow video overflow-hidden rounded-2 bg-white`}>
                   <div className='overflow-hidden'>
-                    <img src={item.imageUrl} className='w-100 scale' alt="Blog image" />
+                    <img src={item.imageUrl} className='w-100 scale' alt="Blog img" />
                   </div>
                   <div className='m-4'>
                     <div className='my-2 position-relative d-flex flex-wrap'>
@@ -108,6 +114,7 @@ export default function Blog() {
                   </div>
                 </div>
               </div>
+
             </>)}
           </div>
         </div>

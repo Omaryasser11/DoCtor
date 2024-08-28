@@ -7,7 +7,6 @@ import after2 from '../../assets/شفايف 77.png';
 import baseUrl from '../../BaseUrl';
 import { isFlippedState } from '../../store/index.js';
 import { useRecoilState } from 'recoil';
-import Spinner from '../Spinner/Spinner.jsx';
 
 export default function BeforeAfter() {
   const [data, setData] = useState([]);
@@ -63,7 +62,7 @@ export default function BeforeAfter() {
     fetchData();
   }, []);
 
-  if (loading) return <Spinner/>;
+  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
