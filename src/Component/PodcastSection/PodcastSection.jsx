@@ -14,14 +14,14 @@ const PodcastSection = () => {
 
 
             <div className=" flexR col-10" style={{ gap: '1.5rem' }} >
-                <div className="col-10 col-md-6 d-flex align-items-center" >
-                    <div className="nectar-post-grid-wrap text-color-light spacing-none">
+                <div className="col-12 col-md-6 d-flex align-items-center" >
+                    <div className=" col-12 nectar-post-grid-wrap text-color-light spacing-none">
 
-                        <div className="nectar-post-grid">
-                            <div className="nectar-post-grid-item animated-in" data-post-id="134865">
-                                <div className="inner">
-                                    <div className="nectar-post-grid-item-bg-wrap">
-                                        <div className="nectar-post-grid-item-bg Realative">
+                        <div className="nectar-post-grid col-12">
+                            <div className="nectar-post-grid-item animated-in col-12" data-post-id="134865">
+                                <div className="inner col-12">
+                                    <div className="nectar-post-grid-item-bg-wrap col-12">
+                                        <div className=" col-12     nectar-post-grid-item-bg Realative">
 
 
                                             <div className='ImgBoodcast'>
@@ -55,13 +55,13 @@ const PodcastSection = () => {
                 </div>
 
                 <div className="col-12 col-md-6 text-center content2">
-                    <h4  className='S2Title' lang={language}>
-                      
-                            {language === 'ar'
-                                ? 'وراء القناع - البودكاست'
-                                : 'Behind the Mask - The Podcast'
-                            }
-               
+                    <h4 className='S2Title' lang={language}>
+
+                        {language === 'ar'
+                            ? 'وراء القناع - البودكاست'
+                            : 'Behind the Mask - The Podcast'
+                        }
+
                     </h4>
                     <div className="divider" style={{ height: '20px' }}></div>
                     <p

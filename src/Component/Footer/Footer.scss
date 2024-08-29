@@ -158,6 +158,7 @@
   span {
     font-size: 1rem;
     color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 }
 
@@ -240,4 +241,36 @@
   font-size: 25px;
   font-style: normal;
   text-align: right;
+}
+
+
+
+@media (max-width: 768px) {
+  .SpanFooterParent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  #footer-outer #copyright .container p {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  #copyright {
+    .container {
+
+      .alignnone {
+        width: 100px;
+        height: 26px;
+      }
+
+    }
+
+  }
+
 }

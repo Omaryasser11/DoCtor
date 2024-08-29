@@ -16,8 +16,7 @@ const OgeeLipo = () => {
     <div
       data-aos="flip-up"
       id="fws_66a6b014264f4"
-      className="row full-width-section top-margin-30px d-flex justify-content-cente col-12"
-      style={{ paddingTop: '5vw', paddingBottom: '5vw', backgroundColor: '#0a2240' }}
+      className="row full-width-section top-margin-30px  col-12"
     >
       <div className="col-12 text-center animated fade-in-from-bottom">
         <div className="content-wrapper">

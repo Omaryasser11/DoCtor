@@ -246,3 +246,16 @@
         transform: translateX(150%) rotate(25deg);
     }
 }
+
+@media (max-width: 768px) {
+    .Poto .Last .Q1 .TiltCard {
+        width: 100%;
+        height: 50vw;
+    }
+
+    .Poto .Last .Q1 {
+        transition: transform 0.3s ease-in-out;
+        width: 50%;
+    }
+}
+
