@@ -4,7 +4,7 @@ import './Procedures.scss'
 import baseUrl from '../../BaseUrl'
 
 export default function Procedures() {
-  const [data, setData] = useState('')
+  const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 

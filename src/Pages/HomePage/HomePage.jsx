@@ -23,11 +23,11 @@ function HomePage() {
   const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
   const { language } = useContext(LanguageContext);
   const headline = language === 'ar'
-  ? "مرضى حقيقيون ونتائج حقيقية"
-  : "Real Patients. Real Results";
+    ? "مرضى حقيقيون ونتائج حقيقية"
+    : "Real Patients. Real Results";
   const headline2 = language === 'ar'
-  ? "أحدث ما توصلت إليه جراحة التجميل"
-  : "The Latest In Cosmetic Surgery";
+    ? "أحدث ما توصلت إليه جراحة التجميل"
+    : "The Latest In Cosmetic Surgery";
 
   return (
     <>
@@ -40,14 +40,14 @@ function HomePage() {
       <OgeeLipo />
       <PodcastSection />
       <RealPatientsResults
-    lang={language}
-    headline={headline}
-  />
+        lang={language}
+        headline={headline}
+      />
       <Portfolio />
       <RealPatientsResults
-    lang={language}
-    headline={headline2}
-  />
+        lang={language}
+        headline={headline2}
+      />
       <TestimonialsSection />
       {/* <RecentPosts /> */}
 

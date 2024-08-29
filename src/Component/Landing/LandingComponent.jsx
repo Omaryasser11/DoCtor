@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import LandingVideo from '../../assets/4_5893503520266522924.mp4';
-import './LandingComponent.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import BackFaceComponent from '../BackFace/BackFaceComponent.jsx';
 import { isFlippedState } from '../../store/index.js';
 import { useRecoilState } from 'recoil';
-
+import './LandingComponent.scss';
 function LandingComponent() {
   const words = ["It's", "All", "About", "The", "Shape"];
   const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
@@ -62,7 +61,7 @@ function LandingComponent() {
                     <span key={index} className='wrapped' style={{ '--i': index }}>{word} </span>
                   ))}
                 </h1>
-                <h4 className='buttonHeading col-12'>
+                <h4 className='buttonHeading '>
                   <span>Meet Dr. DINA Khairy | Board Certified Plastic Surgeon</span>
                 </h4>
               </div>

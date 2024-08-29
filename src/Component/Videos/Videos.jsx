@@ -8,7 +8,7 @@ import baseUrl from '../../BaseUrl'
 import { isFlippedState } from '../../store/index.js';
 import { useRecoilState } from 'recoil';
 export default function Videos() {
-  const [data, setData] = useState('')
+  const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [youtubeVideo, setYoutubeVideo] = useState(null)

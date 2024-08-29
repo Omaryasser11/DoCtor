@@ -14,6 +14,7 @@ body {
   overflow: hidden;
   /* Hide scrollbars */
   text-align: center;
+  position:  relative;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -31,18 +32,19 @@ body {
   transform-style: preserve-3d;
   transition: transform 1.6s cubic-bezier(.45, .055, .675, .19), transform 1.6s ease;
   text-align: center;
+  position:  relative;
 }
 
 .box.flipped {
   transform: rotateX(90deg);
 
   text-align: center;
-
+  position:  relative;
 }
 
 .scaleOut {
   scale: 0.8;
-
+  position:  relative;
 
 }
 
@@ -171,6 +173,9 @@ body {
     opacity: 0;
   }
 }
+.box{
+
+}
 
 .wrapped {
   display: inline-block;
@@ -285,6 +290,7 @@ body {
     // Mobile-specific styles
     // Adjust sizes or layouts for mobile screens
     flex-direction: column; // Stack items vertically
+    position:  relative;
   }
 
   .topHeading {
@@ -308,6 +314,11 @@ body {
     // Ensure video scales properly on mobile
     object-fit: cover; // Keep aspect ratio
   }
+  .boxFace {
+    font-size: 30px; /* Adjust font size for smaller screens */
+    padding: 10px; /* Adjust padding for mobile devices */
+    justify-content: flex-start; /* Align content to the top for mobile */
+}
 
 }
 

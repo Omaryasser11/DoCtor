@@ -10,11 +10,12 @@ import 'aos/dist/aos.css'; // Import AOS styles
 
 export default function Faq() {
 
-    const [videos, setVideos] = useState([]);
-    const [texts, setTexts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-    const [youtubeVideo, setYoutubeVideo] = useState(null);
+    const [videos, setVideos] = useState([])
+    const [texts, setTexts] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState('')
+    const [youtubeVideo, setYoutubeVideo] = useState(null)
+
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
     function openCard(videoUrl) {
