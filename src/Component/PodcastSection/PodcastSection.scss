@@ -439,7 +439,7 @@
 @media (max-width: 768px) {
     .ImgBoodcast {
         height: 400px;
-         background-position: center;
+        background-position: center;
         background-size: cover;
         border-radius: 2rem;
         width: 100%;
@@ -463,5 +463,9 @@
 
     .divider4 {
         height: 7px;
+    }
+
+    .full-width-section3 {
+        margin: 0;
     }
 }

@@ -1,9 +1,10 @@
 .full-width-section {
-    width: 103%;
+    width: 100%;
     position: relative;
     padding-top: calc(100vw * 0.05);
     padding-bottom: calc(100vw * 0.05);
-    background:linear-gradient(179.4deg, rgb(252, 121, 138) 2.2%, rgb(255 71 126) 96.2%);
+    background: linear-gradient(179.4deg, rgb(252, 121, 138) 2.2%, rgb(255 71 126) 96.2%);
+
     .highlight {
         color: #7fcacd;
     }
@@ -43,4 +44,10 @@
 
 .top-margin-30px {
     margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .full-width-section {
+        margin: 0;
+    }
 }
