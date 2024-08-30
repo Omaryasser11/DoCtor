@@ -15,6 +15,7 @@ import Videos from './Component/Videos/Videos.jsx';
 import Faq from './Component/Faq/Faq.jsx';
 import { LanguageProvider, LanguageContext } from './store/LanguageContext.js';
 import Spinner from './Component/Spinner/Spinner.jsx';
+import { Toaster } from 'react-hot-toast';
 
 function AppContent() {
   const [isFlipped] = useRecoilState(isFlippedState);
@@ -25,6 +26,7 @@ function AppContent() {
 
   return (
     <div className="App" dir={direction}>
+    <Toaster />
       {isFlipped && <NavBarComponent />}
       <Routes>
         <Route path="/" element={<HomePage />} />

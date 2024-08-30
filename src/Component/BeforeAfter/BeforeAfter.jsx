@@ -16,8 +16,8 @@ import baseUrl from '../../BaseUrl'
 import { isFlippedState } from '../../store/index.js';
 import { useRecoilState } from 'recoil';
 export default function BeforeAfter() {
-  const [data, setData] = useState('')
-  const [videos, setVideos] = useState('')
+  const [data, setData] = useState([])
+  const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [activeLink, setActiveLink] = useState('All')

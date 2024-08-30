@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './Testimonials.module.css'
 import { Helmet } from 'react-helmet-async';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
@@ -11,10 +11,17 @@ import carousel1 from '../../assets/images/IMG_3113-scaled.jpg'
 // import carousel2 from '../../assets/images/IMG_3125.jpg'
 // import carousel3 from '../../assets/images/patient-photo-3.jpg'
 import ReactPlayer from 'react-player';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS styles
 
 export default function Testimonials() {
 
+        useEffect(() => {
+        AOS.init({
+            duration: 2000,
+        })
+        }, []);
+        
   return <>
   <Helmet>
     <title>Testimonials</title>
@@ -114,7 +121,7 @@ export default function Testimonials() {
                                                             {/* Videos */}
     <div className="row gx-0 bg-body-tertiary">
     <div className='offset-1 col-10 row g-5 px-lg-4 px-md-3 px-2 mb-5 mt-0 d-flex align-items-center h-100'>
-            <div className='col-xl-4 col-lg-5 col-md-7 col-sm-10'>
+            <div className='col-xl-4 col-lg-5 col-md-7 col-sm-10' data-aos="fade-right">
                 <p className='darkCyan text-uppercase fw-bold px-3 py-2'>What Our Patients Have to Say...</p>
             </div>
             <div className='col-8'>

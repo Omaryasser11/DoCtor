@@ -28,7 +28,7 @@ function NavBarComponent() {
         <img className="navBarLogo" src={navBarLogo} alt="Logo" />
       </Link>
       
-      <div className="menu-icon" onClick={handleToggle}>
+      <div className="menu-icon text-white" onClick={handleToggle}>
         {toggle ? <FaTimes /> : <FaBars />} {/* Toggle icon based on state */}
       </div>
 

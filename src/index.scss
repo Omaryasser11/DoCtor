@@ -192,7 +192,7 @@ h3:lang(ar) {
 
 //////////////////////////////////
 .blueC {
-  background-color: #ff477e;
+  background-color: #ff477e !important;
 }
 
 .scale{
@@ -347,6 +347,10 @@ ul li{
   background-color:#ff477e;
   background-color: #00718B;
   transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
 }
 .video:hover .play{
   padding: 2.55rem;
@@ -383,8 +387,6 @@ ul li{
   border: 1px solid black !important;
 
 }
-
-
 .Montserrat{
 font-family: Montserrat;
 font-size: 24px;
@@ -394,4 +396,42 @@ line-height: 36px;
 margin-block-end: 8px;
 margin-bottom: 8px;
 color :rgb(68, 68, 68);
+}
+                                /* Edit & Delete */
+.edit-hover:hover{
+  color: #3294eb !important;
+}
+.delete-hover:hover{
+  color: red !important;
+}
+                                /* PopUp Scroll */
+/* Apply styles to the scrollbar */
+.scrollbar-popUp::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+/* Handle of the scrollbar */
+.scrollbar-popUp::-webkit-scrollbar-thumb {
+  background-color: #ff477e !important;
+  border-radius: 10px !important;
+}
+
+/* Track of the scrollbar */
+.scrollbar-popUp::-webkit-scrollbar-track {
+  background-color: #f1f1f1 !important;
+  border-radius: 10px !important;
+}
+                                /* Add */
+.iconAdd{
+  font-size: 8rem;
+  transform: scale(1);
+  transition: 0.3s;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+}
+.iconAdd:hover{
+  transform: scale(1.2);
+  color:#ff477e !important;
 }
