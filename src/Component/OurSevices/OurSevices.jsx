@@ -67,7 +67,7 @@ const OurSevices = () => {
               </p>
             </blockquote>
             <div className="divider"></div>
-            <a className="btn1 btn" href="/dr-william/" role="button">
+            <a className="btn1 btn"  role="button">
               {language === 'ar' ? "معرفه المزيد" : " learn more"}
             </a>
           </div>

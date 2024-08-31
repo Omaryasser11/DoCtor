@@ -100,6 +100,7 @@
       font-style: italic;
       color: #333;
     }
+
     .about-description {
       color: rgb(103, 103, 103);
       font-family: "futura";
@@ -110,7 +111,7 @@
       font-stretch: 100%;
       padding-right: 3rem;
     }
-  
+
     .about-description:lang(ar) {
       text-align: right;
       padding-left: 3rem;
@@ -197,4 +198,28 @@
   transform: scale(1.1);
   background-color: white;
   color: #ff477e;
+}
+
+
+
+@media (max-width: 768px) {
+  .flexR {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Section2 {
+    .content-wrapper {
+      .divider {
+        height: 7px;
+      }
+    }
+  }
+
+  .Section2 .content-wrapper .about-description {
+    padding: 0;
+  }
 }

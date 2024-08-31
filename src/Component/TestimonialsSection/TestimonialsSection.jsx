@@ -48,7 +48,7 @@ const Testimonials = () => {
 
 
               key={index}
-              className={`column COL${index + 1} col-4`}
+              className={`column COL${index + 1} col-4 col-md-12`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >

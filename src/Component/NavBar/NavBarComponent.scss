@@ -55,40 +55,25 @@
     }
 }
 
-// .Linko {
-//     display: flex;
-//     align-content: center;
-//     align-items: center;
-//     justify-content: center;
-//     height: 100%;
-//     margin-left: 1rem;
-//     font-size: 1.2rem;
-//     text-decoration: none;
-//     font-weight: 800;
-//     cursor: pointer;
-
-//     transition: 0.5s;
-//     /* Background Gradient for Text */
-//     background: linear-gradient(to bottom, #FFEEB5, #AE8913);
-//     -webkit-background-clip: text;
-//     -webkit-text-fill-color: transparent;
-//     /* Optional Text Shadow for Depth */
-//     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-
-// }
-
-
-// .Linko:hover {
-//     color: #fff;
-//     text-shadow: 0 0 5px #03e9f4,
-//         0 0 25px #03e9f4,
-//         0 0 50px #03e9f4,
-//         0 0 100px #03e9f4;
-// }
-
 .NavBar .navBarLogo {
     height: 6rem;
     width: 12rem;
+}
+.NavBar:lang(ar) {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0a2240;
+    background-color: #ff477e;
+    padding: 1rem;
+    z-index: 30;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
 }
 
 .hover-1 {
@@ -159,7 +144,9 @@ a:lang(ar) {
 }
 
 
-
+.menu-icon {
+    display: none;
+}
 
 
 @media (max-width: 768px) {

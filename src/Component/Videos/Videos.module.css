@@ -1,19 +1,24 @@
-.font{
+.font {
     font-size: 2.25rem !important;
 }
-.shadow{
+
+.shadow {
     box-shadow: rgba(0, 0, 0, 0.2) 3px 50px 70px;
 }
-.videoSize{
+
+.videoSize {
     height: 35rem !important;
 }
-.lightGray{
+
+.lightGray {
     color: #BBBBBB;
 }
-.arrow{
+
+.arrow {
     width: 50px;
     height: 36px;
 }
+
 .subscribe {
     font-size: 18px;
     padding-right: 0.7rem;
@@ -24,16 +29,18 @@
     padding-right: 0rem;
     transition: padding-right 0.4s ease 0.3s;
 }
+
 .right {
     transform: scale(0);
     transition: transform 0.4s ease;
 }
 
-.subscribe:hover .right{
-    transform:  scale(1);
+.subscribe:hover .right {
+    transform: scale(1);
     transition: transform 0.4s ease 0.2s;
 }
-.anglePositionOverlay:after{
+
+.anglePositionOverlay:after {
     content: '';
     width: 44px;
     border-top: 2px solid white;
@@ -42,10 +49,19 @@
     transition: 0.3s;
     display: flex;
     position: absolute;
-  }
+}
+
 .subscribe:hover .anglePositionOverlay:after {
     animation: moveLine 0.4s forwards;
     -webkit-animation: moveLine 0.4s forwards;
+}
+
+.montserrat .row .offset-1:lang(ar) {
+    margin-left: 0;
+}
+
+.VVVV{
+    
 }
 
 @keyframes moveLine {
@@ -53,36 +69,57 @@
         width: 44px;
         right: -13px;
     }
+
     50% {
         width: 0px;
         right: 32px;
     }
+
     51% {
         width: 0px;
         right: -44px;
     }
+
     100% {
         width: 76px;
         right: -44px;
     }
 }
-@media all and (max-width:1300px){
-    .videoSize{
+
+@media all and (max-width:1300px) {
+    .videoSize {
         height: 31rem !important;
     }
 }
-@media all and (max-width:1000px){
-    .videoSize{
+
+@media all and (max-width:1000px) {
+    .videoSize {
         height: 26rem !important;
     }
 }
-@media all and (max-width:500px){
-    .videoSize{
+
+@media all and (max-width:500px) {
+    .videoSize {
         height: 16rem !important;
     }
 }
-@media all and (max-width:300px){
-    .videoSize{
+
+@media all and (max-width:300px) {
+    .videoSize {
         height: 12rem !important;
     }
 }
+
+
+    .montserrat .rowWW:lang(ar) {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: calc(-1* var(--bs-gutter-y));
+        margin-right: calc(-.5* var(--bs-gutter-x));
+        margin-left: calc(-.5* var(--bs-gutter-x));
+        align-content: center;
+        justify-content: center;
+        align-items: flex-start;
+    }

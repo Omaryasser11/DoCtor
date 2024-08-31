@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../../store/LanguageContext';
+import { useRecoilState } from 'recoil';
 import './Faq.scss';
 import { Helmet } from 'react-helmet-async';
 import baseUrl from '../../BaseUrl';
@@ -7,33 +9,40 @@ import youtubeCover2 from '../../assets/images/BTM-1.jpeg';
 import patientSelfie from '../../assets/images/patient-selfie.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
-
+import { isFlippedState } from '../../store/index.js';
 export default function Faq() {
-
-    const [videos, setVideos] = useState([])
-    const [texts, setTexts] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState('')
-    const [youtubeVideo, setYoutubeVideo] = useState(null)
-
+    const [videos, setVideos] = useState([]);
+    const [texts, setTexts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [youtubeVideo, setYoutubeVideo] = useState(null);
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+    const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
+    // Get the current language from context
+    const { language } = useContext(LanguageContext);
 
+    // Function to open a video card
     function openCard(videoUrl) {
         setYoutubeVideo(videoUrl);
         setIsOverlayVisible(true);
     }
-    
+
+    // Function to close the video card
     function closeCard() {
         setYoutubeVideo('');
         setIsOverlayVisible(false);
     }
-    
+
     useEffect(() => {
         AOS.init({
             duration: 2000,
         });
 
-        baseUrl.get('faq/videos')
+        baseUrl.get('faq/videos',
+            {
+                headers: { 'Accept-Language': language },
+            }
+        )
             .then(response => {
                 setVideos(response.data);
                 setLoading(false);
@@ -56,32 +65,67 @@ export default function Faq() {
                 setLoading(false);
             });
     }, []);
-    
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsFlipped(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [setIsFlipped]);
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
+
+    // Translations for the component
+    const translations = {
+        en: {
+            title: "Frequently Asked Questions (FAQ)",
+            faqHeader: "FAQ",
+            faqSubtitle: "Frequently Asked Questions",
+            faqVideosTitle: "FAQ Videos",
+            faqVideosDescription: "Frequently asked questions and tips on preparing for surgery, your procedure and post op care.",
+            aboutMeTitle: "About Me",
+            switchToArabic: "Switch to Arabic",
+        },
+        ar: {
+            title: "الأسئلة الشائعة",
+            faqHeader: "الأسئلة الشائعة",
+            faqSubtitle: "الأسئلة الشائعة",
+            faqVideosTitle: "فيديوهات الأسئلة الشائعة",
+            faqVideosDescription: "الأسئلة الشائعة والنصائح حول التحضير للجراحة وإجراءك والرعاية بعد العملية.",
+            aboutMeTitle: "معلومات عني",
+            switchToArabic: "التبديل إلى الإنجليزية",
+        }
+    };
+
+    // Select the appropriate translations based on the current language
+    const t = translations[language] || translations.en;
 
     return (
         <>
             <Helmet>
-                <title>Frequently Asked Questions (FAQ)</title>
+                <title>{t.title}</title>
             </Helmet>
             <div className="text-white">
                 {/* Header */}
-                <header className="row gx-0 position-relative blueC" style={{ height: '318px' }}>
-                    <div className='offset-1 col-10 px-lg-4 px-md-3 px-2 d-flex align-items-center h-100'>
+                <header className="row gx-0 position-relative blueC d-flex flex-wrap mt-n1 mr-n1 ms-n1 flex-row align-content-center justify-content-center align-items-start" style={{ height: '318px' }}>
+                    <div className='offset-1 col-10 px-lg-4 px-md-3 px-2 d-flex align-items-center h-100 ms-0'>
                         <div className='mt-3 d-flex flex-column justify-content-end position-absolute z-3' style={{ height: '200px' }}>
-                            <h4 className='fs-1 fw-semibold'>FAQ</h4>
-                            <p className='fs-4 fw-light mb-0'>Frequently Asked Questions</p>
+                            <h4 className='fs-1 fw-semibold'>{t.faqHeader}</h4>
+                            <p className='fs-4 fw-light mb-0'>{t.faqSubtitle}</p>
                         </div>
                     </div>
                 </header>
 
-                {/* Body of faq videos */}
-                <div className="row gx-0 py-5">
-                    <div className='offset-1 col-10 px-4'>
+                {/* Body of FAQ videos */}
+                <div className="row gx-0 py-5 d-flex flex-wrap mt-n1 mr-n1 ms-n1 flex-row align-content-center justify-content-center align-items-start">
+                    <div className='offset-1 col-10 px-4 ms-0'>
                         <div className='mt-5'>
-                            <p className="text-dark-emphasis fw-semibold mb-0 fs-4">FAQ Videos</p>
-                            <p className='text-body-tertiary fw-light'>Frequently asked questions and tips on preparing for surgery, your procedure and post op care.</p>
+                            <p className="text-dark-emphasis fw-semibold mb-0 fs-4">{t.faqVideosTitle}</p>
+                            <p className='text-body-tertiary fw-light'>{t.faqVideosDescription}</p>
                         </div>
                         <div className="row g-4">
                             {videos.map((video, index) => (
@@ -102,9 +146,9 @@ export default function Faq() {
                     </div>
                 </div>
 
-                {/* Body of faq texts */}
-                <div className="row gx-0 blueC">
-                    <div className='offset-1 col-10 row gx-5 gy-3 py-5 px-lg-4 px-md-3 px-2 h-100'>
+                {/* Body of FAQ texts */}
+                <div className="row gx-0 blueC d-flex flex-wrap mt-n1 mr-n1 ms-n1 flex-row align-content-center justify-content-center align-items-start">
+                    <div className='offset-1 col-10 row gx-5 gy-3 py-5 px-lg-4 px-md-3 px-2 h-100 ms-0'>
                         {texts.map((text, index) => (
                             text.type === 'Medical' ? (
                                 <div key={text.id} className='col-lg-6' data-aos="fade-right" data-aos-duration={index * 500 + 1500}>
@@ -125,12 +169,12 @@ export default function Faq() {
                     </div>
                 </div>
 
-                {/* Body of faq about */}
-                <div className="row gx-0">
-                    <div className='offset-1 col-10 row gx-5 gy-lg-0 gy-4 px-lg-4 px-md-3 px-2 h-100'>
+                {/* Body of FAQ about */}
+                <div className="row gx-0 d-flex flex-wrap mt-n1 mr-n1 ms-n1 flex-row align-content-center justify-content-center align-items-start">
+                    <div className='offset-1 col-10 row gx-5 gy-lg-0 gy-4 px-lg-4 px-md-3 px-2 h-100 ms-0'>
                         <div className='col-lg-6'>
                             <div className='pt-5 mt-3 pb-2' data-aos="fade-right">
-                                <span className='blueC my-3 px-3 py-1 fs-5 fw-semibold text-uppercase'>About Me</span>
+                                <span className='blueC my-3 px-3 py-1 fs-5 fw-semibold text-uppercase'>{t.aboutMeTitle}</span>
                             </div>
                             {texts.map((text, index) => (
                                 text.type === 'AboutMe' ? (
@@ -148,28 +192,25 @@ export default function Faq() {
                                 ) : null
                             ))}
                         </div>
-                        <div className='col-lg-6' data-aos="fade-left">
-                            <img src={patientSelfie} className='w-100' alt='doctor' />
+                        <div className='col-lg-6 position-relative' data-aos="fade-left">
+                            <img src={patientSelfie} className='rounded-3 w-100' alt='Patient Selfie' />
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Overlay of card */}
-            {isOverlayVisible && (
-                <div className="vh-100 row position-fixed z-3 overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
-                    <div className="col-xl-8 col-lg-9 col-md-10 col-11">
-                        <div className='w-100'>
-                            <div className="text-end w-100">
-                                <i className="fa-solid fa-xmark cursor-pointer fs-4 x" onClick={closeCard}></i>
-                            </div>
-                            <div className='py-2'>
-                                <ReactPlayer controls url={youtubeVideo} className="w-100 faqVideoSize" />
-                            </div>
-                        </div>
+                {/* Video overlay */}
+                {youtubeVideo && (
+                    <div className='position-fixed top-0 start-0 bottom-0 end-0 faq-overlay d-flex justify-content-center align-items-center' style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', zIndex: '1050' }} onClick={closeCard}>
+                        <ReactPlayer
+                            url={youtubeVideo}
+                            playing={true}
+                            controls={true}
+                            className="faq-video-player"
+                        />
+                        <button className='btn btn-light position-absolute top-0 end-0 m-3' onClick={closeCard}>X</button>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </>
     );
 }

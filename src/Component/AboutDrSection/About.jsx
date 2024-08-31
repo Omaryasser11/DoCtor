@@ -80,7 +80,7 @@ const AboutDrWilliam = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="divider" style={{ height: '40px' }}></div>
+                        <div className="divider4" ></div>
                         <a className="btn1 btn" href="/dr-william/" role="button">
                             {language === 'ar' ? "معرفه المزيد" : "Learn More"}
                         </a>

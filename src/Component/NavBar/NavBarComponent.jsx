@@ -23,12 +23,12 @@ function NavBarComponent() {
   };
 
   return (
-    <div className="NavBar" data-aos="fade-down">
+    <div className="NavBar" data-aos="fade-down" lang={language}>
       <Link to="/" className='www'>
         <img className="navBarLogo" src={navBarLogo} alt="Logo" />
       </Link>
       
-      <div className="menu-icon text-white" onClick={handleToggle}>
+      <div className="menu-icon" onClick={handleToggle}>
         {toggle ? <FaTimes /> : <FaBars />} {/* Toggle icon based on state */}
       </div>
 
@@ -38,7 +38,7 @@ function NavBarComponent() {
             <Link lang={language} className="Linko hover-1" to="/dr">دكتور دينا</Link>
             <Link lang={language} to="Procedures" className="Linko hover-1">أعمالنا</Link>
             <Link lang={language} to="Before" className="Linko hover-1">قبل و بعد</Link>
-            <Link lang={language} className="Linko hover-1">الاسئلة الشائعة</Link>
+            <Link lang={language} to="/faq" className="Linko hover-1">الاسئلة الشائعة</Link>
             <Link lang={language} to="Videosb" className="Linko hover-1">فيديوهات</Link>
             <Link lang={language} to="Blog" className="Linko hover-1">المدونة</Link>
             <Link lang={language} to="Testimonials" className="Linko hover-1">شهادات العملاء</Link>
@@ -50,7 +50,7 @@ function NavBarComponent() {
             <li><Link className="Linko hover-1" to="/dr">Dr DINA</Link></li>
             <li><Link to="Procedures" className="Linko hover-1">PROCEDURES</Link></li>
             <li><Link to="Before" className="Linko hover-1">BEFORE & AFTER</Link></li>
-            <li><Link className="Linko hover-1" to="/Faq">FAQ</Link></li>
+            <li><Link className="Linko hover-1" to="/faq">FAQ</Link></li>
             <li><Link to="Videosb" className="Linko hover-1">VIDEOS</Link></li>
             <li><Link to="Blog" className="Linko hover-1">BLOG</Link></li>
             <li><Link to="Testimonials" className="Linko hover-1">TESTIMONIALS</Link></li>

@@ -7,28 +7,19 @@ import FamilyHobbiesSection from '../../Component/DrDianaPage/FamilyHobbiesSecti
 import "./Dr.scss"
 import { isFlippedState } from '../../store/index.js';
 import { useRecoilState } from 'recoil';
+import AutoplaySwiper from '../../Component/Swiper/AutoplaySwiper.jsx';
+import { px } from 'framer-motion';
 function Dr() {
   const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 500) {
-        setIsFlipped(true);
-      } else {
-        setIsFlipped(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [setIsFlipped]);
+    // Set isFlipped to true on component mount
+    setIsFlipped(true);
+  }, []); // Empty dependency array to run the effect only once on mount
 
   return (
     <section className='Dr'>
+      <AutoplaySwiper></AutoplaySwiper>
       <Landing></Landing>
       <Clients></Clients>
       <CosmeticSurgerySection></CosmeticSurgerySection>

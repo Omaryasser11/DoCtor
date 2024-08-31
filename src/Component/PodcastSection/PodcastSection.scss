@@ -1,5 +1,5 @@
 .full-width-section3 {
-padding: 1rem;
+    padding: 1rem;
     background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
 
 }
@@ -113,7 +113,8 @@ padding: 1rem;
 
                     .wpb_text_column {
                         .wpb_wrapper {
-                            p {     text-align: left;
+                            p {
+                                text-align: left;
                                 color: #000;
 
                                 a {
@@ -207,7 +208,7 @@ padding: 1rem;
     height: 250px;
     width: 610px;
     background-color: #0a22406b;
-    background-color:rgb(255 71 126 / 37%);
+    background-color: rgb(255 71 126 / 37%);
     z-index: 2;
     position: absolute;
     top: 0;
@@ -241,7 +242,8 @@ padding: 1rem;
 }
 
 
-.content2 h4 , .content2 h4  a {
+.content2 h4,
+.content2 h4 a {
     text-decoration: none;
     font-size: 18px;
     font-family: Montserrat;
@@ -254,12 +256,16 @@ padding: 1rem;
     text-align: left;
 }
 
-.content2 h4 , .content2 h4  a  :lang(ar){
+.content2 h4,
+.content2 h4 a :lang(ar) {
     text-align: right;
 }
-.content2 h4 , .content2 h4  a{
+
+.content2 h4,
+.content2 h4 a {
     text-align: left;
 }
+
 .S2Title {
     text-align: left;
     font-family: "Montserrat", sans-serif;
@@ -270,16 +276,16 @@ padding: 1rem;
     font-size: 18px;
     height: 24px;
     text-transform: uppercase;
-  }
+}
 
-  .S2Title:lang(ar) {
+.S2Title:lang(ar) {
     text-align: right;
     font-family: "Lalezar", system-ui;
     font-weight: 400;
     font-style: normal;
     font-size: 26px;
     color: #de647a;
-  }
+}
 
 .content2 p {
     text-decoration: none;
@@ -292,6 +298,7 @@ padding: 1rem;
     max-width: 601px;
     text-align: left;
 }
+
 .about-description {
     color: rgb(103, 103, 103);
     font-family: "futura";
@@ -301,7 +308,7 @@ padding: 1rem;
     font-style: normal;
     font-stretch: 100%;
     padding-right: 3rem;
-  }
+}
 
 .about-description:lang(ar) {
     text-align: right;
@@ -312,7 +319,7 @@ padding: 1rem;
     font-variation-settings: "HEXP" 0;
     padding-right: 0;
     font-size: 15px;
-  }
+}
 
 .content2 a {
     text-decoration: none;
@@ -325,101 +332,140 @@ padding: 1rem;
     text-align: left;
 
 }
+
 .container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
     text-align: left;
-  }
-  
-  .nectar-3d-transparent-button {
+}
+
+.nectar-3d-transparent-button {
     width: 204.175px;
     height: 54px;
     visibility: visible;
     position: relative;
     overflow: hidden;
     transition: transform 0.3s ease;
-  
+
     &:hover {
-      transform: translateY(-3px);
-  
-      .front-3d svg rect {
-        fill: #005f6b;
-    
-      }
-  
-      .back-3d svg rect {
-        stroke: #005f6b;
-      }
-  
-      .button-text {
-        fill: #f2f2f2;
-      }
+        transform: translateY(-3px);
+
+        .front-3d svg rect {
+            fill: #005f6b;
+
+        }
+
+        .back-3d svg rect {
+            stroke: #005f6b;
+        }
+
+        .button-text {
+            fill: #f2f2f2;
+        }
     }
-  
+
     a {
-      height: 54px;
-      text-decoration: none;
-      display: block;
-      width: 100%;
-      height: 100%;
-  
-      .hidden-text {
-        display: none;
-      }
-  
-      .inner-wrap {
-        position: relative;
+        height: 54px;
+        text-decoration: none;
+        display: block;
         width: 100%;
         height: 100%;
-  
-        .front-3d,
-        .back-3d {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          transform-origin: 50% 50% -27px;
-          transition: all 0.3s ease;
+
+        .hidden-text {
+            display: none;
         }
-  
-        .front-3d {
-          svg {
-            width: 204.175px;
-            height: 54px;
-  
-            rect {
-              fill: #00718b;
-              transition: fill 0.3s ease;
-      
+
+        .inner-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            .front-3d,
+            .back-3d {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transform-origin: 50% 50% -27px;
+                transition: all 0.3s ease;
             }
-          }
+
+            .front-3d {
+                svg {
+                    width: 204.175px;
+                    height: 54px;
+
+                    rect {
+                        fill: #00718b;
+                        transition: fill 0.3s ease;
+
+                    }
+                }
+            }
+
+            .back-3d {
+                svg {
+                    width: 204.175px;
+                    height: 54px;
+
+                    rect {
+                        stroke: #00718b;
+                        stroke-width: 8;
+                        fill: transparent;
+                        transition: stroke 0.3s ease;
+                    }
+
+                    .button-text {
+                        fill: #00718b;
+                        text-anchor: middle;
+                        font-size: 16px;
+                        transform: matrix(1 0 0 1 102.087 32.727);
+                        transition: fill 0.3s ease;
+                        fill: #f2f2f2;
+                    }
+                }
+            }
         }
-  
-        .back-3d {
-          svg {
-            width: 204.175px;
-            height: 54px;
-  
-            rect {
-              stroke: #00718b;
-              stroke-width: 8;
-              fill: transparent;
-              transition: stroke 0.3s ease;
-            }
-  
-            .button-text {
-              fill: #00718b;
-              text-anchor: middle;
-              font-size: 16px;
-              transform: matrix(1 0 0 1 102.087 32.727);
-              transition: fill 0.3s ease;
-              fill: #f2f2f2;
-            }
-          }
-        }
-      }
     }
-  }
-  
+}
+
+
+
+
+@media (max-width: 768px) {
+    .ImgBoodcast {
+        height: 400px;
+        background-position: center;
+        background-size: cover;
+        border-radius: 2rem;
+        width: 100%;
+    }
+
+    .Filter {
+        height: 100%;
+        width: 100%;
+        height: 250px;
+        background-color: #0a22406b;
+        background-color: rgb(255 71 126 / 37%);
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 2rem;
+
+    }
+
+    .divider4 {
+        height: 7px;
+    }
+
+    .full-width-section3 {
+        margin: 0;
+    }
+}
