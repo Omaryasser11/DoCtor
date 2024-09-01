@@ -10,6 +10,7 @@ import patientSelfie from '../../assets/images/patient-selfie.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import { isFlippedState } from '../../store/index.js';
+import Spinner from '../Spinner/Spinner.jsx';
 export default function Faq() {
     const [videos, setVideos] = useState([]);
     const [texts, setTexts] = useState([]);
@@ -65,18 +66,20 @@ export default function Faq() {
                 setLoading(false);
             });
     }, []);
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsFlipped(window.scrollY > 0);
-    };
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsFlipped(window.scrollY > 0);
+        };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [setIsFlipped]);
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [setIsFlipped]);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center z-3">
+        <Spinner />
+    </div>;
     if (error) return <p>Error: {error.message}</p>;
 
     // Translations for the component

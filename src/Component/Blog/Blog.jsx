@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import './Blog.scss';
-
+import Spinner from '../Spinner/Spinner.jsx';
 import cardImg from '../../assets/images/Ultrasound_Blog3-1024x576.jpg';
 
 // import cardImg from '../../assets/images/Ultrasound_Blog3-1024x576.jpg';
@@ -68,7 +68,9 @@ export default function Blog() {
   }, [])
 
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center z-3">
+  <Spinner />
+</div>;
   if (error) return <p>Error: {error.message}</p>
 
   return (

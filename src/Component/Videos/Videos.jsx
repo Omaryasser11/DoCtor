@@ -7,6 +7,7 @@ import baseUrl from '../../BaseUrl';
 import { isFlippedState } from '../../store/index.js';
 import { useRecoilState } from 'recoil';
 import LandingVideo from '../../assets/4_5893503520266522924.mp4';
+import Spinner from '../Spinner/Spinner.jsx';
 export default function Videos() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,7 +61,9 @@ export default function Videos() {
       });
   }, []);
 
-  if (loading) return <p>{language === 'en' ? 'Loading...' : 'جاري التحميل...'}</p>;
+  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center z-3">
+    <Spinner />
+  </div>;
   if (error) return <p>{language === 'en' ? `Error: ${error.message}` : `خطأ: ${error.message}`}</p>;
 
   return (
@@ -180,7 +183,7 @@ export default function Videos() {
 
       {/* Overlay of card */}
       {isOverlayVisible && (
-        <div className="vh-100 montserrat row position-fixed z-3 overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
+        <div className="vh-100 montserrat row position-fixed  overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
           <div className="col-xl-8 col-lg-9 col-md-10 col-11">
             <div className='w-100'>
               <div className="text-end w-100">

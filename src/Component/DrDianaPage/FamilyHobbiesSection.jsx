@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './FamilyHobbiesSection.scss';
 import baseUrl from '../../BaseUrl';
+import Spinner from '../Spinner/Spinner';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
@@ -33,10 +34,9 @@ const FamilyHobbies = () => {
       });
   }, [language]);
 
-  if (loading) {
-    return <div className="family-hobbies">Loading...</div>;
-  }
-
+  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center z-3">
+    <Spinner />
+  </div>;
   if (error) {
     return <div className="family-hobbies">Error loading data. Please try again later.</div>;
   }

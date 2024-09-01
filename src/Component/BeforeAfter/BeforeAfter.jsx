@@ -8,6 +8,7 @@ import after1 from '../../assets/شفايف 74.png';
 import after2 from '../../assets/شفايف 77.png';
 import baseUrl from '../../BaseUrl';
 import { isFlippedState } from '../../store/index.js';
+import Spinner from '../../Component/Spinner/Spinner.jsx';
 
 export default function BeforeAfter() {
   const [data, setData] = useState([]);
@@ -81,7 +82,9 @@ export default function BeforeAfter() {
     };
   }, [setIsFlipped]);
 
-  if (loading) return <p lang={language}>Loading...</p>;
+  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center z-3">
+    <Spinner />
+  </div>;
   if (error) return <p lang={language}>Error: {error.message || 'An error occurred'}</p>;
 
   return (
@@ -184,22 +187,33 @@ export default function BeforeAfter() {
         </div>
 
         {/* Overlay of card */}
-        {isOverlayVisible && (
-          <div className="vh-100 montserrat row position-fixed z-3 overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center" lang={language}>
-            <div className="col-md-10 col-12">
-              <div className="position-relative rounded-3 d-flex align-items-center justify-content-center flex-column w-100">
-                <i className="fa-solid fa-xmark position-absolute end-0 text-white p-4 fs-3" onClick={closeCard}></i>
-                <img src={selectedImage} alt="card" className="w-100" />
-                {isArrowsVisible && (
-                  <div className="position-absolute d-flex justify-content-between w-100">
-                    <i className="fa-solid fa-angle-left cursor-pointer fa-2x text-white" aria-hidden="true"></i>
-                    <i className="fa-solid fa-angle-right cursor-pointer fa-2x text-white" aria-hidden="true"></i>
-                  </div>
-                )}
+        {isOverlayVisible? <>
+        <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center" lang={language}>
+          <div className="col-lg-6 col-sm-8 col-10">
+            <div className='w-100 px-5'>
+              <div className="text-end w-100">
+                <i className="fa-solid fa-xmark cursor-pointer fs-4 x" onClick={closeCard}></i>
+              </div>
+              <div className='py-2'>
+                <img src={selectedImage} className={`w-100 ${style.imageSize}`} alt="before&after" />
               </div>
             </div>
           </div>
-        )}
+        {
+          isArrowsVisible? <>
+          <button class="carousel-control-prev opacity-100" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <div className="cursor-pointer rounded-circle d-flex justify-content-center align-items-center circleSize position-relative">
+            <i className="fa-solid fa-angle-left anglePositionOverlay" aria-hidden="true"></i>
+          </div>
+        </button>
+        <button class="carousel-control-next opacity-100" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <div className="cursor-pointer rounded-circle d-flex justify-content-center align-items-center circleSize position-relative rotateArrow">
+            <i className="fa-solid fa-angle-left anglePositionOverlay" aria-hidden="true"></i>
+          </div>
+        </button>
+          </>:''}
+        </div>
+      </>:''}
       </div>
     </>
   );

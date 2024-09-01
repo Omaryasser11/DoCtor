@@ -3,6 +3,7 @@ import { LanguageContext } from '../../store/LanguageContext';
 import './CosmeticSurgerySection.scss';
 import Dr from "../../assets/دينا 2.png"
 import baseUrl from '../../BaseUrl';
+import Spinner from '../Spinner/Spinner';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 const CosmeticSurgerySection = () => {
@@ -28,8 +29,9 @@ const CosmeticSurgerySection = () => {
         setLoading(false);
       });
   }, []);
-
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center z-3">
+  <Spinner />
+</div>;
   if (error) return <p>Error: {error.message}</p>;
   return (
     <div className="cosmetic-surgery-section">
