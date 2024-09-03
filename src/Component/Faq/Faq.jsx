@@ -4,6 +4,9 @@ import { useRecoilState } from 'recoil';
 import './Faq.scss';
 import { Helmet } from 'react-helmet-async';
 import baseUrl from '../../BaseUrl';
+import { useFormik } from 'formik'
+import * as yup from 'yup'
+import toast from 'react-hot-toast'
 import ReactPlayer from 'react-player';
 import youtubeCover2 from '../../assets/images/BTM-1.jpeg';
 import patientSelfie from '../../assets/images/patient-selfie.jpg';
@@ -11,16 +14,30 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import { isFlippedState } from '../../store/index.js';
 import Spinner from '../Spinner/Spinner.jsx';
+import Swal from 'sweetalert2';
+
 export default function Faq() {
     const [videos, setVideos] = useState([]);
     const [texts, setTexts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-    const [youtubeVideo, setYoutubeVideo] = useState(null);
+    const [currentId, setCurrentId] = useState('')
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState('')
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+    const [apiError, setApiError] = useState('')
+    const [formBased, setFormBased] = useState('')
+    const [youtubeVideo, setYoutubeVideo] = useState(null);
     const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
     // Get the current language from context
-    const { language } = useContext(LanguageContext);
+    const { language } = useContext(LanguageContext)
+    const [token, setToken] = useState(null);
+
+    useEffect(() => {
+        const admin = localStorage.getItem("token")
+        console.log(admin)
+      if (admin != null) {
+        setToken(admin)
+      }
+    }, [token]);
 
     // Function to open a video card
     function openCard(videoUrl) {
@@ -34,17 +51,165 @@ export default function Faq() {
         setIsOverlayVisible(false);
     }
 
+    function openOverlay(mode, id = null) {
+        setFormBased(mode)
+        setCurrentId(id)
+        if(mode==='edit' && id){
+          getInputs(id)
+        }
+        else if(mode==='add'){
+          formik.resetForm({
+            questionAr: '',
+            questionEn: '',
+            answerAr: '',
+            answerEn: '',
+            type: ''
+          })
+        }
+        setIsOverlayVisible(true)
+      }
+    
+      function closeOverlay() {
+        setIsOverlayVisible(false)
+      }
+
+    function fetchTexts() {
+        setLoading(true)
+        baseUrl.get('faq/texts')
+        .then(response => {
+            setTexts(response.data);
+            setLoading(false);
+        })
+        .catch(error => {
+            setError(error);
+            setLoading(false);
+        });
+    }
+
+  function handleText(values) {
+    if (formBased === 'edit') {
+        Swal.fire({
+        title: 'Please click confirm to make the question updated.',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#A9A9A9',
+        confirmButtonText: 'Confirm'
+        }).then((result) => {
+        if (result.isConfirmed) {
+        setLoading(true)
+      baseUrl.put(`faq/texts/${currentId}`, values)
+        .then(() => {
+          fetchTexts()
+          closeOverlay()
+          setLoading(false)
+          toast.success('Item Updated', { duration: 2000 })
+        })
+        .catch(error => {
+          setApiError(error.message)
+          setLoading(false)
+        })
+    }
+})
+    } else if (formBased === 'add') {
+        Swal.fire({
+            title: 'Please click confirm to add the question.',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#A9A9A9',
+            confirmButtonText: 'Confirm'
+          }).then((result) => {
+            if (result.isConfirmed) {
+            setLoading(true)
+            baseUrl.post('faq/texts', values)
+                .then(() => {
+                fetchTexts()
+                closeOverlay()
+                setLoading(false)
+                toast.success('Item Added', { duration: 2000 })
+                })
+                .catch(error => {
+                setApiError(error.message)
+                setLoading(false)
+                })
+            }
+        })
+    }
+  }
+
+  function deleteItem(itemId) {
+    Swal.fire({
+        title: 'Are you sure you want to delete this question?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#A9A9A9',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+        setLoading(true)
+        baseUrl.delete(`faq/texts/${itemId}`)
+        .then(() => {
+            fetchTexts()
+            setLoading(false)
+            toast.success('Item Deleted', { duration: 2000 })
+        })
+        .catch(error => {
+            setApiError(error.message)
+            setLoading(false)
+        })
+    }
+})
+}
+
+  function getInputs(itemId) {
+    baseUrl.get(`faq/texts/${itemId}`)
+      .then(response => {
+        formik.setValues({
+            questionAr: response.data.question,
+            questionEn: response.data.question,
+            answerAr: response.data.answer,
+            answerEn: response.data.answer,
+            type: response.data.type
+          })
+      })
+      .catch(error => {
+        setApiError(error.message)
+      })
+  }
+
+  let validationSchema = yup.object({
+    questionAr: yup.string().required('Question in Arabic is required'),
+    questionEn: yup.string().required('Question in English is required'),
+    answerAr: yup.string().required('Answer in Arabic is required'),
+    answerEn: yup.string().required('Answer in English is required'),
+    type: yup.string().required('Type is required')
+  })
+
+  let formik = useFormik({
+    initialValues: {
+        questionAr: '',
+        questionEn: '',
+        answerAr: '',
+        answerEn: '',
+        type: ''
+      }, validationSchema
+    , onSubmit: handleText
+  })
+
+  useEffect(() => {
+    fetchTexts()
+  }, [])
+
     useEffect(() => {
         AOS.init({
             duration: 2000,
         });
-
         baseUrl.get('faq/videos',
             {
                 headers: { 'Accept-Language': language },
             }
-        )
-            .then(response => {
+        ).then(response => {
                 setVideos(response.data);
                 setLoading(false);
             })
@@ -54,18 +219,6 @@ export default function Faq() {
             });
     }, []);
 
-    useEffect(() => {
-        baseUrl.get('faq/texts')
-            .then(response => {
-                setTexts(response.data);
-                console.log(response.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                setError(error);
-                setLoading(false);
-            });
-    }, []);
     useEffect(() => {
         const handleScroll = () => {
             setIsFlipped(window.scrollY > 0);
@@ -77,9 +230,9 @@ export default function Faq() {
         };
     }, [setIsFlipped]);
 
-    if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center z-3">
-        <Spinner />
-    </div>;
+    if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center high-index">
+    <Spinner />
+  </div>
     if (error) return <p>Error: {error.message}</p>;
 
     // Translations for the component
@@ -155,8 +308,16 @@ export default function Faq() {
                         {texts.map((text, index) => (
                             text.type === 'Medical' ? (
                                 <div key={text.id} className='col-lg-6' data-aos="fade-right" data-aos-duration={index * 500 + 1500}>
-                                    <div>
-                                        <button className="btn w-100 fw-semibold rounded-0 faqCollapse text-white border-none border-0 text-start ps-0 py-2 d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target={`#collapseExample${text.id}`} aria-expanded="false" aria-controls={`collapseExample${text.id}`}>
+                                    <div className='position-relative'>        
+                                        {token != null? <div className="position-absolute my-2 me-2 d-flex align-items-center end-0">
+                                        <button className='btn bg-light p-1 d-flex align-items-center justify-content-between edit-hover' onClick={() => openOverlay('edit', text.id)}>
+                                        <i className="fa-solid fa-pen-to-square"></i>
+                                        </button>        
+                                        <button className='btn bg-light ms-2 p-1 d-flex align-items-center justify-content-between delete-hover' onClick={() => deleteItem(text.id)}>
+                                            <i className="fa-solid fa-trash-can"></i>
+                                        </button>  
+                                        </div>:''}                  
+                                    <button className="btn w-100 fw-semibold rounded-0 faqCollapse text-white border-none border-0 text-start ps-0 py-2 d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target={`#collapseExample${text.id}`} aria-expanded="false" aria-controls={`collapseExample${text.id}`}>
                                             <span className='faqIcon d-flex justify-content-center align-items-center mx-2 rounded-circle fw-bold'></span>
                                             <p className='mb-0'>{text.question}</p>
                                         </button>
@@ -169,6 +330,13 @@ export default function Faq() {
                                 </div>
                             ) : null
                         ))}
+                        {token != null? <div className='col-lg-6' data-aos="fade-right" data-aos-duration={texts.length * 500 + 1500}>
+                            <div>                            
+                            <button className="btn w-100 fw-semibold rounded-0 faqCollapse text-white border-none border-0 text-start ps-0 py-2 d-flex align-items-center justify-content-center" type="button"  onClick={() => openOverlay('add')}>
+                                <i className="fa-solid fa-circle-plus iconAddFaq fs-4"></i>
+                            </button>
+                            </div>
+                        </div> :''}
                     </div>
                 </div>
 
@@ -182,6 +350,15 @@ export default function Faq() {
                             {texts.map((text, index) => (
                                 text.type === 'AboutMe' ? (
                                     <div key={text.id} className='my-3' data-aos="fade-left" data-aos-duration={index * 500 + 1500}>
+                                        <div className='position-relative'>
+                                        {token != null?  <div className="position-absolute my-2 me-2 d-flex align-items-center end-0">
+                                        <button className='btn bg-light p-1 d-flex align-items-center justify-content-between edit-hover' onClick={() => openOverlay('edit', text.id)}>
+                                        <i className="fa-solid fa-pen-to-square"></i>
+                                        </button>        
+                                        <button className='btn bg-light ms-2 p-1 d-flex align-items-center justify-content-between delete-hover' onClick={() => deleteItem(text.id)}>
+                                            <i className="fa-solid fa-trash-can"></i>
+                                        </button>  
+                                        </div> :''}
                                         <button className="btn w-100 fw-semibold rounded-0 faqCollapse text-white border-none border-0 text-start ps-0 py-2 d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target={`#collapseExample${text.id}`} aria-expanded="false" aria-controls={`collapseExample${text.id}`}>
                                             <span className='faqIcon d-flex justify-content-center align-items-center mx-2 rounded-circle fw-bold faqIconAbout'></span>
                                             <p className='mb-0 text-gray'>{text.question}</p>
@@ -192,8 +369,16 @@ export default function Faq() {
                                             </div>
                                         </div>
                                     </div>
+                                    </div>
                                 ) : null
                             ))}
+                            {token !=null? <div className='my-3' data-aos="fade-left" data-aos-duration={texts.length * 500 + 1500}>
+                            <div>                            
+                            <button className="btn w-100 fw-semibold rounded-0 faqCollapse text-white border-none border-0 text-start ps-0 py-2 d-flex align-items-center justify-content-center" type="button"  onClick={() => openOverlay('add')}>
+                                <i className="fa-solid fa-circle-plus iconAdd fs-4"></i>
+                            </button>
+                            </div>
+                        </div> :''}
                         </div>
                         <div className='col-lg-6 position-relative' data-aos="fade-left">
                             <img src={patientSelfie} className='rounded-3 w-100' alt='Patient Selfie' />
@@ -213,6 +398,75 @@ export default function Faq() {
                         <button className='btn btn-light position-absolute top-0 end-0 m-3' onClick={closeCard}>X</button>
                     </div>
                 )}
+
+                {/* Pop Up */}
+                {isOverlayVisible && token!=null? <>
+                    <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
+                      <div className="col-lg-6 col-sm-8 col-10 px-5">
+                        <div className="text-end w-100">
+                          <i className="fa-solid fa-xmark cursor-pointer fs-4 x" onClick={closeOverlay}></i>
+                        </div>
+                        <div className='bg-white p-4 text-dark-emphasis rounded-2 overflow-y-scroll scrollbar-popUp'>
+                          <form onSubmit={formik.handleSubmit}>
+                            {apiError ? <div className="alert alert-danger">{apiError}</div> : ''}
+            
+                            <label htmlFor="questionAr">Question in Arabic : </label>
+                            <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="questionAr" value={formik.values.questionAr} id="questionAr" className='form-control mb-3' />
+                            {formik.errors.questionAr && formik.touched.questionAr ? <div className="alert alert-danger py-2">{formik.errors.questionAr}</div> : ''}
+            
+                            <label htmlFor="questionEn">Question in English : </label>
+                            <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="questionEn" value={formik.values.questionEn} id="questionEn" className='form-control mb-3' />
+                            {formik.errors.questionEn && formik.touched.questionEn ? <div className="alert alert-danger py-2">{formik.errors.questionEn}</div> : ''}
+            
+                            <label htmlFor="answerAr">Answer in Arabic : </label>
+                            <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="answerAr" value={formik.values.answerAr} id="answerAr" className='form-control mb-3' />
+                            {formik.errors.answerAr && formik.touched.answerAr ? <div className="alert alert-danger py-2">{formik.errors.answerAr}</div> : ''}
+            
+                            <label htmlFor="answerEn">Answer in English : </label>
+                            <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="answerEn" value={formik.values.answerEn} id="answerEn" className='form-control mb-3' />
+                            {formik.errors.answerEn && formik.touched.answerEn ? <div className="alert alert-danger py-2">{formik.errors.answerEn}</div> : ''}
+            
+                            <label htmlFor="type">Type : </label>
+                                <div className="form-check mt-1">
+                                    <input
+                                    onBlur={formik.handleBlur}
+                                    onChange={formik.handleChange}
+                                    type="radio"
+                                    name="type"
+                                    value="Medical"
+                                    id="medical"
+                                    className="form-check-input"
+                                    checked={formik.values.type === 'Medical'} />
+                                    <label htmlFor="medical" className="form-check-label">Medical</label>
+                                </div>
+                                <div className="form-check mb-3">
+                                    <input
+                                    onBlur={formik.handleBlur}
+                                    onChange={formik.handleChange}
+                                    type="radio"
+                                    name="type"
+                                    value="AboutMe"
+                                    id="aboutMe"
+                                    className="form-check-input"
+                                    checked={formik.values.type === 'AboutMe'} />
+                                    <label htmlFor="aboutMe" className="form-check-label">About Me</label>
+                                </div>
+
+                                {formik.errors.type && formik.touched.type ? (
+                                    <div className="alert alert-danger py-2">{formik.errors.type}</div>
+                                ) : null}
+                            {/* <div className="d-flex align-items-center justify-content-end w-100"> */}
+                              {loading ? <button type='button' className='btn blueC w-100 text-light'>
+                                <i className='fas fa-spinner fa-spin'></i>
+                              </button>
+                                : <button disabled={formBased === 'edit' ? !formik.isValid : !(formik.isValid && formik.dirty)} type='submit' className='btn blueC w-100 text-light'>{formBased === 'edit' ? 'Update' : 'Add'}</button>
+                              }
+                            {/* </div> */}
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </> : ''}
             </div>
         </>
     );

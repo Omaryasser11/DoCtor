@@ -29,9 +29,9 @@ const CosmeticSurgerySection = () => {
         setLoading(false);
       });
   }, []);
-  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center z-3">
+  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center high-index">
   <Spinner />
-</div>;
+</div>
   if (error) return <p>Error: {error.message}</p>;
   return (
     <div className="cosmetic-surgery-section">

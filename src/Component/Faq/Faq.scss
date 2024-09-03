@@ -7,7 +7,7 @@
 .faqCollapse{
     font-size: 13px;
 }
-.faqCollapse[aria-expanded="false"]{
+.faqCollapse{
     background-color: rgba(0,0,0,0.1) !important;
 }
 .faqCollapse[aria-expanded="true"]{
@@ -21,26 +21,28 @@
     color: white !important;
 }
 .faqIcon{
-    height: 13px;
-    width: 13px;
-    margin: 0rem 0.8rem;
-    color: #ff477e;
-}
-.faqCollapse[aria-expanded="false"] .faqIcon{
-    background-color: gray;
-}
-.faqCollapse[aria-expanded="true"] .faqIcon{
-    background-color: white;
+    font-family: 'FontAwesome';
+    color: darkgray;
+    font-size: 18px;
 }
 .faqCollapse[aria-expanded="false"] .faqIconAbout{
     color: white ;
 }
 .faqCollapse[aria-expanded="false"] .faqIcon::before{
-    font-family: 'FontAwesome';
-    content: '\f067';
-    font-size: 10px;
+    content: '\f055';
+    color: darkgray;
 }
 .faqCollapse[aria-expanded="true"] .faqIcon::before{
-    content: '-';
-    font-size: 12px;
+    content: '\f056';
+    color: white;
+}
+/* AddFaq */
+.iconAddFaq{
+    transform: scale(1);
+    transition: 0.3s;
+    color:darkgray;
+}
+.faqCollapse:hover .iconAddFaq{
+    transform: scale(1.2);
+    color:white !important;
 }

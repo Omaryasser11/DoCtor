@@ -13,11 +13,15 @@ import Spinner from '../../Component/Spinner/Spinner.jsx';
 export default function BeforeAfter() {
   const [data, setData] = useState([]);
   const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [currentId, setCurrentId] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const [apiError, setApiError] = useState('')
+  const [formBased, setFormBased] = useState('')
   const [activeLink, setActiveLink] = useState('All');
   const [selectedImage, setSelectedImage] = useState('');
-  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isArrowsVisible, setIsArrowsVisible] = useState(false);
   const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
   const { language } = useContext(LanguageContext);
@@ -26,18 +30,18 @@ export default function BeforeAfter() {
     setActiveLink(linkName);
   };
 
-  const openCard = (imageSrc) => {
+  function openCard(imageSrc){
     setSelectedImage(imageSrc);
-    setIsOverlayVisible(true);
+    setIsVideoOpen(true);
   };
 
-  const closeCard = () => {
+  function closeCard(){
     setSelectedImage('');
-    setIsOverlayVisible(false);
+    setIsVideoOpen(false);
     setIsArrowsVisible(false);
   };
 
-  const openCarousel = (imageSrc) => {
+  function openCarousel(imageSrc){
     openCard(imageSrc);
     setIsArrowsVisible(true);
   };
@@ -82,9 +86,9 @@ export default function BeforeAfter() {
     };
   }, [setIsFlipped]);
 
-  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center z-3">
+  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center high-index">
     <Spinner />
-  </div>;
+  </div>
   if (error) return <p lang={language}>Error: {error.message || 'An error occurred'}</p>;
 
   return (
@@ -187,7 +191,7 @@ export default function BeforeAfter() {
         </div>
 
         {/* Overlay of card */}
-        {isOverlayVisible? <>
+        {isVideoOpen? <>
         <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center" lang={language}>
           <div className="col-lg-6 col-sm-8 col-10">
             <div className='w-100 px-5'>

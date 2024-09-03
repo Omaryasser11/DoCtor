@@ -29,9 +29,9 @@ const Section3 = () => {
         setLoading(false);
       });
   }, []);
-  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center z-3">
+  if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center high-index">
   <Spinner />
-</div>;
+</div>
   return (
     <div className="section3">
       <div className="row">
