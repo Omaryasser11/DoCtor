@@ -8,7 +8,6 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import toast from 'react-hot-toast'
 import ReactPlayer from 'react-player';
-import youtubeCover2 from '../../assets/images/BTM-1.jpeg';
 import patientSelfie from '../../assets/images/patient-selfie.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
@@ -23,6 +22,7 @@ export default function Faq() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+    const [isOverlayVisibleVideo, setIsOverlayVisibleVideo] = useState(false);
     const [apiError, setApiError] = useState('')
     const [formBased, setFormBased] = useState('')
     const [youtubeVideo, setYoutubeVideo] = useState(null);
@@ -33,7 +33,6 @@ export default function Faq() {
 
     useEffect(() => {
         const admin = localStorage.getItem("token")
-        console.log(admin)
       if (admin != null) {
         setToken(admin)
       }
@@ -42,13 +41,11 @@ export default function Faq() {
     // Function to open a video card
     function openCard(videoUrl) {
         setYoutubeVideo(videoUrl);
-        setIsOverlayVisible(true);
     }
 
     // Function to close the video card
     function closeCard() {
         setYoutubeVideo('');
-        setIsOverlayVisible(false);
     }
 
     function openOverlay(mode, id = null) {
@@ -69,8 +66,9 @@ export default function Faq() {
         setIsOverlayVisible(true)
       }
     
-      function closeOverlay() {
+    function closeOverlay() {
         setIsOverlayVisible(false)
+        setIsOverlayVisibleVideo(false);
       }
 
     function fetchTexts() {
@@ -78,6 +76,19 @@ export default function Faq() {
         baseUrl.get('faq/texts')
         .then(response => {
             setTexts(response.data);
+            setLoading(false);
+        })
+        .catch(error => {
+            setError(error);
+            setLoading(false);
+        });
+    }
+
+    function fetchVideos() {
+        setLoading(true)
+        baseUrl.get('faq/videos')
+        .then(response => {
+            setVideos(response.data);
             setLoading(false);
         })
         .catch(error => {
@@ -136,8 +147,59 @@ export default function Faq() {
     }
   }
 
-  function deleteItem(itemId) {
-    Swal.fire({
+  function handleSubmit(values){
+            Swal.fire({
+            title: 'Please click confirm to add the video.',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#A9A9A9',
+            confirmButtonText: 'Confirm'
+          }).then((result) => {
+            if (result.isConfirmed) {
+            setLoading(true)
+            baseUrl.post('faq/videos', values)
+                .then(() => {
+                fetchVideos()
+                closeOverlay()
+                setLoading(false)
+                toast.success('Item Added', { duration: 2000 })
+                })
+                .catch(error => {
+                setApiError(error.message)
+                setLoading(false)
+                })
+            }
+        })
+    }
+
+  function deleteItem(whatApi, itemId) {
+    if(whatApi==='video'){
+      Swal.fire({
+        title: 'Are you sure you want to delete this video?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#A9A9A9',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+        setLoading(true)
+        baseUrl.delete(`faq/videos/${itemId}`)
+        .then(() => {
+            fetchVideos()
+            setLoading(false)
+            toast.success('Item Deleted', { duration: 2000 })
+        })
+        .catch(error => {
+            setApiError(error.message)
+            setLoading(false)
+        })
+    }
+})
+    }
+    else if(whatApi==='question'){
+      Swal.fire({
         title: 'Are you sure you want to delete this question?',
         text: "You won't be able to revert this!",
         icon: 'warning',
@@ -160,6 +222,7 @@ export default function Faq() {
         })
     }
 })
+    }
 }
 
   function getInputs(itemId) {
@@ -177,6 +240,19 @@ export default function Faq() {
         setApiError(error.message)
       })
   }
+
+  let validationSchemaVideo = yup.object({
+    posterUrl: yup.string().required('Poster Url is required'),
+    videoUrl: yup.string().required('Video Url is required'),
+  })
+
+  let formikVideo = useFormik({
+    initialValues: {
+      posterUrl: '',
+      videoUrl: '',
+      }, validationSchema: validationSchemaVideo
+    , onSubmit: handleSubmit
+  })
 
   let validationSchema = yup.object({
     questionAr: yup.string().required('Question in Arabic is required'),
@@ -205,18 +281,7 @@ export default function Faq() {
         AOS.init({
             duration: 2000,
         });
-        baseUrl.get('faq/videos',
-            {
-                headers: { 'Accept-Language': language },
-            }
-        ).then(response => {
-                setVideos(response.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                setError(error);
-                setLoading(false);
-            });
+        fetchVideos()
     }, []);
 
     useEffect(() => {
@@ -285,19 +350,29 @@ export default function Faq() {
                         </div>
                         <div className="row g-4">
                             {videos.map((video, index) => (
-                                <div key={video.id} className="col-lg-4" data-aos="fade-up" data-aos-duration={index * 500 + 1500}>
-                                    <div className='my-5'>
-                                        <div className="cursor-pointer position-relative faqShadow video overflow-hidden" onClick={() => openCard(video.videoUrl)}>
+                                <div key={video.id} className="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration={index * 500 + 1500}>
+                                    <div className='my-5 position-relative'>
+                                    {token !=null? <div className="position-absolute top-0 end-0 z-2 mt-2 me-2">
+                                      <button type="button" className="btn btn-light delete-hover p-1 pb-0" onClick={() => deleteItem('video', video.id)}>
+                                        <i className="fa-solid fa-trash-can fs-5"></i>
+                                      </button>
+                                    </div>:''}
+                                        <div className="cursor-pointer faqShadow video overflow-hidden" onClick={() => openCard(video.videoUrl)}>
                                             <div className="position-absolute top-0 bottom-0 start-0 end-0 z-1 d-flex align-items-center justify-content-center">
                                                 <i className="fa-solid fa-play fs-5 text-white d-flex align-items-center justify-content-center rounded-circle"></i>
                                             </div>
                                             <div>
-                                                <img src={youtubeCover2} className='w-100 scale' alt="youtube video" />
+                                                <img src={video.posterUrl} className='w-100 scale' alt="youtube video" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             ))}
+                            {token!=null? <div className="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-duration={videos.length * 500 + 1500}>
+                              <div className='cursor-pointer d-flex align-items-center justify-content-center w-100' style={{ height: '20rem' }} onClick={() => setIsOverlayVisibleVideo(true)}>
+                                <i className="fa-solid fa-circle-plus text-body-tertiary iconAdd"></i>
+                              </div>
+                            </div> :''}
                         </div>
                     </div>
                 </div>
@@ -313,7 +388,7 @@ export default function Faq() {
                                         <button className='btn bg-light p-1 d-flex align-items-center justify-content-between edit-hover' onClick={() => openOverlay('edit', text.id)}>
                                         <i className="fa-solid fa-pen-to-square"></i>
                                         </button>        
-                                        <button className='btn bg-light ms-2 p-1 d-flex align-items-center justify-content-between delete-hover' onClick={() => deleteItem(text.id)}>
+                                        <button className='btn bg-light ms-2 p-1 d-flex align-items-center justify-content-between delete-hover' onClick={() => deleteItem('question', text.id)}>
                                             <i className="fa-solid fa-trash-can"></i>
                                         </button>  
                                         </div>:''}                  
@@ -388,18 +463,21 @@ export default function Faq() {
 
                 {/* Video overlay */}
                 {youtubeVideo && (
-                    <div className='position-fixed top-0 start-0 bottom-0 end-0 faq-overlay d-flex justify-content-center align-items-center' style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', zIndex: '1050' }} onClick={closeCard}>
-                        <ReactPlayer
-                            url={youtubeVideo}
-                            playing={true}
-                            controls={true}
-                            className="faq-video-player"
-                        />
-                        <button className='btn btn-light position-absolute top-0 end-0 m-3' onClick={closeCard}>X</button>
+                <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
+                <div className="col-xl-8 col-lg-9 col-md-10 col-11">
+                  <div className='w-100'>
+                    <div className="text-end w-100">
+                      <i className="fa-solid fa-xmark cursor-pointer fs-4 x" onClick={closeCard}></i>
                     </div>
+                    <div className='py-2'>
+                      <ReactPlayer playing={true} controls={true} url={youtubeVideo} className={`w-100`} />
+                    </div>
+                  </div>
+                </div>
+              </div>
                 )}
 
-                {/* Pop Up */}
+                {/* Pop Up Texts */}
                 {isOverlayVisible && token!=null? <>
                     <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
                       <div className="col-lg-6 col-sm-8 col-10 px-5">
@@ -462,6 +540,39 @@ export default function Faq() {
                                 : <button disabled={formBased === 'edit' ? !formik.isValid : !(formik.isValid && formik.dirty)} type='submit' className='btn blueC w-100 text-light'>{formBased === 'edit' ? 'Update' : 'Add'}</button>
                               }
                             {/* </div> */}
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </> : ''}
+
+                {/* Pop Up Videos */}
+                {isOverlayVisibleVideo && token!=null? <>
+                    <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
+                      <div className="col-lg-6 col-sm-8 col-10 px-5">
+                        <div className="text-end w-100">
+                          <i className="fa-solid fa-xmark cursor-pointer fs-4 x" onClick={closeOverlay}></i>
+                        </div>
+                        <div className='bg-white p-4 text-dark-emphasis rounded-2 overflow-y-scroll scrollbar-popUp'>
+                          <form onSubmit={formikVideo.handleSubmit}>
+                            {apiError ? <div className="alert alert-danger">{apiError}</div> : ''}
+            
+                            <label htmlFor="posterUrl">Poster Url : </label>
+                            <input onBlur={formikVideo.handleBlur} onChange={formikVideo.handleChange} type="text" name="posterUrl" value={formikVideo.values.posterUrl} id="posterUrl" className='form-control mb-3' />
+                            {formikVideo.errors.posterUrl && formikVideo.touched.posterUrl ? <div className="alert alert-danger py-2">{formikVideo.errors.posterUrl}</div> : ''}
+            
+                            <label htmlFor="videoUrl">Video Url : </label>
+                            <input onBlur={formikVideo.handleBlur} onChange={formikVideo.handleChange} type="text" name="videoUrl" value={formikVideo.values.videoUrl} id="videoUrl" className='form-control mb-3' />
+                            {formikVideo.errors.videoUrl && formikVideo.touched.videoUrl ? <div className="alert alert-danger py-2">{formikVideo.errors.videoUrl}</div> : ''}
+
+                                {formikVideo.errors.type && formikVideo.touched.type ? (
+                                    <div className="alert alert-danger py-2">{formikVideo.errors.type}</div>
+                                ) : null}
+                              {loading ? <button type='button' className='btn blueC w-100 text-light'>
+                                <i className='fas fa-spinner fa-spin'></i>
+                              </button>
+                                : <button disabled={!(formikVideo.isValid && formikVideo.dirty)} type='submit' className='btn blueC w-100 text-light'>Add</button>
+                              }
                           </form>
                         </div>
                       </div>

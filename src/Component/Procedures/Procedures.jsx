@@ -23,7 +23,6 @@ export default function Procedures() {
 
   useEffect(() => {
       const admin = localStorage.getItem("token")
-      console.log(admin)
     if (admin != null) {
       setToken(admin)
     }
@@ -269,7 +268,7 @@ export default function Procedures() {
               </div>
             </div>
           </>)}
-          {token!=null? <div className="col-lg-4 col-sm-6">
+          {token!=null? <div className="col-lg-4 col-sm-6" data-aos-duration={data.length * 500 + 1500}>
             <div className='cursor-pointer d-flex align-items-center justify-content-center w-100' style={{ height: '20rem' }} onClick={() => openOverlay('add')}>
               <i className="fa-solid fa-circle-plus text-body-tertiary iconAdd"></i>
             </div>
@@ -298,13 +297,11 @@ export default function Procedures() {
                 <input  onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="imageUrl" value={formik.values.imageUrl} id="imageUrl" className='form-control mb-3' />
                 {formik.errors.imageUrl && formik.touched.imageUrl ? <div className="alert alert-danger py-2">{formik.errors.imageUrl}</div> : ''}
 
-                {/* <div className="d-flex align-items-center justify-content-end w-100"> */}
                   {loading ? <button type='button' className='btn blueC w-100 text-light'>
                     <i className='fas fa-spinner fa-spin'></i>
                   </button>
                     : <button disabled={formBased === 'edit' ? !formik.isValid : !(formik.isValid && formik.dirty)} type='submit' className='btn blueC w-100 text-light'>{formBased === 'edit' ? 'Update' : 'Add'}</button>
                   }
-                {/* </div> */}
               </form>
             </div>
           </div>

@@ -1,3 +1,14 @@
 .imageSize{
     max-height: 42rem !important;
 }
+/* Add */
+.iconAdd{
+    font-size: 5rem;
+    transform: scale(1);
+    transition: 0.3s;
+    color:darkgray;
+}
+.iconAdd:hover{
+    transform: scale(1.2);
+    color:#ff477e !important;
+}

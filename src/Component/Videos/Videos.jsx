@@ -270,7 +270,7 @@ export default function Videos() {
             <div className="row g-5 ">
               {data.map((video) => (
                 video.type === 'Podcast'? (
-                  <div key={video.id} className="col-lg-4" lang={language}>
+                  <div key={video.id} className="col-lg-4" data-aos-duration={video * 500 + 1500} lang={language}>
                     <div className='position-relative overflow-hidden' lang={language} >
                       <div lang={language} className={`cursor-pointer position-relative ${style.shadow} video`} onClick={() => openVideo(video.videoUrl)}>
                         <div lang={language} className="position-absolute top-0 bottom-0 start-0 end-0 z-1 d-flex align-items-center justify-content-center">
@@ -305,7 +305,7 @@ export default function Videos() {
                   </div>
                 ) : null
               ))}
-            {token !=null? <div className="col-lg-4 col-sm-6">
+            {token !=null? <div className="col-lg-4 col-sm-6" data-aos-duration={data.length * 500 + 1500}>
             <div className='cursor-pointer d-flex align-items-center justify-content-center w-100' style={{ height: '20rem' }} onClick={() => openOverlay('add')}>
               <i className="fa-solid fa-circle-plus text-body-tertiary iconAdd"></i>
             </div>
@@ -348,7 +348,7 @@ export default function Videos() {
             <div className="row g-5">
               {data.map((video) => (
                 video.type === 'Education'? (
-                  <div key={video.id} className="col-lg-4" lang={language}>
+                  <div key={video.id} className="col-lg-4" data-aos-duration={video * 500 + 1500} lang={language}>
                     <div className='position-relative overflow-hidden' lang={language} >
                       <div lang={language} className={`cursor-pointer position-relative ${style.shadow} video`} onClick={() => openVideo(video.videoUrl)}>
                       <div className="position-absolute top-0 bottom-0 start-0 end-0 z-1 d-flex align-items-center justify-content-center">
@@ -383,7 +383,7 @@ export default function Videos() {
                   </div>
                 ) : null
               ))}
-              {token!=null? <div className="col-lg-4 col-sm-6">
+              {token!=null? <div className="col-lg-4 col-sm-6" data-aos-duration={data.length * 500 + 1500}>
             <div className='cursor-pointer d-flex align-items-center justify-content-center w-100' style={{ height: '20rem' }} onClick={() => openOverlay('add')}>
               <i className="fa-solid fa-circle-plus text-body-tertiary iconAdd"></i>
             </div>
@@ -402,7 +402,7 @@ export default function Videos() {
                 <i className="fa-solid fa-xmark cursor-pointer fs-4 x" onClick={closeVideo}></i>
               </div>
               <div className='py-2'>
-                <ReactPlayer controls url={youtubeVideo} className={`w-100 ${style.videoSize}`} />
+                <ReactPlayer playing={true} controls={true} url={youtubeVideo} className={`w-100 ${style.videoSize}`} />
               </div>
             </div>
           </div>
