@@ -294,7 +294,11 @@ export default function Procedures() {
                 {formik.errors.nameEn && formik.touched.nameEn ? <div className="alert alert-danger py-2">{formik.errors.nameEn}</div> : ''}
 
                 <label htmlFor="imageUrl">Image URl : </label>
+
                 <input  onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="imageUrl" value={formik.values.imageUrl} id="imageUrl" className='form-control mb-3' />
+
+                <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="imageUrl" id="imageUrl" className='form-control mb-3' />
+
                 {formik.errors.imageUrl && formik.touched.imageUrl ? <div className="alert alert-danger py-2">{formik.errors.imageUrl}</div> : ''}
 
                   {loading ? <button type='button' className='btn blueC w-100 text-light'>

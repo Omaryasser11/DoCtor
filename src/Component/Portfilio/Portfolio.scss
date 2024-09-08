@@ -10,50 +10,44 @@
     margin-top: 1rem;
     padding: 1rem;
     background: linear-gradient(179.4deg, rgb(253, 240, 233) 2.2%, rgb(255, 194, 203) 96.2%);
-
+  
     .Last {
-        width: 100vw;
-        padding: 1rem;
-
-        .Q1 {
-
-            transition: transform 0.3s ease-in-out;
-            width: 20%;
-
-
-
-            .TiltCard {
-
-
-                width: 100%;
-                height: calc(100vw/5);
-
-                .TiltCard-inner {
-                    height: 100%;
-                    width: 100%;
-
-                    .imgW {
-                        height: 100%;
-                        width: 100%;
-                    }
-                }
+      width: 100vw;
+      padding: 1rem;
+  
+      .Q1 {
+        transition: transform 0.3s ease-in-out;
+        width: 20%;
+  
+        .TiltCard {
+          width: 100%;
+          height: calc(100vw / 5);
+  
+          .TiltCard-inner {
+            height: 100%;
+            width: 100%;
+  
+            .imgW {
+              height: 100%;
+              width: 100%;
             }
+          }
         }
+      }
     }
-
+  
     .imgW,
     img,
     .TiltCard-inner,
     .TiltCard-inner img,
     .TiltCard {
-        height: 100%;
-        width: 100%;
-        transition: .3s;
-
+      height: 100%;
+      width: 100%;
+      transition: 0.3s;
     }
-}
-
-.First {
+  }
+  
+  .First {
     width: 35%;
     display: flex;
     flex-direction: column;
@@ -61,10 +55,9 @@
     align-content: center;
     justify-content: flex-start;
     align-items: center;
-
-}
-
-.Last {
+  }
+  
+  .Last {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -73,138 +66,79 @@
     justify-content: center;
     align-items: flex-start;
     height: 100%;
-
-
-}
-
-
-.Q2 {
-
+  }
+  
+  .Q2,
+  .Q3,
+  .Q4,
+  .Q5,
+  .Q6,
+  .Q7,
+  .Q8,
+  .Q9,
+  .Q10 {
     height: 25%;
     width: 25%;
     transition: transform 0.3s ease-in-out;
-}
-
-
-.Q10 {
-    height: 25%;
-    width: 25%;
-    transition: transform 0.3s ease-in-out;
-}
-
-
-.Q3 {
-
-    height: 25%;
-    width: 25%;
-    transition: transform 0.3s ease-in-out;
-}
-
-.Q4 {
-
-    height: 25%;
-    width: 25%;
-    transition: transform 0.3s ease-in-out;
-}
-
-.Q5 {
-
-    height: 25%;
-    width: 25%;
-    transition: transform 0.3s ease-in-out;
-}
-
-.Q6 {
-
-    height: 25%;
-    width: 25%;
-    transition: transform 0.3s ease-in-out;
-
-}
-
-.Q7 {
-
-    height: 25%;
-    width: 25%;
-    transition: transform 0.3s ease-in-out;
-}
-
-.Q8 {
-
-    height: 25%;
-    width: 25%;
-    transition: transform 0.3s ease-in-out;
-}
-
-.Q9,
-.Q10 {
-
-    height: 25%;
-    width: 25%;
-    transition: transform 0.3s ease-in-out;
-}
-
-.Poto {
+  }
+  
+  .Poto {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.First {
+  }
+  
+  .First {
     position: relative;
     overflow: hidden;
-}
-
-
-
-.Q1 .IMGOO,
-.imgW,
-.TiltCard {
+  }
+  
+  .Q1 .IMGOO,
+  .imgW,
+  .TiltCard {
     width: 100%;
     height: auto;
     transition: transform 0.3s ease-in-out;
     height: 250px;
-}
-
-.Q1 .TiltCard:hover,
-.Q2 .TiltCard:hover,
-.Q3 .TiltCard:hover,
-.Q4 .TiltCard:hover,
-.Q5 .TiltCard:hover,
-.Q6 .TiltCard:hover,
-.Q7 .TiltCard:hover,
-.Q8 .TiltCard:hover,
-.Q9 .TiltCard:hover,
-.Q10 .TiltCard:hover {
+  }
+  
+  .Q1 .TiltCard:hover,
+  .Q2 .TiltCard:hover,
+  .Q3 .TiltCard:hover,
+  .Q4 .TiltCard:hover,
+  .Q5 .TiltCard:hover,
+  .Q6 .TiltCard:hover,
+  .Q7 .TiltCard:hover,
+  .Q8 .TiltCard:hover,
+  .Q9 .TiltCard:hover,
+  .Q10 .TiltCard:hover {
     border: solid 10px #ff477e;
-    /* calculated as: calc(66px/2) */
-}
-
-.Q1 .TiltCard,
-.Q2 .TiltCard,
-.Q3 .TiltCard,
-.Q4 .TiltCard,
-.Q5 .TiltCard,
-.Q6 .TiltCard,
-.Q7 .TiltCard,
-.Q8 .TiltCard,
-.Q9 .TiltCard,
-.Q10 .TiltCard {
+  }
+  
+  .Q1 .TiltCard,
+  .Q2 .TiltCard,
+  .Q3 .TiltCard,
+  .Q4 .TiltCard,
+  .Q5 .TiltCard,
+  .Q6 .TiltCard,
+  .Q7 .TiltCard,
+  .Q8 .TiltCard,
+  .Q9 .TiltCard,
+  .Q10 .TiltCard {
     position: relative;
     overflow: hidden;
-}
-
-.Q1 .TiltCard:hover::before,
-.Q2 .TiltCard:hover::before,
-.Q3 .TiltCard:hover::before,
-.Q4 .TiltCard:hover::before,
-.Q5 .TiltCard:hover::before,
-.Q6 .TiltCard:hover::before,
-.Q7 .TiltCard:hover::before,
-.Q8 .TiltCard:hover::before,
-.Q9 .TiltCard:hover::before,
-.Q10 .TiltCard:hover::before {
-
+  }
+  
+  .Q1 .TiltCard:hover::before,
+  .Q2 .TiltCard:hover::before,
+  .Q3 .TiltCard:hover::before,
+  .Q4 .TiltCard:hover::before,
+  .Q5 .TiltCard:hover::before,
+  .Q6 .TiltCard:hover::before,
+  .Q7 .TiltCard:hover::before,
+  .Q8 .TiltCard:hover::before,
+  .Q9 .TiltCard:hover::before,
+  .Q10 .TiltCard:hover::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -213,49 +147,74 @@
     height: 200%;
     background: rgba(255, 255, 255, 0.5);
     background: linear-gradient(120deg,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.5) 50%,
-            rgba(255, 255, 255, 0) 100%);
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 100%);
     transform: rotate(25deg);
     transition: opacity 0.4s;
     opacity: 0;
     pointer-events: none;
-}
-
-.Q1 .TiltCard:hover::before,
-.Q2 .TiltCard:hover::before,
-.Q3 .TiltCard:hover::before,
-.Q4 .TiltCard:hover::before,
-.Q5 .TiltCard:hover::before,
-.Q6 .TiltCard:hover::before,
-.Q7 .TiltCard:hover::before,
-.Q8 .TiltCard:hover::before,
-.Q9 .TiltCard:hover::before,
-.Q10 .TiltCard:hover::before {
+  }
+  
+  .Q1 .TiltCard:hover::before,
+  .Q2 .TiltCard:hover::before,
+  .Q3 .TiltCard:hover::before,
+  .Q4 .TiltCard:hover::before,
+  .Q5 .TiltCard:hover::before,
+  .Q6 .TiltCard:hover::before,
+  .Q7 .TiltCard:hover::before,
+  .Q8 .TiltCard:hover::before,
+  .Q9 .TiltCard:hover::before,
+  .Q10 .TiltCard:hover::before {
     opacity: 1;
     animation: shine 1s linear;
-
-}
-
-@keyframes shine {
+  }
+  
+  @keyframes shine {
     from {
-        transform: translateX(-150%) rotate(25deg);
+      transform: translateX(-150%) rotate(25deg);
     }
-
     to {
-        transform: translateX(150%) rotate(25deg);
+      transform: translateX(150%) rotate(25deg);
     }
-}
-
-@media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
     .Poto .Last .Q1 .TiltCard {
-        width: 100%;
-        height: 50vw;
+      width: 100%;
+      height: 50vw;
     }
-
+  
     .Poto .Last .Q1 {
-        transition: transform 0.3s ease-in-out;
-        width: 50%;
+      transition: transform 0.3s ease-in-out;
+      width: 50%;
     }
-}
-
+  }
+  
+  .Portfolio {
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1050;  // Ensure it's on top
+      background-color: rgba(0, 0, 0, 0.5);  // Optional: Dark overlay background
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;  // Some padding for better spacing
+    }
+  
+    .overlay .bg-white {
+      max-height: 80vh;  // Restrict height to 80% of the viewport height
+      overflow-y: auto;  // Enable vertical scrolling
+      width: 100%;       // Optional: Ensure the form takes up full width
+      max-width: 600px;  // Optional: Define max width for the form
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);  // Optional: Add a box-shadow for better design
+      background-color: rgba(0, 0, 0, 0.16);
+    }
+  }
+  

@@ -31,7 +31,9 @@ export default function BeforeAfter() {
   const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
   const { language } = useContext(LanguageContext);
   const [token, setToken] = useState(null);
-
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  
   useEffect(() => {
       const admin = localStorage.getItem("token")
     if (admin != null) {
@@ -177,20 +179,40 @@ export default function BeforeAfter() {
     imageUrl: yup.string().required('Image Url is required'),
   })
 
-  let formikImage = useFormik({
-    initialValues: {
-    imageType: '',
-    imageUrl: '',
-    procedure: {
-      id: null,
-      name: '',
-      imageUrl: '',
-      iconUrl: ''
-    },
-  }, validationSchema: validationSchemaPhoto
-    , onSubmit: handlePhoto
-  })
+  
 
+  const validationSchema = yup.object({
+    imageType: yup.string().required('Image Type is required'),
+    imageUrl: yup.string().required('Image Url is required'),
+    procedureId: yup.number().required('Procedure ID is required').positive().integer(),
+  });
+  
+  const formik = useFormik({
+    initialValues: {
+      imageType: '',
+      imageUrl: '',
+      procedureId: 0,
+    },
+    validationSchema,
+    onSubmit: (values, { resetForm }) => {
+      setLoading(true);
+      setSuccessMessage('');
+      setErrorMessage('');
+  
+      baseUrl.post('before-after/images', values)
+        .then(() => {
+          resetForm();
+          setLoading(false);
+          toast.success('Item Added', { duration: 5000 });
+          closeOverlay();
+        })
+        .catch((error) => {
+          setLoading(false);
+          setErrorMessage('Error submitting form.');
+        });
+    },
+  });
+  
   useEffect(() => {
     // Fetch images data
       fetchPhotos()
@@ -353,34 +375,72 @@ export default function BeforeAfter() {
       </>:''}
       
         {/* Pop Up Photos */}
-        {isOverlayVisiblePhoto && token!=null? <>
-            <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
-              <div className="col-lg-6 col-sm-8 col-10 px-5">
-                <div className="text-end w-100">
-                  <i className="fa-solid fa-xmark cursor-pointer fs-4 x" onClick={closeOverlay}></i>
-                </div>
-                <div className='bg-white p-4 text-dark-emphasis rounded-2 overflow-y-scroll scrollbar-popUp'>
-                  <form onSubmit={formikImage.handleSubmit}>
-                    {apiError ? <div className="alert alert-danger">{apiError}</div> : ''}
-    
-                    <label htmlFor="imageType">Image Type : </label>
-                    <input onBlur={formikImage.handleBlur} onChange={formikImage.handleChange} type="text" name="imageType" value={formikImage.values.imageType} id="imageType" className='form-control mb-3' />
-                    {formikImage.errors.imageType && formikImage.touched.imageType ? <div className="alert alert-danger py-2">{formikImage.errors.imageType}</div> : ''}
-    
-                    <label htmlFor="imageUrl">Image Url : </label>
-                    <input onBlur={formikImage.handleBlur} onChange={formikImage.handleChange} type="text" name="imageUrl" value={formikImage.values.imageUrl} id="ImageUrl" className='form-control mb-3' />
-                    {formikImage.errors.imageUrl && formikImage.touched.imageUrl ? <div className="alert alert-danger py-2">{formikImage.errors.imageUrl}</div> : ''}
+        {isOverlayVisiblePhoto && token != null ? (
+  <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
+    <div className="col-lg-6 col-sm-8 col-10 px-5">
+      <div className="text-end w-100">
+        <i className="fa-solid fa-xmark cursor-pointer fs-4 x" onClick={closeOverlay}></i>
+      </div>
+      <div className='bg-white p-4 text-dark-emphasis rounded-2 overflow-y-scroll scrollbar-popUp'>
+        <form onSubmit={formik.handleSubmit}>
+          {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+          {successMessage && <div className="alert alert-success">{successMessage}</div>}
 
-                      {loading ? <button type='button' className='btn blueC w-100 text-light'>
-                        <i className='fas fa-spinner fa-spin'></i>
-                      </button>
-                        : <button disabled={!(formikImage.isValid && formikImage.dirty)} type='submit' className='btn blueC w-100 text-light'>Add</button>
-                      }
-                  </form>
-                </div>
-              </div>
-            </div>
-          </> : ''}
+          <label htmlFor="imageType">Image Type : </label>
+          <input
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            type="text"
+            name="imageType"
+            value={formik.values.imageType}
+            id="imageType"
+            className='form-control mb-3'
+          />
+          {formik.errors.imageType && formik.touched.imageType && (
+            <div className="alert alert-danger py-2">{formik.errors.imageType}</div>
+          )}
+
+          <label htmlFor="imageUrl">Image Url : </label>
+          <input
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            type="text"
+            name="imageUrl"
+            value={formik.values.imageUrl}
+            id="ImageUrl"
+            className='form-control mb-3'
+          />
+          {formik.errors.imageUrl && formik.touched.imageUrl && (
+            <div className="alert alert-danger py-2">{formik.errors.imageUrl}</div>
+          )}
+
+          <label htmlFor="procedureId" className="form-label">Procedure ID:</label>
+          <input
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            value={formik.values.procedureId}
+            type="number"
+            name="procedureId"
+            id="procedureId"
+            className={`form-control ${formik.errors.procedureId && formik.touched.procedureId ? 'is-invalid' : ''}`}
+          />
+          {formik.errors.procedureId && formik.touched.procedureId && (
+            <div className="invalid-feedback">{formik.errors.procedureId}</div>
+          )}
+
+          {loading ? (
+            <button type='button' className='btn blueC w-100 text-light'>
+              <i className='fas fa-spinner fa-spin'></i>
+            </button>
+          ) : (
+            <button disabled={!(formik.isValid && formik.dirty)} type='submit' className='btn blueC w-100 text-light'>Add</button>
+          )}
+        </form>
+      </div>
+    </div>
+  </div>
+) : ''}
+
       </div>
     </>
   );
