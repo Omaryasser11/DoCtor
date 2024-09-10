@@ -28,7 +28,7 @@ function AppContent() {
   };
 
   // Use the idle timer hook with a timeout of 30 minutes
-  const { showAlert } = useIdleTimer(30 * 60 * 1000, handleIdle);
+  const { showAlert } = useIdleTimer(12 * 60 * 1000, handleIdle);
 
   // Determine the text direction based on the language
   const direction = language === 'ar' ? 'rtl' : 'ltr';

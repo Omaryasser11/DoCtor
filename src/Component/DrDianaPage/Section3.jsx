@@ -37,7 +37,7 @@ const Section3 = () => {
       <div className="row">
         <div className="col half white-background" data-aos="zoom-in-up">
           <div className="image-wrapper">
-            <div className="image-hover">
+            <div className="image-hover flex">
               <img
                 src={data?.imageUrl || 'default-image.png'} // Fallback image
                 alt="Section 3"
@@ -51,7 +51,7 @@ const Section3 = () => {
 
         <div className="col half blue-background flex" data-aos="zoom-in-down">
           <div className="text-content">
-            <h3 lang={language}>{data?.header || 'default-image.png'}<sup>®</sup></h3>
+            <h3 lang={language}>{data?.header || 'default-image.png'}</h3>
             <p lang={language} className='Y3'>
               {data?.body || 'default-image.png'}
             </p>

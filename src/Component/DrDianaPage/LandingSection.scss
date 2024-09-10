@@ -250,6 +250,7 @@ min-height: 70vh;
     font-size: 16px;
     color: #651820;
     color: #290022;
+    font-size: 1.15rem;
 }
 
 .gold-text {
@@ -325,8 +326,6 @@ min-height: 70vh;
         /* Darker pink shadow */
         6px 6px 12px rgba(0, 0, 0, 0.067);
     /* Final shadow for depth */
-
-    background: linear-gradient(45deg, #ffffff, #ffffff);
     -webkit-text-fill-color: white;
     transform: perspective(500px) rotateX(0) rotateY(0);
 
@@ -338,7 +337,7 @@ min-height: 70vh;
 
 .tttt {
     font-family: 'Futura Std', sans-serif;
-    font-size: 16px;
+    font-size: 23px;
     font-weight: 400;
     color: #290022;
     color: #212529;

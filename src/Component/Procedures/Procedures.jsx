@@ -1,5 +1,5 @@
-
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../../store/LanguageContext';
 import './Procedures.scss'
 import baseUrl from '../../BaseUrl'
 import { useFormik } from 'formik'
@@ -9,6 +9,7 @@ import Spinner from '../Spinner/Spinner'
 import { isFlippedState } from '../../store/index.js';
 import { useRecoilState } from 'recoil';
 import Swal from 'sweetalert2';
+
 
 export default function Procedures() {
   const [data, setData] = useState([])
@@ -20,9 +21,9 @@ export default function Procedures() {
   const [formBased, setFormBased] = useState('')
   const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
   const [token, setToken] = useState(null);
-
+  const { language } = useContext(LanguageContext);
   useEffect(() => {
-      const admin = localStorage.getItem("token")
+    const admin = localStorage.getItem("token")
     if (admin != null) {
       setToken(admin)
     }
@@ -49,10 +50,10 @@ export default function Procedures() {
   function openOverlay(mode, id = null) {
     setFormBased(mode)
     setCurrentId(id)
-    if(mode==='edit' && id){
+    if (mode === 'edit' && id) {
       getInputs(id)
     }
-    else if(mode==='add'){
+    else if (mode === 'add') {
       formik.resetForm({
         nameAr: '',
         nameEn: '',
@@ -78,7 +79,9 @@ export default function Procedures() {
 
   function fetchProcedures() {
     setLoading(true)
-    baseUrl.get('procedures')
+    baseUrl.get('procedures', {
+      headers: { 'Accept-Language': language },
+    })
       .then(response => {
         setData(response.data.data)
         setLoading(false)
@@ -97,22 +100,22 @@ export default function Procedures() {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#A9A9A9',
         confirmButtonText: 'Confirm'
-        }).then((result) => {
+      }).then((result) => {
         if (result.isConfirmed) {
-        setLoading(true)
-      baseUrl.put(`procedures/${currentId}`, values)
-        .then(() => {
-          fetchProcedures()
-          closeOverlay()
-          setLoading(false)
-          toast.success('Item Updated', { duration: 2000 })
-        })
-        .catch(error => {
-          setApiError(error.message)
-          setLoading(false)
-        })
-      }
-  })
+          setLoading(true)
+          baseUrl.put(`procedures/${currentId}`, values)
+            .then(() => {
+              fetchProcedures()
+              closeOverlay()
+              setLoading(false)
+              toast.success('Item Updated', { duration: 2000 })
+            })
+            .catch(error => {
+              setApiError(error.message)
+              setLoading(false)
+            })
+        }
+      })
     } else if (formBased === 'add') {
       Swal.fire({
         title: 'Please click confirm to add the procedure.',
@@ -122,22 +125,22 @@ export default function Procedures() {
         confirmButtonText: 'Confirm'
       }).then((result) => {
         if (result.isConfirmed) {
-        setLoading(true)
-      baseUrl.post('procedures', values)
-        .then(() => {
-          fetchProcedures()
-          closeOverlay()
-          setLoading(false)
-          toast.success('Item Added', { duration: 2000 })
-        })
-        .catch(error => {
-          setApiError(error.message)
-          setLoading(false)
-        })
-      }
-  })
-}
-}
+          setLoading(true)
+          baseUrl.post('procedures', values)
+            .then(() => {
+              fetchProcedures()
+              closeOverlay()
+              setLoading(false)
+              toast.success('Item Added', { duration: 2000 })
+            })
+            .catch(error => {
+              setApiError(error.message)
+              setLoading(false)
+            })
+        }
+      })
+    }
+  }
 
   function deleteItem(itemId) {
     Swal.fire({
@@ -150,20 +153,20 @@ export default function Procedures() {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-    setLoading(true)
-    baseUrl.delete(`procedures/${itemId}`)
-      .then(() => {
-        fetchProcedures()
-        setLoading(false)
-        toast.success('Item Deleted', { duration: 2000 })
-      })
-      .catch(error => {
-        setApiError(error)
-        setLoading(false)
-      })
+        setLoading(true)
+        baseUrl.delete(`procedures/${itemId}`)
+          .then(() => {
+            fetchProcedures()
+            setLoading(false)
+            toast.success('Item Deleted', { duration: 2000 })
+          })
+          .catch(error => {
+            setApiError(error)
+            setLoading(false)
+          })
+      }
+    })
   }
-})
-}
 
   function getInputs(itemId) {
     baseUrl.get(`procedures/${itemId}`)
@@ -220,8 +223,8 @@ export default function Procedures() {
 
 
   if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center high-index">
-  <Spinner />
-</div>
+    <Spinner />
+  </div>
   if (error) return <p>Error: {error.message}</p>
 
   return <>
@@ -240,7 +243,7 @@ export default function Procedures() {
             <div key={item.id} className="col-lg-4 col-sm-6">
               <div className='name cursor-pointer overflow-hidden position-relative'>
                 <div className="layer position-absolute top-0 bottom-0 start-0 end-0 z-1"></div>
-                {token!=null? <div className="btn-group dropend position-absolute top-0 end-0 z-2">
+                {token != null ? <div className="btn-group dropend position-absolute top-0 end-0 z-2">
                   <button type="button" className="btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
                     <i className="fa-solid fa-ellipsis-vertical fs-5"></i>
                   </button>
@@ -254,12 +257,12 @@ export default function Procedures() {
                       <i className="fa-solid fa-trash-can"></i>
                     </li>
                   </ul>
-                </div>:''}
+                </div> : ''}
                 <div>
                   <img src={item.imageUrl} className='w-100 scale' alt={item.name} />
                 </div>
                 <div className='position-absolute w-75 bottom-0 mb-3 ms-4 z-1'>
-                  <h5 className='text-white textShadow fw-medium fs-4'>{item.name}</h5>
+                  <h5 lang={language} className='text-white textShadow fw-medium fs-4'>{item.name}</h5>
                 </div>
                 <div>
                   <hr className="horizontal-line position-absolute linePosition z-2 " />
@@ -268,14 +271,14 @@ export default function Procedures() {
               </div>
             </div>
           </>)}
-          {token!=null? <div className="col-lg-4 col-sm-6" data-aos-duration={data.length * 500 + 1500}>
+          {token != null ? <div className="col-lg-4 col-sm-6" data-aos-duration={data.length * 500 + 1500}>
             <div className='cursor-pointer d-flex align-items-center justify-content-center w-100' style={{ height: '20rem' }} onClick={() => openOverlay('add')}>
               <i className="fa-solid fa-circle-plus text-body-tertiary iconAdd"></i>
             </div>
-          </div> :''}
+          </div> : ''}
         </div>
       </div>
-      {isOverlayVisible && token!=null? <>
+      {isOverlayVisible && token != null ? <>
         <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
           <div className="col-lg-6 col-sm-8 col-10 px-5">
             <div className="text-end w-100">
@@ -295,17 +298,17 @@ export default function Procedures() {
 
                 <label htmlFor="imageUrl">Image URl : </label>
 
-                <input  onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="imageUrl" value={formik.values.imageUrl} id="imageUrl" className='form-control mb-3' />
+                <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="imageUrl" value={formik.values.imageUrl} id="imageUrl" className='form-control mb-3' />
 
                 <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="imageUrl" id="imageUrl" className='form-control mb-3' />
 
                 {formik.errors.imageUrl && formik.touched.imageUrl ? <div className="alert alert-danger py-2">{formik.errors.imageUrl}</div> : ''}
 
-                  {loading ? <button type='button' className='btn blueC w-100 text-light'>
-                    <i className='fas fa-spinner fa-spin'></i>
-                  </button>
-                    : <button disabled={formBased === 'edit' ? !formik.isValid : !(formik.isValid && formik.dirty)} type='submit' className='btn blueC w-100 text-light'>{formBased === 'edit' ? 'Update' : 'Add'}</button>
-                  }
+                {loading ? <button type='button' className='btn blueC w-100 text-light'>
+                  <i className='fas fa-spinner fa-spin'></i>
+                </button>
+                  : <button disabled={formBased === 'edit' ? !formik.isValid : !(formik.isValid && formik.dirty)} type='submit' className='btn blueC w-100 text-light'>{formBased === 'edit' ? 'Update' : 'Add'}</button>
+                }
               </form>
             </div>
           </div>
