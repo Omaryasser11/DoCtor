@@ -19,7 +19,9 @@ import Spinner from './Component/Spinner/Spinner.jsx';
 import { Toaster } from 'react-hot-toast';
 import LoginForm from './Component/LoginPage/index.js';
 import AboutDr from './Pages/AdminPage/AboutDr.jsx';
-
+import ContactSection from './Component/ContactUs/ContactUs.jsx';
+import EditContact from './Component/ContactUs/EditContact.jsx';
+import ComingSoon from './Component/ComingSoon/ComingSoon.jsx';
 function AppContent() {
   const [isFlipped] = useRecoilState(isFlippedState);
   const { language } = useContext(LanguageContext);
@@ -54,6 +56,10 @@ function AppContent() {
         <Route path="/faq" element={<Faq />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/admin" element={<AboutDr />} />
+        <Route path="/contact" element={<ContactSection />} />
+        <Route path="/Edit" element={<EditContact />} />
+        <Route path="/ComingSoon" element={<ComingSoon />} />
+
         {/* Add a 404 page route if needed */}
       </Routes>
       <Footer />

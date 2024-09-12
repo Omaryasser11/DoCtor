@@ -58,7 +58,7 @@ export default function Procedures() {
         nameAr: '',
         nameEn: '',
         imageUrl: '',
-        iconUrl: 'https://example.com/ct-scan-icon.png',
+        iconUrl: '',
         reviewId: '1',
         sections: [
           {
@@ -175,7 +175,7 @@ export default function Procedures() {
           nameAr: response.data.name,
           nameEn: response.data.name,
           imageUrl: response.data.imageUrl,
-          iconUrl: 'https://example.com/ct-scan-icon.png',
+          iconUrl: response.data.iconUrl,
           reviewId: '1',
           sections: [
             {
@@ -203,7 +203,7 @@ export default function Procedures() {
       nameAr: '',
       nameEn: '',
       imageUrl: '',
-      iconUrl: 'https://example.com/ct-scan-icon.png',
+      iconUrl: '',
       reviewId: '1',
       sections: [
         {
@@ -240,9 +240,9 @@ export default function Procedures() {
       <div className="row gx-0">
         <div className='offset-1 col-10 row g-3 px-lg-4 px-md-3 px-2 d-flex align-items-center h-100'>
           {data.map((item) => <>
-            <div key={item.id} className="col-lg-4 col-sm-6">
-              <div className='name cursor-pointer overflow-hidden position-relative'>
-                <div className="layer position-absolute top-0 bottom-0 start-0 end-0 z-1"></div>
+            <div key={item.id} className="col-lg-4 col-sm-6  mb-1" style={{ height: '350px', }}>
+              <div className='name cursor-pointer overflow-hidden position-relative h-100'>
+                <div className="layer position-absolute top-0 bottom-0 start-0 end-0 z-1 "></div>
                 {token != null ? <div className="btn-group dropend position-absolute top-0 end-0 z-2">
                   <button type="button" className="btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
                     <i className="fa-solid fa-ellipsis-vertical fs-5"></i>
@@ -259,7 +259,7 @@ export default function Procedures() {
                   </ul>
                 </div> : ''}
                 <div>
-                  <img src={item.imageUrl} className='w-100 scale' alt={item.name} />
+                  <img src={item.imageUrl} className='w-100 scale h-100' alt={item.name} />
                 </div>
                 <div className='position-absolute w-75 bottom-0 mb-3 ms-4 z-1'>
                   <h5 lang={language} className='text-white textShadow fw-medium fs-4'>{item.name}</h5>
@@ -299,8 +299,8 @@ export default function Procedures() {
                 <label htmlFor="imageUrl">Image URl : </label>
 
                 <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="imageUrl" value={formik.values.imageUrl} id="imageUrl" className='form-control mb-3' />
-
-                <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="imageUrl" id="imageUrl" className='form-control mb-3' />
+                <label htmlFor="imageUrl">Icon URl : </label>
+                <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="iconUrl" id="iconUrl" className='form-control mb-3' value={formik.values.iconUrl} />
 
                 {formik.errors.imageUrl && formik.touched.imageUrl ? <div className="alert alert-danger py-2">{formik.errors.imageUrl}</div> : ''}
 

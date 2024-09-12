@@ -1,0 +1,110 @@
+// Variables
+$primary-color: #de647a;
+$secondary-color: #fff;
+$border-radius: 8px;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$transition-speed: 0.3s;
+
+// General Styling
+.contact-section  {
+  padding: 2rem;
+  background-color: $secondary-color;
+
+
+.flex1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+iframe {
+  border-radius: $border-radius;
+  border: none;
+  box-shadow: $box-shadow;
+}
+
+// Form Styling
+form {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  margin-top: 1.5rem;
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      color: #333;
+      svg {
+        margin-right: 0.5rem;
+      }
+      .edit-icon {
+        margin-left: auto;
+        cursor: pointer;
+        color: $primary-color;
+        transition: color $transition-speed;
+        &:hover {
+          color: darken($primary-color, 10%);
+        }
+      }
+    }
+
+    input {
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: $border-radius;
+      width: 100%;
+      transition: border-color $transition-speed;
+      &:focus {
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  button {
+    background-color: $primary-color;
+    color: $secondary-color;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color $transition-speed;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+}
+// Alert Styling
+.alert {
+  margin-top: 1rem;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+// Loading Spinner
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  form {
+    padding: 1rem;
+  }
+
+  iframe {
+    height: 300px;
+  }
+}
