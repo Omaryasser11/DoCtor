@@ -213,7 +213,7 @@ let validationSchema = yup.object({
   contentAr: yup.string().required('Content in arabic is required'),
   contentEn: yup.string().required('Content in english is required'),
   recommendedVideoUrl: yup.string().required('Recommended Video URL is required'),
-  authorId: yup.string().required('Author Id is required')
+  authorId: yup.string().required('Author name is required')
 })
 
 let formik = useFormik({
@@ -264,7 +264,6 @@ function fetchAuthors() {
       <div className="montserrat bg-light pb-5">
         {/* Header */}
         <div className="row gx-0 position-relative blueC mb-2" style={{ height: '318px' }}>
-          {/* <div className="layerC position-absolute top-0 bottom-0 start-0 end-0 z-1"></div> */}
           <div className='container d-flex align-items-center justify-content-center h-100'>
             <div className='mt-3 d-flex align-items-end position-absolute z-3 text-center justify-content-center' style={{ height: '200px' }}>
               <h4 className='fs-1 fw-semibold text-white'>Latest in Cosmetic Surgery</h4>
@@ -377,8 +376,8 @@ function fetchAuthors() {
                 <label htmlFor="recommendedVideoUrl">Recommended Video URl : </label>
                 <input  onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="recommendedVideoUrl" value={formik.values.recommendedVideoUrl} id="recommendedVideoUrl" className='form-control mb-3' />
                 {formik.errors.recommendedVideoUrl && formik.touched.recommendedVideoUrl ? <div className="alert alert-danger py-2">{formik.errors.recommendedVideoUrl}</div> : ''}
-                <label htmlFor="author" className="mb-2">Author Name:</label>
 
+                <label htmlFor="author" className="mb-2">Author Name:</label>
                 {authors.map((author) => (
                   <div className="form-check mb-3" key={author.id}>
                     <input

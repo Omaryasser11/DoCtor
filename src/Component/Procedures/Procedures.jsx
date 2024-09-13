@@ -8,9 +8,11 @@ import Spinner from '../Spinner/Spinner'
 import { isFlippedState } from '../../store/index.js';
 import { useRecoilState } from 'recoil';
 import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Procedures() {
   const [data, setData] = useState([])
+  const [reviews, setReviews] = useState([])
   const [currentId, setCurrentId] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -19,6 +21,7 @@ export default function Procedures() {
   const [formBased, setFormBased] = useState('')
   const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
   const [token, setToken] = useState(null);
+  const navigate = useNavigate()
 
   useEffect(() => {
       const admin = localStorage.getItem("token")
@@ -172,13 +175,13 @@ export default function Procedures() {
           nameEn: response.data.name,
           imageUrl: response.data.imageUrl,
           iconUrl: 'https://example.com/ct-scan-icon.png',
-          reviewId: '1',
+          reviewId:  response.data.reviewId,
           sections: [
             {
-              headerAr: 'string',
-              headerEn: 'string',
-              bodyAr: 'string',
-              bodyEn: 'string',
+              headerAr: response.data.sections[0].header,
+              headerEn: response.data.sections[0].header,
+              bodyAr: response.data.sections[0].body,
+              bodyEn: response.data.sections[0].body,
             }
           ],
         })
@@ -188,11 +191,36 @@ export default function Procedures() {
       })
   }
 
+  function fetchReviews() {
+    setLoading(true)
+    baseUrl.get('reviews/texts')
+      .then(response => {
+        setReviews(response.data.data)
+        setLoading(false)
+      })
+      .catch(error => {
+        setError(error)
+        setLoading(false)
+      })
+  }
+  
   let validationSchema = yup.object({
     nameAr: yup.string().required('Name in arabic is required').min(3, 'Minimum length is 3'),
     nameEn: yup.string().required('Name in english is required').min(3, 'Minimum length is 3'),
-    imageUrl: yup.string().required('Image URL is required')
-  })
+    imageUrl: yup.string().required('Image URL is required').matches(
+      /^https:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\/[a-zA-Z0-9-_\/]+\.((png|jpg|jpeg|gif|svg))$/,
+      'Invalid image URL'
+    ),
+    reviewId: yup.string().required('Review is required'),
+    sections: yup.array().of(
+      yup.object({
+        headerAr: yup.string().required('Header in arabic is required'),
+        headerEn: yup.string().required('Header in english is required'),
+        bodyAr: yup.string().required('Body in arabic is required'),
+        bodyEn: yup.string().required('Body in english is required'),
+      })
+    )
+  })  
 
   let formik = useFormik({
     initialValues: {
@@ -200,13 +228,13 @@ export default function Procedures() {
       nameEn: '',
       imageUrl: '',
       iconUrl: 'https://example.com/ct-scan-icon.png',
-      reviewId: '1',
+      reviewId: '',
       sections: [
         {
-          headerAr: 'string',
-          headerEn: 'string',
-          bodyAr: 'string',
-          bodyEn: 'string',
+          headerAr: '',
+          headerEn: '',
+          bodyAr: '',
+          bodyEn: '',
         }
       ],
     }, validationSchema
@@ -215,6 +243,7 @@ export default function Procedures() {
 
   useEffect(() => {
     fetchProcedures()
+    fetchReviews()
   }, [])
 
 
@@ -236,10 +265,10 @@ export default function Procedures() {
       <div className="row gx-0">
         <div className='offset-1 col-10 row g-3 px-lg-4 px-md-3 px-2 d-flex align-items-center h-100'>
           {data.map((item) => <>
-            <div key={item.id} className="col-lg-4 col-sm-6">
+            <div key={item.id} className="col-lg-4 col-sm-6" data-aos-duration={data.length * 500 + 1500}>
               <div className='name cursor-pointer overflow-hidden position-relative'>
-                <div className="layer position-absolute top-0 bottom-0 start-0 end-0 z-1"></div>
-                {token!=null? <div className="btn-group dropend position-absolute top-0 end-0 z-2">
+                <div onClick={()=> navigate(`/ProcedureDetails/${item.id}`)} className="layerr position-absolute top-0 bottom-0 start-0 end-0 z-1"></div>
+                {token!=null? <div className="btn-group dropend position-absolute top-0 end-0 z-3">
                   <button type="button" className="btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
                     <i className="fa-solid fa-ellipsis-vertical fs-5"></i>
                   </button>
@@ -267,7 +296,7 @@ export default function Procedures() {
               </div>
             </div>
           </>)}
-          {token!=null? <div className="col-lg-4 col-sm-6" data-aos-duration={data.length * 500 + 1500}>
+          {token!=null? <div className="col-lg-4 col-sm-6">
             <div className='cursor-pointer d-flex align-items-center justify-content-center w-100' style={{ height: '20rem' }} onClick={() => openOverlay('add')}>
               <i className="fa-solid fa-circle-plus text-body-tertiary iconAdd"></i>
             </div>
@@ -295,6 +324,45 @@ export default function Procedures() {
                 <label htmlFor="imageUrl">Image URl : </label>
                 <input  onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="imageUrl" value={formik.values.imageUrl} id="imageUrl" className='form-control mb-3' />
                 {formik.errors.imageUrl && formik.touched.imageUrl ? <div className="alert alert-danger py-2">{formik.errors.imageUrl}</div> : ''}
+
+                <label htmlFor="review" className="mb-2">Review:</label>
+                {reviews.map((review) => (
+                  <div className="form-check mb-3" key={review.id}>
+                    <input
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      type="radio"
+                      name="reviewId"
+                      value={review.id}
+                      id={review.id}
+                      className="form-check-input"
+                      checked={formik.values.reviewId === `${review.id}`}
+                    />
+                    <label htmlFor={review.id} className="form-check-label">
+                      {review.review}
+                    </label>
+                  </div>
+                ))}
+
+                    {formik.errors.reviewId && formik.touched.reviewId ? (
+                          <div className="alert alert-danger py-2">{formik.errors.type}</div>
+                    ) : null}
+
+                <label htmlFor="sections[0].headerAr">Section Header in Arabic:</label>
+                <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="sections[0].headerAr" value={formik.values.sections[0].headerAr} id="sections[0].headerAr" className='form-control mb-3' />
+                {formik.errors.sections?.[0]?.headerAr && formik.touched.sections?.[0]?.headerAr ? <div className="alert alert-danger py-2">{formik.errors.sections[0].headerAr}</div> : ''}
+
+                <label htmlFor="sections[0].headerEn">Section Header in English:</label>
+                <input onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="sections[0].headerEn" value={formik.values.sections[0].headerEn} id="sections[0].headerEn" className='form-control mb-3' />
+                {formik.errors.sections?.[0]?.headerEn && formik.touched.sections?.[0]?.headerEn ? <div className="alert alert-danger py-2">{formik.errors.sections[0].headerEn}</div> : ''}
+
+                <label htmlFor="sections[0].bodyAr">Section Body in Arabic:</label>
+                <textarea onBlur={formik.handleBlur} onChange={formik.handleChange} name="sections[0].bodyAr" value={formik.values.sections[0].bodyAr} id="sections[0].bodyAr" className='form-control mb-3'></textarea>
+                {formik.errors.sections?.[0]?.bodyAr && formik.touched.sections?.[0]?.bodyAr ? <div className="alert alert-danger py-2">{formik.errors.sections[0].bodyAr}</div> : ''}
+
+                <label htmlFor="sections[0].bodyEn">Section Body in English:</label>
+                <textarea onBlur={formik.handleBlur} onChange={formik.handleChange} name="sections[0].bodyEn" value={formik.values.sections[0].bodyEn} id="sections[0].bodyEn" className='form-control mb-3'></textarea>
+                {formik.errors.sections?.[0]?.bodyEn && formik.touched.sections?.[0]?.bodyEn ? <div className="alert alert-danger py-2">{formik.errors.sections[0].bodyEn}</div> : ''}
 
                   {loading ? <button type='button' className='btn blueC w-100 text-light'>
                     <i className='fas fa-spinner fa-spin'></i>
