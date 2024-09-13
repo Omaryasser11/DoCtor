@@ -238,7 +238,7 @@ ul li {
 }
 
 .layer2 {
-  background-color: rgb(33, 58, 143, 1);
+  background-color: rgb(247, 194, 203);
   z-index: -20;
 }
 
@@ -314,15 +314,19 @@ ul li {
 }
 
 .darkCyan {
-  background-color: #00718B !important;
+  background-color: #FF477E !important;
 }
 
 .darkCyan-text {
-  color: #00718B;
+  color: #FF477E;
 }
 
 .navLink:hover {
-  color: #00718B;
+  color: #FF477E;
+}
+
+.cover3{
+  background-image: url('assets/images/pattern-01.png');
 }
 
 /* Overlay arrows */
@@ -394,7 +398,7 @@ ul li {
 }
 
 .pagination:hover {
-  color: #00718B;
+  color: #FF477E;
 }
 
 /* Pagination dots */

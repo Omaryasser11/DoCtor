@@ -14,6 +14,7 @@ import baseUrl from '../../BaseUrl'
 
 export default function Blog() {
   const [data, setData] = useState([])
+  const [authors, setAuthors] = useState([]);
   const [currentId, setCurrentId] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -195,12 +196,12 @@ function getInputs(itemId) {
         contentEn: response.data.content,
         recommendedVideoUrl: response.data.recommendedVideoUrl,
         authorId: response.data.author.id,
-        categoryIds: []
-      })
+        categoryIds: [] 
+      });
     })
     .catch(error => {
-      setApiError(error)
-    })
+      setApiError(error);
+    });
 }
 
 let validationSchema = yup.object({
@@ -231,8 +232,22 @@ let formik = useFormik({
   , onSubmit: handleBlogs
 })
 
+function fetchAuthors() {
+  setLoading(true)
+  baseUrl.get('authors')
+    .then(response => {
+      setAuthors(response.data)
+      setLoading(false)
+    })
+    .catch(error => {
+      setError(error)
+      setLoading(false)
+    })
+}
+
   useEffect(() => {
     fetchBlogs() 
+    fetchAuthors() 
   }, [])
 
 
@@ -362,10 +377,30 @@ let formik = useFormik({
                 <label htmlFor="recommendedVideoUrl">Recommended Video URl : </label>
                 <input  onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="recommendedVideoUrl" value={formik.values.recommendedVideoUrl} id="recommendedVideoUrl" className='form-control mb-3' />
                 {formik.errors.recommendedVideoUrl && formik.touched.recommendedVideoUrl ? <div className="alert alert-danger py-2">{formik.errors.recommendedVideoUrl}</div> : ''}
+                <label htmlFor="author" className="mb-2">Author Name:</label>
 
-                <label htmlFor="authorId">Author : </label>
-                <input  onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="authorId" value={formik.values.authorId} id="authorId" className='form-control mb-3' />
-                {formik.errors.authorId && formik.touched.authorId ? <div className="alert alert-danger py-2">{formik.errors.authorId}</div> : ''}
+                {authors.map((author) => (
+                  <div className="form-check mb-3" key={author.id}>
+                    <input
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      type="radio"
+                      name="authorId"
+                      value={author.id}
+                      id={author.id}
+                      className="form-check-input"
+                      checked={formik.values.authorId === `${author.id}`}
+                    />
+                    <label htmlFor={author.id} className="form-check-label">
+                      {author.name}
+                    </label>
+                  </div>
+                ))}
+
+                    {formik.errors.authorId && formik.touched.authorId ? (
+                          <div className="alert alert-danger py-2">{formik.errors.type}</div>
+                    ) : null}
+                        
 {/* 
                 <label htmlFor="categoryIds">Categories : </label>
                 <input  onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" name="categoryIds" value={formik.values.categoryIds} id="categoryIds" className='form-control mb-3' />

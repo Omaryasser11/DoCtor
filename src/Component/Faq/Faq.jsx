@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { LanguageContext } from '../../store/LanguageContext';
+import React, { useContext, useEffect, useState } from 'react'
+import { LanguageContext } from '../../store/LanguageContext'
 import { useRecoilState } from 'recoil';
 import './Faq.scss';
 import { Helmet } from 'react-helmet-async';
@@ -273,14 +273,11 @@ export default function Faq() {
     , onSubmit: handleText
   })
 
-  useEffect(() => {
-    fetchTexts()
-  }, [])
-
     useEffect(() => {
         AOS.init({
             duration: 2000,
-        });
+        })
+        fetchTexts()
         fetchVideos()
     }, []);
 
@@ -565,9 +562,6 @@ export default function Faq() {
                             <input onBlur={formikVideo.handleBlur} onChange={formikVideo.handleChange} type="text" name="videoUrl" value={formikVideo.values.videoUrl} id="videoUrl" className='form-control mb-3' />
                             {formikVideo.errors.videoUrl && formikVideo.touched.videoUrl ? <div className="alert alert-danger py-2">{formikVideo.errors.videoUrl}</div> : ''}
 
-                                {formikVideo.errors.type && formikVideo.touched.type ? (
-                                    <div className="alert alert-danger py-2">{formikVideo.errors.type}</div>
-                                ) : null}
                               {loading ? <button type='button' className='btn blueC w-100 text-light'>
                                 <i className='fas fa-spinner fa-spin'></i>
                               </button>
