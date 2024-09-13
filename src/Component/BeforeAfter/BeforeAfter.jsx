@@ -23,7 +23,7 @@ export default function BeforeAfter() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [apiError, setApiError] = useState('')
-  const [activeLink, setActiveLink] = useState('All');
+  const [activeLink, setActiveLink] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isOverlayVisiblePhoto, setIsOverlayVisiblePhoto] = useState(false);
@@ -34,7 +34,7 @@ export default function BeforeAfter() {
   const [token, setToken] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  
+
   useEffect(() => {
       const admin = localStorage.getItem("token")
     if (admin != null) {
@@ -69,7 +69,7 @@ export default function BeforeAfter() {
 
   function fetchPhotos() {
       setLoading(true)
-      baseUrl.get('before-after/images')
+      baseUrl.get(`before-after/images?ImageType=${activeLink}`)
         .then((response) => {
           setData(response.data.data);
           console.log(response.data.data);
@@ -222,6 +222,7 @@ export default function BeforeAfter() {
 
   
 
+
   const validationSchema = yup.object({
     imageType: yup.string().required('Image Type is required'),
     imageUrl: yup.string().required('Image Url is required'),
@@ -232,11 +233,42 @@ export default function BeforeAfter() {
     initialValues: {
       imageType: '',
       imageUrl: '',
-      iconUrl: ''
+      procedureId: 0,
     },
-  }, validationSchema: validationSchemaPhoto
-    , onSubmit: handlePhoto
-  })
+    validationSchema,
+    onSubmit: (values, { resetForm }) => {
+      setLoading(true);
+      setSuccessMessage('');
+      setErrorMessage('');
+  
+      baseUrl.post('before-after/images', values)
+        .then(() => {
+          resetForm();
+          setLoading(false);
+          toast.success('Item Added', { duration: 5000 });
+          closeOverlay();
+        })
+        .catch((error) => {
+          setLoading(false);
+          setErrorMessage('Error submitting form.');
+        });
+    },
+  });
+  
+
+  function fetchProcedures() {
+    setLoading(true)
+    baseUrl.get('procedures')
+      .then(response => {
+        setProcedures(response.data.data)
+        setLoading(false)
+      })
+      .catch(error => {
+        setError(error)
+        setLoading(false)
+      })
+  }
+
 
   useEffect(() => {
     // Fetch images data
@@ -284,11 +316,11 @@ export default function BeforeAfter() {
         <div className="row gx-0 mb-5">
           <div className="offset-1 col-10 px-4">
             <ul className="nav text-uppercase justify-content-center py-2 px-3">
-              {['All', 'Augmentation', 'Reduction', 'BBL', 'Lift', 'Tummy', 'Mommy', 'Implant', 'Breast'].map((link) => (
+              {['All', 'Real', 'Fake', 'BBL', 'Lift', 'Tummy', 'Mommy', 'Implant', 'Breast'].map((link) => (
                 <li className="nav-item" key={link}>
                   <Link
                     className={`nav-link border-bottom px-4 text-decoration-none text-center py-3 display-6 ${activeLink === link ? 'active' : ''}`}
-                    to="/before-after"
+                    to="/before"
                     onClick={() => linkClick(link)}
                     lang={language}
                   >

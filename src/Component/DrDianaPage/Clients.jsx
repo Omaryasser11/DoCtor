@@ -9,22 +9,30 @@ const Clients = () => {
     <div className="clients-wrapper">
       <div className="clients">
         <div className="client-logo no-link">
-          <img
-            decoding="async"
-            src="https://www.drwilliammiami.com/wp-content/uploads/2020/01/AMA-logo.png"
-            alt="client"
-            width="178"
-            height="100"
-          />
+          <a href="https://escad.org/">
+            <img
+              decoding="async"
+              src="https://www.imghippo.com/files/yJ8271726113581.png"
+              alt="client"
+              width="178"
+              height="100"
+            />
+          </a>
         </div>
         <div className="client-logo no-link">
-          <img
-            decoding="async"
-            src="https://www.drwilliammiami.com/wp-content/uploads/2020/01/asps-logo-e.png"
-            alt="client"
-            width="135"
-            height="100"
-          />
+
+
+          <a href="https://www.cbamedicine.com/">
+            <img
+              decoding="async"
+              src="https://www.cbamedicine.com/wp-content/uploads/2024/01/New-Logo-CBAM-full.png"
+              alt="client"
+              width="225"
+              height="175"
+            />
+
+          </a>
+
         </div>
         <div className="client-logo no-link">
           <img

@@ -22,6 +22,8 @@ import AboutDr from './Pages/AdminPage/AboutDr.jsx';
 import ContactSection from './Component/ContactUs/ContactUs.jsx';
 import EditContact from './Component/ContactUs/EditContact.jsx';
 import ComingSoon from './Component/ComingSoon/ComingSoon.jsx';
+import ErorrPage from './Component/ErrorPage404/ErorrPage.jsx';
+import Events from './Component/Events/Events.jsx';
 function AppContent() {
   const [isFlipped] = useRecoilState(isFlippedState);
   const { language } = useContext(LanguageContext);
@@ -59,6 +61,9 @@ function AppContent() {
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/Edit" element={<EditContact />} />
         <Route path="/ComingSoon" element={<ComingSoon />} />
+        <Route path="/Events" element={<Events />} />
+
+        <Route path="*" element={<ErorrPage />} />
 
         {/* Add a 404 page route if needed */}
       </Routes>
