@@ -36,8 +36,8 @@ const AboutDrWilliam = () => {
 
     if (loading) return (
         <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center high-index">
-    <Spinner />
-  </div>
+            <Spinner />
+        </div>
     );
     if (error) return <div>Error: {error.message}</div>;
 
@@ -54,8 +54,8 @@ const AboutDrWilliam = () => {
 
     return (
         <div className='col-12 bg flex'>
-            <div className="row about-dr-william col-10">
-                <div className="col-md-6" data-aos="fade-right">
+            <div className="row about-dr-william col-10 flexA">
+                <div className="col-md-12  col-lg-6 mb-4" data-aos="fade-right">
                     <div className="column-inner">
                         <div className="divider" style={{ height: '10px' }}></div>
                         <div className="animated slideInLeft">
@@ -86,7 +86,7 @@ const AboutDrWilliam = () => {
                         </a>
                     </div>
                 </div>
-                <div className="col-md-6 video-section" data-aos="fade-left">
+                <div className="col-md-12 video-section  col-lg-6" data-aos="fade-left">
                     <div className="column-inner">
                         <div className="nectar-video-box">
                             <div className="inner-wrap">

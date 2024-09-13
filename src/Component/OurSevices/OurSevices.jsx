@@ -18,13 +18,13 @@ const OurSevices = () => {
   }, []);
 
   return (
-    <section className='col-12 flex Section2'>
+    <section className='col-12  Section2'>
       <div
         id="reasons"
-        className="flexR col-10"
-        style={{ gap: '1rem' }}
+        className=" row  flexA col-12"
+
       >
-        <div className="col-md-6 video-column" data-aos="fade-right">
+        <div className="col-md-10   col-lg-6 video-column" data-aos="fade-right">
           <div className="video-box"
 
           >
@@ -52,7 +52,7 @@ const OurSevices = () => {
             <div className='Filter2'></div>
           </div>
         </div>
-        <div className="col-md-6 text-column " data-aos="fade-left">
+        <div className="col-md-10 p-4  col-lg-6 text-column " data-aos="fade-left">
           <div className="content-wrapper">
             <h3 className="title" lang={language}>{language === 'ar' ? "أهم خدمات افضل دكتور تجميل في المملكه" : "Services provided by Dr. Dina"}</h3>
             <div className="divider"></div>
@@ -67,7 +67,7 @@ const OurSevices = () => {
               </p>
             </blockquote>
             <div className="divider"></div>
-            <a className="btn1 btn"  role="button">
+            <a className="btn1 btn" role="button">
               {language === 'ar' ? "معرفه المزيد" : " learn more"}
             </a>
           </div>

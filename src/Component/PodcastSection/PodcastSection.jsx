@@ -9,12 +9,12 @@ const PodcastSection = () => {
     const { language } = useContext(LanguageContext);
 
     return (
-        <div className=' flex col-12 full-width-section3  row  vc-row-equal-height vc-row-flex vc-row-content-middle'
+        <div className=' flexA col-12 full-width-section3  row  vc-row-equal-height vc-row-flex vc-row-content-middle'
             id="fws_66a6b014267df">
 
 
-            <div className=" flexR col-10" style={{ gap: '1.5rem' }} >
-                <div className="col-12 col-md-6 d-flex align-items-center" >
+            <div className=" flexA col-10" >
+                <div className="col-lg-6 col-md-12 d-flex align-items-center mb-4" >
                     <div className=" col-12 nectar-post-grid-wrap text-color-light spacing-none">
 
                         <div className="nectar-post-grid col-12">
@@ -54,7 +54,7 @@ const PodcastSection = () => {
                     </div>
                 </div>
 
-                <div className="col-12 col-md-6 text-center content2">
+                <div className="col-lg-6 col-md-12 text-center content2 p-4">
                     <h4 className='S2Title' lang={language}>
 
                         {language === 'ar'

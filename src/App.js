@@ -10,6 +10,7 @@ import NavBarComponent from './Component/NavBar/NavBarComponent.jsx';
 import Footer from './Component/Footer/Footer.jsx';
 import BeforeAndAfter from './Component/BeforeAfter/BeforeAfter.jsx';
 import Procedures from './Component/Procedures/Procedures.jsx';
+import ProcedureDetails from './Component/ProcedureDetails/ProcedureDetails.jsx';
 import Testimonials from './Component/Testimonials/Testimonials.jsx';
 import Blog from './Component/Blog/Blog.jsx';
 import Videos from './Component/Videos/Videos.jsx';
@@ -52,6 +53,7 @@ function AppContent() {
         <Route path="/dr" element={<DrWilliamSection />} />
         <Route path="/before" element={<BeforeAndAfter />} />
         <Route path="/procedures" element={<Procedures />} />
+        <Route path="/ProcedureDetails/:id" element={<ProcedureDetails />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/videos" element={<Videos />} />

@@ -48,11 +48,11 @@ const Footer = () => {
 
   return (
     <div id="footer-outer" className="col-12">
-      <div id="footer-widgets">
-        <div className="container flex col-12">
-          <div className="row flexR col-12">
+      <div id="footer-widgets col-12 flex">
+        <div className=" flex col-12">
+          <div className="row flexA col-12">
             {/* Logo */}
-            <div className="col-2 flex">
+            <div className="col-lg-1  col-md-12 flex">
               <div className="widget widget_text">
                 <div className="textwidget flex">
                   <p>
@@ -70,7 +70,7 @@ const Footer = () => {
             </div>
 
             {/* Footer Links */}
-            <div className="col-7 flexR SpanFooterParent">
+            <div className="col-lg-7 col-md-12  flexR  SpanFooterParent">
               <ul className="footer-links flexR">
                 {navItems.map((item, index) => (
                   <li key={index}>
@@ -79,13 +79,13 @@ const Footer = () => {
                     </Link>
                   </li>
                 ))}
-    
+
               </ul>
             </div>
 
             {/* Social Media Links */}
-            <div className="col-3 flexR position-relative">
-              <ul className='Social flexR'>
+            <div className="col-lg-2 col-md-12 flexA position-relative m-4" style={{ marginBottom: '2rem' }}>
+              <ul className='Social flexR col-12'>
                 {socialLinks.onlyFans && (
                   <li>
                     <a href={socialLinks.onlyFans} target="_blank" rel="noopener noreferrer">
@@ -129,8 +129,8 @@ const Footer = () => {
       </div>
 
       {/* Copyright Section */}
-      <div className="row" id="copyright">
-        <div className="container">
+      <div className="row mt-4 col-12 " id="copyright">
+        <div className="container col-12">
           <div className="col-12 flexRR" lang={language}>
             <p>
               {language === 'ar'

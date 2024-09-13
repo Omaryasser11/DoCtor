@@ -1,0 +1,21 @@
+.bg-pink{
+    background-color: #ff6d95;
+}
+.layer{
+    opacity: 0;
+    background-color: #F4F4F4;
+    transition: 0.25s;
+}
+.borderP{
+    border: 12px solid #FF477E ;
+    height: 200px;
+    width: 300px;
+    transition: 0.25s;
+}
+.hoverRec:hover .layer{
+    opacity: 0.4;
+}
+.hoverRec:hover .borderP{
+    height: 300px;
+    border-radius: 50%;
+}

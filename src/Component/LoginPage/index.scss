@@ -378,3 +378,12 @@ input:focus {
   color: #ff477e;
   border: solid 1 px #ff477e;
 }
+
+.flexA{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}

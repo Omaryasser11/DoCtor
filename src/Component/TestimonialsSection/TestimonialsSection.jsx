@@ -42,7 +42,7 @@ const Testimonials = () => {
   return (
     <div id="fws_66aaf48d6affe" className='col-12 ll'>
       <div className="wpb_row col-12">
-        <div className="container ColCard col-12" >
+        <div className=" ColCard col-12 flexA" >
           {data1.map((testimonial, index) => (
             <div
               data-aos="fade-down"
@@ -50,7 +50,7 @@ const Testimonials = () => {
 
 
               key={index}
-              className={`column COL${index + 1} col-4 col-md-12`}
+              className={`column COL${index + 1} col-lg-4 col-md-12 `}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
