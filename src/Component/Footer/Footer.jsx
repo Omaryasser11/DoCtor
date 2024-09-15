@@ -4,7 +4,7 @@ import './Footer.scss';
 import LOGO from "../../assets/لوجو دينا المعدل.png";
 import oOGO from "../../assets/logo-no-background.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faFacebook, faYoutube, faInstagram, faTiktok, faSnapchat } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter, faFacebook, faYoutube, faInstagram, faTiktok, faSnapchat, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import BasrUrl from '../../BaseUrl'; // Import the configured Axios instance
 import LanguageToggle from '../../store/LanguageToggle';
 import { Link } from 'react-router-dom';
@@ -121,6 +121,14 @@ const Footer = () => {
                     </a>
                   </li>
                 )}
+                {(
+                  <li>
+                    <a href='https://api.whatsapp.com/send/?phone=966591986793' target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faWhatsapp} />
+                    </a>
+                  </li>
+                )}
+
               </ul>
             </div>
 

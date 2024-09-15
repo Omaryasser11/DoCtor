@@ -1,16 +1,13 @@
 .section3 {
-  .row {
-    display: flex;
-    justify-content: space-between;
+  .hh {
+    width: 100%;
 
     .col {
       flex: 1;
       padding: 7%;
       position: relative;
 
-      &.half {
-        width: 50%;
-      }
+
 
       &.white-background {
         background-color: #ffffff;
@@ -41,7 +38,7 @@
         position: relative;
         overflow: hidden;
 
- img {
+        img {
           width: 80%;
           height: 400px;
           transition: transform 0.3s ease;
@@ -51,7 +48,8 @@
           align-content: center;
           justify-content: center;
           align-items: center;
-      }
+        }
+
         .color-overlay {
           position: absolute;
           top: 0;
@@ -93,7 +91,7 @@
           font-size: 2rem;
           text-align: left;
           text-transform: capitalize;
-      
+
         }
 
         h3:lang(ar) {
@@ -119,7 +117,7 @@
           color: #212529;
         }
 
-.Y3 {
+        .Y3 {
           font-family: "Futura Std", sans-serif;
           font-size: 20px;
           font-weight: 400;
@@ -130,9 +128,29 @@
           padding: 1rem;
           text-align: left;
           padding-left: 0;
-      }
+        }
 
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .section3 .hh {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .section3 .hh .col.white-background {
+    background-color: #ffffff;
+    background-color: #f2f2f2;
+    background-color: #fafafa;
+    transition: 0.5s;
+    width: 100%;
   }
 }

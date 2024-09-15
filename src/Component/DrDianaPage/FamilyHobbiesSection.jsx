@@ -35,20 +35,20 @@ const FamilyHobbies = () => {
   }, [language]);
 
   if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center high-index">
-  <Spinner />
-</div>
+    <Spinner />
+  </div>
   if (error) {
     return <div className="family-hobbies">Error loading data. Please try again later.</div>;
   }
 
   return (
     <div className="family-hobbies col-12">
-      <div className="content-section flexR">
-        <div className="text-section" data-aos="flip-left">
+      <div className="content-section col-12 flexA ">
+        <div className="text-section col-lg-6 col-md-12" data-aos="flip-left">
           <h3 lang={language}>{data?.header || "Default Header"}</h3>
           <p className='Y3' lang={language}>{data?.body || "Default body text."}</p>
         </div>
-        <div className="gallery-section" data-aos="flip-right">
+        <div className="gallery-section  col-lg-6 col-md-12" data-aos="flip-right">
           <Swiper
             spaceBetween={30}
             centeredSlides={true}

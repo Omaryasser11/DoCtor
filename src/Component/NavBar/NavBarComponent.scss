@@ -152,13 +152,22 @@ a:lang(ar) {
 @media (max-width: 768px) {
     .menu-icon {
         display: block;
+        font-size: 2.24rem;
+        color: white;
     }
 
-    .NavBar .navBarLogo {
-        height: 3.5rem;
-        width: 7rem;
+    .menu-icon:hover {
+        display: block;
+  text-shadow: #ebfbff 2px 2px 2px ;
+        color: rgb(227, 3, 89);
     }
 
+
+        .NavBar .navBarLogo {
+            height: 6rem;
+            width: 10rem;
+        }
+    
     .nav-links {
         display: none; // Hide menu links by default on mobile/tablet
     }

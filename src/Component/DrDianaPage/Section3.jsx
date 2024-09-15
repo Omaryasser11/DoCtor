@@ -30,12 +30,12 @@ const Section3 = () => {
       });
   }, []);
   if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center high-index">
-  <Spinner />
-</div>
+    <Spinner />
+  </div>
   return (
-    <div className="section3">
-      <div className="row">
-        <div className="col half white-background" data-aos="zoom-in-up">
+    <div className="section3 flex   col-12">
+      <div className=" col-12 flexA hh">
+        <div className=" col-lg-6 col-md-12 col  white-background  " data-aos="zoom-in-up">
           <div className="image-wrapper">
             <div className="image-hover flex">
               <img
@@ -49,7 +49,7 @@ const Section3 = () => {
           </div>
         </div>
 
-        <div className="col half blue-background flex" data-aos="zoom-in-down">
+        <div className=" col-lg-6 col-md-12  col  blue-background flex " data-aos="zoom-in-down">
           <div className="text-content">
             <h3 lang={language}>{data?.header || 'default-image.png'}</h3>
             <p lang={language} className='Y3'>

@@ -29,7 +29,7 @@ const LandingSection = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div id="row_col_wrap_12">
+    <div id="row_col_wrap_12" className='flexA col-12'>
       <div
         id="column_container_1"
         data-using-bg="true"
@@ -40,6 +40,7 @@ const LandingSection = () => {
         data-bg-opacity="0.3"
         data-animation=""
         data-delay="0"
+        className='col-lg-6 col-md-12'
       >
         <div id="vc_column_inner_1">
           <div
@@ -47,6 +48,7 @@ const LandingSection = () => {
             data-bg-pos="center center"
             data-bg-animation="none"
             data-bg-overlay="false"
+
           >
             <div id="inner_wrap">
               <div id="Background"></div>
@@ -70,6 +72,7 @@ const LandingSection = () => {
         data-bg-opacity="1"
         data-animation=""
         data-delay="0"
+        className='col-lg-6 col-md-12'
       >
         <div id="vc_column_inner_2">
           <div id="wpb_wrapper_2">
@@ -108,7 +111,7 @@ const LandingSection = () => {
 
           </div>
         </div>
-      </div>
+      </div >
     </div>
   );
 }
