@@ -29,7 +29,6 @@ export default function Videos() {
 
   useEffect(() => {
       const admin = localStorage.getItem("token")
-      console.log(admin)
     if (admin != null) {
       setToken(admin)
     }

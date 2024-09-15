@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Ensure BrowserRouter is imported
 import { useRecoilState } from 'recoil';
 import { HelmetProvider } from 'react-helmet-async';
+import useIdleTimer from './store/useIdleTimer.js'; // Import the custom hook
 import DrWilliamSection from './Pages/Dr/Dr.jsx';
 import HomePage from './Pages/HomePage/HomePage.jsx';
 import { isFlippedState } from './store/index.js';
@@ -18,9 +19,21 @@ import { LanguageProvider, LanguageContext } from './store/LanguageContext.js';
 import Spinner from './Component/Spinner/Spinner.jsx';
 import { Toaster } from 'react-hot-toast';
 import LoginForm from './Component/LoginPage/index.js';
+import AboutDr from './Pages/AdminPage/AboutDr.jsx';
+import ContactSection from './Component/ContactUs/ContactUs.jsx';
+import EditContact from './Component/ContactUs/EditContact.jsx';
+import ComingSoon from './Component/ComingSoon/ComingSoon.jsx';
+import ErorrPage from './Component/ErrorPage404/ErorrPage.jsx';
+import Events from './Component/Events/Events.jsx';
 function AppContent() {
   const [isFlipped] = useRecoilState(isFlippedState);
   const { language } = useContext(LanguageContext);
+  const handleIdle = () => {
+    localStorage.removeItem("token");
+  };
+
+  // Use the idle timer hook with a timeout of 30 minutes
+  const { showAlert } = useIdleTimer(12 * 60 * 1000, handleIdle);
 
   // Determine the text direction based on the language
   const direction = language === 'ar' ? 'rtl' : 'ltr';
@@ -29,6 +42,12 @@ function AppContent() {
     <div className="App" dir={direction}>
       <Toaster />
       {isFlipped && <NavBarComponent />}
+      {showAlert && (
+        <div className="alert">
+          <p>Your session is about to expire. Please save your work or stay active to continue.</p>
+          {/* Add any additional UI elements or styles here */}
+        </div>
+      )}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/dr" element={<DrWilliamSection />} />
@@ -37,10 +56,18 @@ function AppContent() {
         <Route path="/ProcedureDetails/:id" element={<ProcedureDetails />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/Videosb" element={<Videos />} />
-        <Route path='/Spinner' element={<Spinner></Spinner>} />
-        <Route path="/Faq" element={<Faq />} />
-        <Route path='Login' element={<LoginForm />} />
+        <Route path="/videos" element={<Videos />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/admin" element={<AboutDr />} />
+        <Route path="/contact" element={<ContactSection />} />
+        <Route path="/Edit" element={<EditContact />} />
+        <Route path="/ComingSoon" element={<ComingSoon />} />
+        <Route path="/Events" element={<Events />} />
+
+        <Route path="*" element={<ErorrPage />} />
+
+        {/* Add a 404 page route if needed */}
       </Routes>
       <Footer />
     </div>
@@ -50,7 +77,7 @@ function AppContent() {
 function App() {
   return (
     <HelmetProvider>
-      <Router>
+      <Router> {/* Use BrowserRouter here */}
         <LanguageProvider>
           <AppContent />
         </LanguageProvider>

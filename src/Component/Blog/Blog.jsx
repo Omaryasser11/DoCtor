@@ -21,7 +21,7 @@ export default function Blog() {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
   const [apiError, setApiError] = useState('')
   const [formBased, setFormBased] = useState('')
-  const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
+  const [setIsFlipped] = useRecoilState(isFlippedState);
   const [token, setToken] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -60,8 +60,8 @@ export default function Blog() {
 
 
   const count = Math.ceil(cardData.length / cardsPerPage);
-  const startIndex = (currentPage - 1) * cardsPerPage;
-  const currentCards = cardData.slice(startIndex, startIndex + cardsPerPage);
+  // const startIndex = (currentPage - 1) * cardsPerPage;
+  // const currentCards = cardData.slice(startIndex, startIndex + cardsPerPage);
 
   const handlePageChange = (event, page) => {
     setCurrentPage(page);

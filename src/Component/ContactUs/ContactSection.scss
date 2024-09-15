@@ -1,0 +1,192 @@
+.contact-section {
+    width: 100%; // Ensure the section takes up full width
+
+    #map {
+        width: 100%;
+        height: 300px; // Adjust as needed
+        background: no-repeat center/cover;
+        overflow: hidden;
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    }
+
+    .container {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        margin-top: -7rem;
+        /* background-color: red; */
+    }
+
+    .contact-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+        background-color: #fb323274; // Adjusted for the form background color
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        width: 80%;
+    }
+
+    .contact-form {
+        flex: 1 1 100%;
+        margin-right: 0; // Remove right margin to use full width
+
+        form {
+            display: flex;
+            flex-wrap: wrap; // Allows wrapping of elements
+            gap: 20px; // Spacing between elements
+            align-items: center; // Center items vertically
+
+            .relative {
+                flex: 1 1 calc(50% - 20px); // Flex-grow and flex-basis for two columns
+                margin-bottom: 1.5rem;
+
+                input,
+                textarea {
+                    width: 100%;
+                    padding: 10px;
+                    border: 2px solid #dee2e6;
+                    border-radius: 5px;
+                    transition: border-color 0.3s ease;
+
+                    &:focus {
+                        border-color: #de647a;
+                        outline: none;
+                    }
+                }
+
+                label {
+                    margin-top: 5px;
+                    display: block;
+                    color: #ffffff;
+                    font-size: 20px; // Ensured proper font-size
+                    font-weight: 700;
+                }
+            }
+
+            .checkbox-wrapper {
+                flex: 1 1 90%; // Full width for checkbox
+                display: flex;
+                align-items: center;
+
+                input {
+                    margin-right: 10px;
+                }
+            }
+
+            button {
+                background-color: #de647a;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: #b94a58;
+                }
+            }
+        }
+    }
+
+    .contact-info {
+        flex: 1 1 80%; // Full width for smaller screens
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            .icon {
+                background-color: #e0f7fa;
+                /* padding: 10px; */
+                border-radius: 50%;
+                font-size: 1.5rem;
+                color: #00796b;
+                height: 40px;
+                width: 40%;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                align-content: center;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .details {
+                .title {
+                    font-weight: bold;
+                    color: #333; // Ensured proper color for titles
+                }
+
+                p {
+                    margin: 0;
+                    color: #6c757d;
+                }
+            }
+        }
+    }
+}
+
+.contact-section .contact-info {
+    flex: 1 1 80%;
+    display: flex;
+    flex-direction: row; // Align items in a row
+    gap: 1.5rem; // Space between items
+    flex-wrap: nowrap; // Prevent wrapping
+    align-content: center; // Align content centrally along the cross axis
+    justify-content: center; // Center items horizontally
+    align-items: center; // Align items vertically in the center
+}
+
+.contact-section .contact-info .contact-card .icon {
+    background-color: #e0f7fa;
+    /* padding: 10px; */
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #00796b;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.mt-4{
+    width: 80%;
+}
+.flex1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-icon {
+    cursor: pointer;
+    color: #007bff; // Bootstrap primary color, adjust as needed
+}
+
+.edit-icon:hover {
+    color: #0056b3; // Darker shade on hover
+}

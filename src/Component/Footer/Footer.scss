@@ -1,5 +1,4 @@
 #footer-outer {
-  // background-image: url('https://www.drwilliammiami.com/wp-content/uploads/2020/01/6845848-miami.jpg');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -18,7 +17,6 @@
   .row {
     display: flex;
     flex-wrap: wrap;
-
 
     .col {
       flex: 1 1 25%;
@@ -138,8 +136,10 @@
             color: #ffffff;
             text-decoration: none;
             font-size: 18px;
+            transition: transform 0.3s ease, color 0.3s ease;
 
             &:hover {
+              transform: scale(1.2);
               color: #00718b;
             }
 
@@ -154,37 +154,11 @@
 }
 
 .SpanFooterParent {
-
   span {
     font-size: 1rem;
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
-}
-
-.social {
-  display: flex;
-  justify-content: space-around;
-}
-
-.fa-twitter {
-  color: #1DA1F2;
-}
-
-.fa-facebook {
-  color: #1877F2;
-}
-
-.fa-youtube-play {
-  color: #FF0000;
-}
-
-.fa-instagram {
-  color: #E1306C;
-}
-
-.icon-salient-tiktok {
-  color: #000000;
 }
 
 .social {
@@ -204,13 +178,12 @@
 }
 
 .social a {
-
   text-decoration: none;
   font-size: 25px;
   background-color: #ffbbbb;
   padding: .25rem .5rem;
   border-radius: 2rem;
-
+  transition: transform 0.3s ease, color 0.3s ease; // Smooth transition for hover
 }
 
 .alignnone {
@@ -219,12 +192,10 @@
 }
 
 .alignnone:hover {
-
   filter: none;
   cursor: pointer;
-  transform: scale(1.3);
+  transform: scale(1.3); // Enlarge image on hover
 }
-
 
 .flexRR {
   display: flex;
@@ -242,8 +213,6 @@
   font-style: normal;
   text-align: right;
 }
-
-
 
 @media (max-width: 768px) {
   .SpanFooterParent {
@@ -263,14 +232,11 @@
 
   #copyright {
     .container {
-
       .alignnone {
         width: 100px;
         height: 26px;
       }
-
     }
-
   }
 
   #footer-outer #copyright {
@@ -279,5 +245,76 @@
     width: 100%;
     margin: 0;
   }
+}
 
+.Social {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Social li {
+  list-style: none;
+  margin: 0 15px;
+}
+
+.Social li a {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  /* Adjusted to match height */
+  background: #ffffff;
+  /* Dark background for the icon */
+  border-radius: 50%;
+  font-size: 30px;
+  color: #ff005d;
+  /* Default text color */
+  transition: .5s;
+}
+
+.Social li a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: transparent;
+  /* No background */
+  transition: .5s;
+  transform: scale(.9);
+  z-index: -1;
+}
+
+.Social li a:hover::before {
+  background: #ffffff;
+  /* Neon pink background on hover */
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #ffffff;
+  /* Neon pink glow */
+}
+
+.Social li a:hover {
+  background-color: #fd6485;
+  color: #ffffff;
+  /* Neon pink text color on hover */
+  box-shadow: 0 0 5px #ffffff;
+  /* Neon pink glow */
+  text-shadow: 0 0 5px #ff005d;
+  /* Neon pink text shadow */
+}
+
+/* Instagram CSS Linear Gradient Background */
+.insta {
+  background: #833ab4;
+  background: linear-gradient(to right,
+      #833ab4, #fd1d1d, #fcb045);
 }

@@ -1,0 +1,157 @@
+/* LandingSection.scss */
+
+.d111 {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 0;
+    margin: 1rem 0;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+.landing-section-form {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 67.5vh;
+    width: 60%;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .loading {
+      text-align: center;
+      font-size: 18px;
+    }
+  
+    .edit-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  
+      .section {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+  
+        h2 {
+          margin-top: 0;
+        }
+  
+        input,
+        textarea {
+          width: 100%;
+          padding: 8px;
+          margin-bottom: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+  
+        textarea {
+          resize: vertical;
+          height: 100px;
+        }
+      }
+  
+      .form-actions {
+        display: flex;
+        justify-content: space-between;
+  
+        button {
+          padding: 10px 15px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+        }
+  
+        button:first-child {
+          background-color: #28a745;
+          color: #fff;
+        }
+  
+        button:last-child {
+          background-color: #6c757d;
+          color: #fff;
+        }
+      }
+    }
+  
+    .delete-button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      background-color: #dc3545;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  }
+  // Add this to your SCSS file to center the alert as an overlay
+
+// Add these styles to your SCSS file
+
+.alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; // Make sure the alert is on top of other content
+  pointer-events: none; // Prevent interaction with the overlay background
+  opacity: 0; // Initially hidden
+  transition: opacity 0.3s ease-out; // Fade-in effect
+
+  &.show {
+    opacity: 1; // Show the overlay
+  }
+
+  .alert {
+    pointer-events: auto; // Allow interaction with the alert
+    transform: translateY(-100%); // Initially hidden above the viewport
+    transition: transform 0.3s ease-out; // Slide-down effect
+
+    &.show {
+      transform: translateY(0); // Slide into view
+    }
+  }
+}
+// Add these styles to your SCSS file
+
+.alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 9999;
+    pointer-events: none; // Prevent interaction with the overlay background
+    opacity: 0; // Initially hidden
+    transition: opacity 0.3s ease-out; // Fade-in effect
+  
+    &.show {
+      opacity: 1; // Show the overlay
+    }
+  
+    .alert {
+      pointer-events: auto; // Allow interaction with the alert
+      transform: translateY(-100%); // Initially hidden above the viewport
+      transition: transform 0.3s ease-out; // Slide-down effect
+  
+      &.show {
+        transform: translateY(0); // Slide into view
+      }
+    }
+  }
+  

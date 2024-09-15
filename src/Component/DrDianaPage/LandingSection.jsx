@@ -22,10 +22,10 @@ const LandingSection = () => {
         setLoading(false);
       });
   }, []);
-  
+
   if (loading) return <div className="position-fixed top-0 bottom-0 start-0 end-0 bg-light d-flex align-items-center justify-content-center high-index">
-  <Spinner />
-</div>
+    <Spinner />
+  </div>
   if (error) return <p>Error: {error.message}</p>;
 
   return (
@@ -90,7 +90,7 @@ const LandingSection = () => {
 
             <div id="wpb_text_column_2">
               <div id="wpb_wrapper_4">
-                <h4 className='H4BOLD'  lang={language}>
+                <h4 className='H4BOLD' lang={language}>
                   “{data.quote || 'Loading quote...'}”
                 </h4>
               </div>

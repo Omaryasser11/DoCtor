@@ -1,21 +1,58 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { LanguageContext } from '../../store/LanguageContext';
 import './Footer.scss';
-import LOGO from "../../assets/لوجو دينا المعدل.png"
-import oOGO from "../../assets/logo-no-background.png"
+import LOGO from "../../assets/لوجو دينا المعدل.png";
+import oOGO from "../../assets/logo-no-background.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faFacebook, faYoutube, faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter, faFacebook, faYoutube, faInstagram, faTiktok, faSnapchat } from '@fortawesome/free-brands-svg-icons';
+import BasrUrl from '../../BaseUrl'; // Import the configured Axios instance
+import LanguageToggle from '../../store/LanguageToggle';
+import { Link } from 'react-router-dom';
 
-import LOGO2 from "../../assets/8-removebg-preview.png"
-import { features } from 'caniuse-lite';
 const Footer = () => {
   const { language } = useContext(LanguageContext);
+  const [socialLinks, setSocialLinks] = useState({});
+
+  useEffect(() => {
+    const fetchSocialLinks = async () => {
+      try {
+        const response = await BasrUrl.get('/shared'); // Adjust the endpoint as needed
+        setSocialLinks(response.data.socialLinks);
+      } catch (error) {
+        console.error('Error fetching social links:', error);
+      }
+    };
+
+    fetchSocialLinks();
+  }, []);
+
+  const navItems = language === 'ar' ? [
+    { to: '/dr', text: 'دكتور دينا' },
+    { to: 'Procedures', text: 'أعمالنا' },
+    { to: 'Before', text: 'قبل و بعد' },
+    { to: '/faq', text: 'الاسئلة الشائعة' },
+    { to: 'Videosb', text: 'فيديوهات' },
+    { to: 'Blog', text: 'المدونة' },
+    { to: 'Testimonials', text: 'شهادات العملاء' },
+    { to: 'Reservations', text: 'حجوزات' },
+  ] : [
+    { to: '/dr', text: 'Dr DINA' },
+    { to: 'Procedures', text: 'PROCEDURES' },
+    { to: 'Before', text: 'BEFORE & AFTER' },
+    { to: '/faq', text: 'FAQ' },
+    { to: 'Videosb', text: 'VIDEOS' },
+    { to: 'Blog', text: 'BLOG' },
+    { to: 'Testimonials', text: 'TESTIMONIALS' },
+    { to: 'Consultation', text: 'CONSULTATION' },
+  ];
+
   return (
-    <div id="footer-outer" className='col-12'>
+    <div id="footer-outer" className="col-12">
       <div id="footer-widgets">
-        <div className="container col-12">
+        <div className="container flex col-12">
           <div className="row flexR col-12">
-            <div className="col-4 flex">
+            {/* Logo */}
+            <div className="col-2 flex">
               <div className="widget widget_text">
                 <div className="textwidget flex">
                   <p>
@@ -23,100 +60,92 @@ const Footer = () => {
                       decoding="async"
                       className="alignnone size-full wp-image-5932"
                       src={LOGO}
-                      alt=""
+                      alt="Logo"
                       width="200"
                       height="150"
                     />
                   </p>
-
-
                 </div>
               </div>
             </div>
 
-            <div className='col-4 flexR SpanFooterParent'>
-              <span lang={language} className=' TITO Linko hover-1'>{language === 'ar' ? 'المزايا' : 'Features'}</span>
-              <span lang={language} className='TITO Linko hover-1'>{language === 'ar' ? 'تواصل معنا' : 'Blog'}</span>
-              <span lang={language} className=' TITO Linko hover-1'>{language === 'ar' ? 'الاسئله الشائعه' : 'Blog'}</span>
-              <span lang={language} className=' TITO Linko hover-1'>{language === 'ar' ? 'خدماتنا' : 'Blog'}</span>
+            {/* Footer Links */}
+            <div className="col-7 flexR SpanFooterParent">
+              <ul className="footer-links flexR">
+                {navItems.map((item, index) => (
+                  <li key={index}>
+                    <Link lang={language} className="Linko hover-1" to={item.to}>
+                      {item.text}
+                    </Link>
+                  </li>
+                ))}
+    
+              </ul>
             </div>
 
-            <div className="col-4 flex">
-              <div className="col span_7 col_last">
-                <ul className="social flexR">
+            {/* Social Media Links */}
+            <div className="col-3 flexR position-relative">
+              <ul className='Social flexR'>
+                {socialLinks.onlyFans && (
                   <li>
-                    <a target="_blank" rel="noopener noreferrer" href="http://www.onlyfans.com/drwilliammiami">
-                      <FontAwesomeIcon icon={faTwitter} style={{ color: '#1DA1F2' }} />
+                    <a href={socialLinks.onlyFans} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faSnapchat} />
                     </a>
                   </li>
+                )}
+                {socialLinks.tiktok && (
                   <li>
-                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Drwilliammiami/">
-
-                      <FontAwesomeIcon icon={faFacebook} style={{ color: '#1877F2' }} />
+                    <a href={socialLinks.tiktok} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faTiktok} />
                     </a>
                   </li>
+                )}
+                {socialLinks.facebook && (
                   <li>
-                    <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UCgrwz50ERG6TNcvfet5e6Mg">
-
-                      <FontAwesomeIcon icon={faYoutube} style={{ color: '#FF0000' }} />
+                    <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faFacebook} />
                     </a>
                   </li>
+                )}
+                {socialLinks.instagram && (
                   <li>
-                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/drwilliammiami/?hl=en">
-
-                      <FontAwesomeIcon icon={faInstagram} style={{ color: '#E1306C' }} />
+                    <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faInstagram} />
                     </a>
                   </li>
+                )}
+                {socialLinks.youtube && (
                   <li>
-                    <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@drwilliammiami">
-
-                      <FontAwesomeIcon icon={faTiktok} style={{ color: '#000000' }} />
+                    <a href={socialLinks.youtube} target="_blank" rel="noopener noreferrer">
+                      <FontAwesomeIcon icon={faYoutube} />
                     </a>
                   </li>
-                </ul>
-              </div>
+                )}
+              </ul>
             </div>
 
-            {/* <div className="col span_3 one-fourths right-edge">
-              <div className="widget widget_text">
-                <div className="textwidget">
-                  <p>
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.5677155902695!2d-80.26404181522584!3d25.75180541897774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b641820e4381%3A0xce1a03041391440a!2sCareaga%20Plastic%20Surgery!5e0!3m2!1sen!2sus!4v1708615874925!5m2!1sen!2sus"
-                      style={{ border: 0 }}
-                      allowFullScreen=""
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      width="100%"
-                      height="200"
-                    ></iframe>
-                  </p>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
 
+      {/* Copyright Section */}
       <div className="row" id="copyright">
         <div className="container">
           <div className="col-12 flexRR" lang={language}>
             <p>
-            {language === 'ar'
-            ? 'جميع الحقوق محفوظة © 2024 Dina-Khairy.com'
-            : 'All rights reserved © 2024 Dina-Khairy.com'}
+              {language === 'ar'
+                ? 'جميع الحقوق محفوظة © 2024 Dina-Khairy.com'
+                : 'All rights reserved © 2024 Dina-Khairy.com'}
             </p>
             <img
               decoding="async"
               className="alignnone size-full wp-image-5932"
               src={oOGO}
-              alt=""
+              alt="Footer Logo"
               width="150"
               height="50"
             />
-
           </div>
-
         </div>
       </div>
     </div>

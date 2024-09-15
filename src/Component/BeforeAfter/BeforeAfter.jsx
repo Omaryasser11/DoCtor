@@ -18,18 +18,18 @@ import ReactPlayer from 'react-player';
 export default function BeforeAfter() {
   const [data, setData] = useState([]);
   const [procedures, setProcedures] = useState([]);
+  const [proceduresName, setProceduresName] = useState([]);
   const [videos, setVideos] = useState([]);
-  const [currentId, setCurrentId] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [apiError, setApiError] = useState('')
-  const [activeLink, setActiveLink] = useState('All');
+  const [activeLink, setActiveLink] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isOverlayVisiblePhoto, setIsOverlayVisiblePhoto] = useState(false);
   const [isOverlayVisibleVideo, setIsOverlayVisibleVideo] = useState(false);
   const [isArrowsVisible, setIsArrowsVisible] = useState(false);
-  const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
+  const [setIsFlipped] = useRecoilState(isFlippedState);
   const { language } = useContext(LanguageContext);
   const [token, setToken] = useState(null);
 
@@ -40,8 +40,8 @@ export default function BeforeAfter() {
     }
   }, []);
 
-  const linkClick = (linkName) => {
-    setActiveLink(linkName);
+  const linkClick = (linkId) => {
+    setActiveLink(linkId);
   };
 
   function openCard(imageSrc){
@@ -67,10 +67,9 @@ export default function BeforeAfter() {
 
   function fetchPhotos() {
       setLoading(true)
-      baseUrl.get('before-after/images')
+      baseUrl.get(`before-after/images`)
         .then((response) => {
           setData(response.data.data);
-          console.log(response.data.data);
           setLoading(false);
         })
         .catch((error) => {
@@ -85,7 +84,6 @@ export default function BeforeAfter() {
         headers: { 'Accept-Language': language },
       })
           .then((response) => {
-            console.log(response.data);
             setVideos(response.data);
             setLoading(false);
           })
@@ -162,6 +160,7 @@ export default function BeforeAfter() {
                 .then(() => {
                 fetchPhotos()
                 closeOverlay()
+                formik.resetForm()
                 setLoading(false)
                 toast.success('Item Added', { duration: 2000 })
                 })
@@ -211,32 +210,32 @@ export default function BeforeAfter() {
         procedureId: '',
         }, validationSchema: validationSchemaVideo
       , onSubmit: handleSubmit
-    })
+    }) 
 
-  let validationSchemaPhoto = yup.object({
-    imageType: yup.string().required('Image Type is required'),
+  const validationSchema = yup.object({
     imageUrl: yup.string().required('Image Url is required'),
-  })
-
-  let formikImage = useFormik({
+    procedureId: yup.string().required('Procedure Name is required'),
+  });
+  
+  const formik = useFormik({
     initialValues: {
-    imageType: '',
-    imageUrl: '',
-    procedure: {
-      id: null,
-      name: '',
+      imageType: 'Fake',
       imageUrl: '',
-      iconUrl: ''
+      procedureId: '',
     },
-  }, validationSchema: validationSchemaPhoto
-    , onSubmit: handlePhoto
-  })
+    validationSchema,
+    onSubmit: handlePhoto,
+  });
+  
 
   function fetchProcedures() {
     setLoading(true)
     baseUrl.get('procedures')
       .then(response => {
+        const fetchedProcedures = [{ id: 'all', name: 'All' }, ...response.data.data];
+        setProceduresName(fetchedProcedures)
         setProcedures(response.data.data)
+        setActiveLink(fetchedProcedures[0].id)
         setLoading(false)
       })
       .catch(error => {
@@ -290,23 +289,24 @@ export default function BeforeAfter() {
         {/* Body of cards */}
         <div className="row gx-0 mb-5">
           <div className="offset-1 col-10 px-4">
-            <ul className="nav text-uppercase justify-content-center py-2 px-3">
-              {['All', 'Augmentation', 'Reduction', 'BBL', 'Lift', 'Tummy', 'Mommy', 'Implant', 'Breast'].map((link) => (
-                <li className="nav-item" key={link}>
+            <ul className="nav text-uppercase justify-content-center py-4 px-3">
+              {proceduresName.map((procedure) => (
+                <li className="nav-item" key={procedure.id}>
                   <Link
-                    className={`nav-link border-bottom px-4 text-decoration-none text-center py-3 display-6 ${activeLink === link ? 'active' : ''}`}
-                    to="/before-after"
-                    onClick={() => linkClick(link)}
+                    className={`nav-link border-bottom px-4 text-decoration-none text-center py-3 display-6 ${activeLink === procedure.id ? 'active' : ''}`}
+                    to='#'
+                    onClick={() => linkClick(procedure.id)}
                     lang={language}
                   >
-                    {language === 'ar' ? translateLink(link) : link}
+                    {procedure.id === 'all' ? (language === 'ar' ? 'الكل' : 'All') : (language === 'ar' ? translateLink(procedure.name) : procedure.name)}
                   </Link>
                 </li>
               ))}
             </ul>
             <div className="row gy-2">
-              {data.map((item ,index) => (
-                <div key={item.id} className="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration={index * 500 + 1500}>
+              {data.filter((item) => activeLink === 'all' || item.procedure.id == activeLink)
+              .map((item ,index) => (
+                <div id={item.procedureId} key={item.id} className="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-duration={index * 500 + 1500}>
                   <div className="me-xl-5 me-sm-4 card cursor-pointer border border-1 border-black rounded-1 overflow-hidden position-relative">
                       {token !=null? <div className="position-absolute top-0 end-0 z-2 mt-2 me-2">
                         <button type="button" className="btn btn-light delete-hover p-1 pb-0" onClick={() => deleteItem('photo', item.id)}>
@@ -402,12 +402,12 @@ export default function BeforeAfter() {
           </div>
         {
           isArrowsVisible? <>
-          <button class="carousel-control-prev opacity-100" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <button className="carousel-control-prev opacity-100" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
           <div className="cursor-pointer rounded-circle d-flex justify-content-center align-items-center circleSize position-relative">
             <i className="fa-solid fa-angle-left anglePositionOverlay" aria-hidden="true"></i>
           </div>
         </button>
-        <button class="carousel-control-next opacity-100" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <button className="carousel-control-next opacity-100" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
           <div className="cursor-pointer rounded-circle d-flex justify-content-center align-items-center circleSize position-relative rotateArrow">
             <i className="fa-solid fa-angle-left anglePositionOverlay" aria-hidden="true"></i>
           </div>
@@ -470,34 +470,62 @@ export default function BeforeAfter() {
         </> : ''}
 
         {/* Pop Up Photos */}
-        {isOverlayVisiblePhoto && token!=null? <>
-            <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
-              <div className="col-lg-6 col-sm-8 col-10 px-5">
-                <div className="text-end w-100">
-                  <i className="fa-solid fa-xmark cursor-pointer fs-4 x" onClick={closeOverlay}></i>
-                </div>
-                <div className='bg-white p-4 text-dark-emphasis rounded-2 overflow-y-scroll scrollbar-popUp'>
-                  <form onSubmit={formikImage.handleSubmit}>
-                    {apiError ? <div className="alert alert-danger">{apiError}</div> : ''}
-    
-                    <label htmlFor="imageType">Image Type : </label>
-                    <input onBlur={formikImage.handleBlur} onChange={formikImage.handleChange} type="text" name="imageType" value={formikImage.values.imageType} id="imageType" className='form-control mb-3' />
-                    {formikImage.errors.imageType && formikImage.touched.imageType ? <div className="alert alert-danger py-2">{formikImage.errors.imageType}</div> : ''}
-    
-                    <label htmlFor="imageUrl">Image Url : </label>
-                    <input onBlur={formikImage.handleBlur} onChange={formikImage.handleChange} type="text" name="imageUrl" value={formikImage.values.imageUrl} id="ImageUrl" className='form-control mb-3' />
-                    {formikImage.errors.imageUrl && formikImage.touched.imageUrl ? <div className="alert alert-danger py-2">{formikImage.errors.imageUrl}</div> : ''}
-
-                      {loading ? <button type='button' className='btn blueC w-100 text-light'>
-                        <i className='fas fa-spinner fa-spin'></i>
-                      </button>
-                        : <button disabled={!(formikImage.isValid && formikImage.dirty)} type='submit' className='btn blueC w-100 text-light'>Add</button>
-                      }
-                  </form>
-                </div>
-              </div>
+        {isOverlayVisiblePhoto && token != null ? (
+        <div className="vh-100 montserrat row position-fixed overlay top-0 bottom-0 start-0 end-0 align-items-center justify-content-center">
+          <div className="col-lg-6 col-sm-8 col-10 px-5">
+            <div className="text-end w-100">
+              <i className="fa-solid fa-xmark cursor-pointer fs-4 x" onClick={closeOverlay}></i>
             </div>
-          </> : ''}
+            <div className='bg-white p-4 text-dark-emphasis rounded-2 overflow-y-scroll scrollbar-popUp'>
+              <form onSubmit={formik.handleSubmit}>
+              {apiError ? <div className="alert alert-danger">{apiError}</div> : ''}
+
+                <label htmlFor="imageUrl">Image Url : </label>
+                <input
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type="text"
+                  name="imageUrl"
+                  value={formik.values.imageUrl}
+                  id="ImageUrl"
+                  className='form-control mb-3'
+                />
+                {formik.errors.imageUrl && formik.touched.imageUrl && (
+                  <div className="alert alert-danger py-2">{formik.errors.imageUrl}</div>
+                )}
+
+                  <label htmlFor="procedure" className="mb-2">Procedure Name:</label>
+                    {procedures.map((procedure) => (
+                      <div className="form-check mb-3" key={procedure.id}>
+                        <input
+                          onBlur={formik.handleBlur}
+                          onChange={formik.handleChange}
+                          type="radio"
+                          name="procedureId"
+                          value={procedure.id}
+                          id={procedure.id}
+                          className="form-check-input"
+                          checked={formik.values.procedureId === `${procedure.id}`}
+                        />
+                        <label htmlFor={procedure.id} className="form-check-label">
+                          {procedure.name}
+                        </label>
+                      </div>
+                    ))}
+
+                {loading ? (
+                  <button type='button' className='btn blueC w-100 text-light'>
+                    <i className='fas fa-spinner fa-spin'></i>
+                  </button>
+                ) : (
+                  <button disabled={!(formik.isValid && formik.dirty)} type='submit' className='btn blueC w-100 text-light'>Add</button>
+                )}
+              </form>
+            </div>
+          </div>
+        </div>
+      ) : ''}
+
       </div>
     </>
   );
@@ -507,14 +535,14 @@ export default function BeforeAfter() {
 function translateLink(link) {
   const translations = {
     'All': 'الكل',
-    'Augmentation': 'تكبير',
-    'Reduction': 'تصغير',
-    'BBL': 'نحت',
-    'Lift': 'شد',
-    'Tummy': 'بطن',
-    'Mommy': 'أمومة',
-    'Implant': 'زرع',
-    'Breast': 'ثدي'
+    // 'Augmentation': 'تكبير',
+    // 'Reduction': 'تصغير',
+    // 'BBL': 'نحت',
+    // 'Lift': 'شد',
+    // 'Tummy': 'بطن',
+    // 'Mommy': 'أمومة',
+    // 'Implant': 'زرع',
+    // 'Breast': 'ثدي'
   };
   return translations[link] || link;
 }
