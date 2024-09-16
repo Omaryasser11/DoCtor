@@ -24,7 +24,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await baseUrl.post("/login", formData);
+      const { data } = await baseUrl.post("/account/login", formData);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data));
       navigate("/");

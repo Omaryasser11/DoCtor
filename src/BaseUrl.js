@@ -4,7 +4,7 @@ import axios from "axios";
 const token = localStorage.getItem("token");
 
 const baseUrl = axios.create({
-  baseURL: "http://dina-khairy.com",
+  baseURL: "/api",
   headers: {
     Authorization: `Bearer ${token}` // Use the token from local storage
 

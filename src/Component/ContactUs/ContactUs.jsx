@@ -3,15 +3,26 @@ import './ContactSection.scss';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
-
+import { isFlippedState } from '../../store/index.js';
+import { useRecoilState } from 'recoil';
 const ContactSection = () => {
+    const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         message: '',
         sendCopy: true,
     });
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsFlipped(window.scrollY > -5);
+        };
 
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [setIsFlipped]);
     const [contactInfo, setContactInfo] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -46,74 +57,15 @@ const ContactSection = () => {
     }
 
     return (
-        <section className="contact-section flex">
-            <div id="map" className="relative">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=..."
-                    loading="lazy"
-                    allowFullScreen
-                    title="Map"
-                />
-            </div>
+        <section className="contact-section flexA">
 
-            <div className="container">
-                <div className="contact-wrapper">
-                    <div className="contact-form">
-                        <form onSubmit={handleSubmit}>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    id="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    placeholder="Name"
-                                    required
-                                />
-                                <label htmlFor="name">Name</label>
-                            </div>
 
-                            <div className="relative">
-                                <input
-                                    type="email"
-                                    id="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    placeholder="Email address"
-                                    required
-                                />
-                                <label htmlFor="email">Email address</label>
-                            </div>
+            <div className="container  flexA col-12 ">
+                <div className="contact-wrapper col-10  flexA">
 
-                            <div className="relative">
-                                <textarea
-                                    id="message"
-                                    rows="3"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    placeholder="Message"
-                                    required
-                                />
-                                <label htmlFor="message">Message</label>
-                            </div>
 
-                            <div className="checkbox-wrapper">
-                                <input
-                                    type="checkbox"
-                                    id="sendCopy"
-                                    checked={formData.sendCopy}
-                                    onChange={handleChange}
-                                />
-                                <label htmlFor="sendCopy">Send me a copy of this message</label>
-                            </div>
-
-                            <button type="submit" className="btn btn-primary">
-                                Send
-                            </button>
-                        </form>
-                    </div>
-
-                    <div className="contact-info">
-                        <div className="contact-card">
+                    <div className="contact-info col-12  flexA">
+                        <div className="contact-card col-lg-3 col-md-11">
                             <div className="icon">
                                 <FontAwesomeIcon icon={faEnvelope} />
                             </div>
@@ -122,7 +74,7 @@ const ContactSection = () => {
                                 <p>{contactInfo.email}</p>
                             </div>
                         </div>
-                        <div className="contact-card">
+                        <div className="contact-card col-lg-3 col-md-11">
                             <div className="icon">
                                 <FontAwesomeIcon icon={faMapMarkerAlt} />
                             </div>
@@ -131,7 +83,7 @@ const ContactSection = () => {
                                 <p>{contactInfo.address}</p>
                             </div>
                         </div>
-                        <div className="contact-card">
+                        <div className="contact-card col-lg-3 col-md-11">
                             <div className="icon">
                                 <FontAwesomeIcon icon={faPhone} />
                             </div>
@@ -143,6 +95,15 @@ const ContactSection = () => {
                     </div>
                 </div>
             </div>
+            <div id="map" className="relative">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3631.662247725229!2d39.6555750748141!3d24.4625008610674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15bd95840b62c695%3A0x4417e97f577e8524!2sDMAI4383%2C%204383%20Jabbar%20Ibn%20Sakhr%2C%207981%2C%20Al%20Khalidiyyah%2C%20Madinah%2042317%2C%20Saudi%20Arabia!5e0!3m2!1sen!2sus!4v1726443205628!5m2!1sen!2sus"
+                    loading="lazy"
+                    allowFullScreen
+                    title="Map"
+                />
+            </div>
+
+
         </section>
     );
 };

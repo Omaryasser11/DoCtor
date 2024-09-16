@@ -4,8 +4,21 @@ import { faEnvelope, faMapMarkerAlt, faPhone, faEdit } from '@fortawesome/free-s
 import { Button, Col, Container, Form, FormGroup, Input, Label, Row, Alert, Spinner } from 'reactstrap';
 import './EditContact.scss';
 import Baseurl from '../../BaseUrl'; // Import base URL
-
+import { isFlippedState } from '../../store/index.js';
+import { useRecoilState } from 'recoil';
 const EditContact = () => {
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsFlipped(window.scrollY > -5);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [setIsFlipped]);
+    const [isFlipped, setIsFlipped] = useRecoilState(isFlippedState);
     const [contactInfo, setContactInfo] = useState({
         email: '',
         addressAr: '',

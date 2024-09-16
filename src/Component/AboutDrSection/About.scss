@@ -141,6 +141,7 @@
           left: 50%;
           transform: translate(-50%, -50%);
           cursor: pointer;
+          z-index: 8;
 
           .play {
             width: 60px;
@@ -150,6 +151,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
 
             svg {
               fill: #fff;
@@ -175,14 +177,13 @@
     transition-duration: .3s;
   }
 
-  .btn1:hover {
+  .play:hover {
     transform: scale(1.1);
-    background-color: white;
-    color: #ff477e;
+
   }
 }
 
-.divider4{
+.divider4 {
   height: 40px;
 }
 
@@ -234,13 +235,15 @@
 
 
 @media (max-width: 768px) {
-  .video-section{
+  .video-section {
     margin-top: 1rem;
   }
+
   .Section2 .content-wrapper .about-description {
     padding: 0;
   }
-.divider4{
-  height: 7px;
-}
+
+  .divider4 {
+    height: 7px;
+  }
 }

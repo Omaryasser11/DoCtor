@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { LanguageContext } from '../../store/LanguageContext';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './About.scss'; // Import the SCSS file
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +10,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import baseUrl from '../../BaseUrl';
 import Spinner from "../../Component/Spinner/Spinner.jsx"
+
 const AboutDrWilliam = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -73,6 +75,7 @@ const AboutDrWilliam = () => {
                                         {showFullBio ? bio : `${shortBio}...`}
                                         {bioWords.length > 50 && (
                                             <button onClick={toggleBio} className="btn btn-link p-0">
+                                     
                                                 {language === 'ar' ? (showFullBio ? 'قراءه اقل' : 'قراءه اكثر') : (showFullBio ? 'Read Less' : 'Read More')}
                                             </button>
                                         )}
@@ -81,27 +84,26 @@ const AboutDrWilliam = () => {
                             </div>
                         </div>
                         <div className="divider4" ></div>
-                        <a className="btn1 btn" href="/dr-william/" role="button">
+                        <Link className="btn1 btn" to="Dr" role="button">
                             {language === 'ar' ? "معرفه المزيد" : "Learn More"}
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className="col-md-12 video-section  col-lg-6" data-aos="fade-left">
                     <div className="column-inner">
                         <div className="nectar-video-box">
                             <div className="inner-wrap">
-                                <a href="https://youtu.be/co_1cNJ-Oi8" className="full-link magnific-popup"></a>
                                 <img
                                     decoding="async"
                                     width="2560"
                                     height="1710"
                                     src={DD}
                                     className="img-fluid radius"
-                                    alt="Dr. William's Video Thumbnail"
+                                    alt="Dr. Dina Video Thumbnail"
                                     srcSet={DD}
                                     sizes="(max-width: 2560px) 100vw, 2560px"
                                 />
-                                <a href="https://youtu.be/co_1cNJ-Oi8" className="play play_button_2 large nectar_video_lightbox magnific-popup">
+                                <a href="https://www.youtube.com/watch?v=0ioOo9Rx4xw" className="play play_button_2 large nectar_video_lightbox magnific-popup">
                                     <span>
                                         <span className="play">
                                             <span className="inner-wrap inner flex">

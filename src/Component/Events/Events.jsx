@@ -165,10 +165,10 @@ const Events = ({ openVideo }) => {
                         </div>
                         <div className="row g-5">
                             {videoData.map((video, index) => (
-                                <div className="col-lg-4" key={index}>
+                                <div className="col-lg-3 col-md-6 col-sm-12" key={index}>
                                     <div className="card border-0 " >
                                         <img
-                                            style={{ height: "550px", cursor: 'pointer' }}
+                                            style={{ height: "350px", cursor: 'pointer' }}
                                             src={video.imgSrc}
                                             className="card-img-top"
                                             alt={video.title[language]}

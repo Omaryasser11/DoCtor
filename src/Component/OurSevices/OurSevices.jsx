@@ -4,9 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './OurSevices.scss'; // Import the SCSS file
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
-import DD from "../../assets/عيادات غسن اعلان (1).png"
+// import DD from "../../assets/عيادات غسن اعلان (1).png"
+
+import DD from '../../assets/كارت 2.png'; // Update with the correct path
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
+import { Link } from 'react-router-dom';
 const OurSevices = () => {
 
   const { language } = useContext(LanguageContext);
@@ -21,14 +24,14 @@ const OurSevices = () => {
     <section className='col-12  Section2'>
       <div
         id="reasons"
-        className=" row  flexA col-12"
+        className=" row  flexA col-10"
 
       >
-        <div className="col-md-10   col-lg-6 video-column" data-aos="fade-right">
+        <div className="col-md-12   col-lg-6 video-column" data-aos="fade-right">
           <div className="video-box"
 
           >
-            <a href="https://youtu.be/9ExTXng13iU" className="full-link magnific-popup"></a>
+            <a href="https://www.youtube.com/watch?v=7d_chgKzJ_8" className="full-link magnific-popup"></a>
             <img
               decoding="async"
               width="1280"
@@ -52,7 +55,7 @@ const OurSevices = () => {
             <div className='Filter2'></div>
           </div>
         </div>
-        <div className="col-md-10 p-4  col-lg-6 text-column " data-aos="fade-left">
+        <div className="col-md-12 p-4  col-lg-6 text-column " data-aos="fade-left">
           <div className="content-wrapper">
             <h3 className="title" lang={language}>{language === 'ar' ? "أهم خدمات افضل دكتور تجميل في المملكه" : "Services provided by Dr. Dina"}</h3>
             <div className="divider"></div>
@@ -67,9 +70,9 @@ const OurSevices = () => {
               </p>
             </blockquote>
             <div className="divider"></div>
-            <a className="btn1 btn" role="button">
+            <Link className="btn1 btn" role="button" to="/Procedures">
               {language === 'ar' ? "معرفه المزيد" : " learn more"}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

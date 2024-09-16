@@ -12,6 +12,7 @@
 
 .cursor-pointer {
   cursor: pointer;
+  height: 325px;
 }
 
 .layerr {
@@ -57,4 +58,15 @@
 .name:hover .anglePosition {
   right: 7%;
   opacity: 1;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .cursor-pointer {
+    cursor: pointer;
+    height: 325px;
+    width:100% ;
+  }
 }

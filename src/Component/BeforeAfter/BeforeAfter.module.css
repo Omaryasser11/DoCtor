@@ -1,14 +1,27 @@
-.imageSize{
+.imageSize {
     max-height: 42rem !important;
 }
+
 /* Add */
-.iconAdd{
+.iconAdd {
     font-size: 5rem;
     transform: scale(1);
     transition: 0.3s;
-    color:darkgray;
+    color: darkgray;
 }
-.iconAdd:hover{
+
+.iconAdd:hover {
     transform: scale(1.2);
-    color:#ff477e !important;
+    color: #ff477e !important;
+}
+
+.card  {
+    height: 325px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        height: 325px;
+    }
+
 }
